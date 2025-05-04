@@ -77,7 +77,7 @@ function Home() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <input 
               type="text" 
-              placeholder="Nombre" 
+              placeholder="Escribe tu nombre completo" 
               required 
               name="name"
               value={formData.name}
@@ -85,7 +85,7 @@ function Home() {
             />
 
             <textarea 
-              placeholder="Mensaje" 
+              placeholder="¿En qué podemos ayudarte?" 
               required
               name="message"
               value={formData.message}
