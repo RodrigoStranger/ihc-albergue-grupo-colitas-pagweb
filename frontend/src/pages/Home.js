@@ -46,7 +46,6 @@ function Home() {
         <div className="hero-content">
           <h1>Grupo Colitas</h1>
           <p>Dando amor y esperanza a los animales necesitados</p>
-          <button className="cta-button">Adoptar Ahora</button>
         </div>
       </header>
 
