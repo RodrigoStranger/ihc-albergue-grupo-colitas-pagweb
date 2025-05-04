@@ -48,7 +48,7 @@ function Footer() {
         <p>
           &copy; {currentYear} Grupo Colitas. Todos los derechos reservados.
           <br />
-          Desarrollado por estudiantes de <a href="https://www.ulasalle.edu.pe/" target="_blank" rel="noopener noreferrer">Universidad La Salle de Arequipa</a>
+          Desarrollado por estudiantes de la <a href="https://www.ulasalle.edu.pe/" target="_blank" rel="noopener noreferrer">Universidad La Salle de Arequipa</a>
         </p>
       </div>
       {showModal && <ModalAdminLogin onClose={handleModalClose} />}
