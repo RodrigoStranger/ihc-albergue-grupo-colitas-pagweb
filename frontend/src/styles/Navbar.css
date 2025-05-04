@@ -17,6 +17,26 @@
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 1rem 1rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .admin-section {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 1rem 0.5rem;
+  }
+}
+
 .navbar-logo {
   color: white;
   text-decoration: none;
@@ -33,6 +53,19 @@
 .nav-links {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    display: none;
+  }
 }
 
 .nav-links a {
@@ -42,6 +75,18 @@
   position: relative;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav-links a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a {
+    font-size: 0.9rem;
+  }
 }
 
 .nav-links a::before {

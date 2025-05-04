@@ -89,6 +89,17 @@ function Home() {
               amorosos para animales abandonados. Creemos que cada animal merece una
               segunda oportunidad y un hogar donde ser amado.
             </p>
+            <br />
+            <h2>Asociación civil sin fines de lucro</h2>
+            <p>
+            Nuestra misión es rescatar animales de la calle en pésimas condiciones, curarlos, esterilizarlos y darlos en adopción. Tenemos un albergue con capacidad para albergar un maximo de 85 perritos y gatitos de manera adecuada según sus necesidades, sin tenerlos hacinados.
+            </p>
+            <br />
+            <h2>No somos un Albergue eutanásico</h2>
+            <p>
+            Los animales no tienen un limite de tiempo para permanecer en el albergue, si no llegan adoptantes para algunos casos, ellos se quedan con nosotros hasta el fin de sus días. Tenemos perritos de todas las edades desde cachorritos hasta viejitos, todos reciben trato personalizado según lo que necesiten.
+            </p>
+            <br />
           </div>
         </div>
       </section>

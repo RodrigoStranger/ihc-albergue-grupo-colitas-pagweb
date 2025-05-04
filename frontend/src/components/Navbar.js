@@ -4,6 +4,7 @@ import '../styles/Navbar.css';
 
 function Navbar() {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   return (
     <nav className="navbar">
@@ -21,6 +22,35 @@ function Navbar() {
           <Link to="/voluntariado" className={location.pathname === '/voluntariado' ? 'active' : ''}>
             Voluntariado
           </Link>
+        </div>
+        <div className="mobile-nav">
+          <button 
+            className="dropdown-button" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <i className="fas fa-bars"></i>
+            <span>Más Opciones</span>
+            <i className={`fas fa-chevron-down ${isMobileMenuOpen ? 'rotate' : ''}`} style={{ marginLeft: '8px' }}></i>
+          </button>
+          <div className={`dropdown-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+            <ul>
+              <li>
+                <Link to="/adoptar" onClick={() => setIsMobileMenuOpen(false)}>
+                  Adoptar
+                </Link>
+              </li>
+              <li>
+                <Link to="/donar" onClick={() => setIsMobileMenuOpen(false)}>
+                  Donar
+                </Link>
+              </li>
+              <li>
+                <Link to="/voluntariado" onClick={() => setIsMobileMenuOpen(false)}>
+                  Voluntariado
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
