@@ -92,7 +92,6 @@
   background-color: #0DB199;
   color: white;
 }
-
 /* Estilos para el modal */
 .modal-overlay {
   position: fixed;
@@ -114,6 +113,7 @@
   width: 90%;
   max-width: 500px;
   position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .modal-header {
@@ -121,6 +121,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #333;
+  font-weight: bold;
 }
 
 .close-button {
@@ -140,6 +146,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  background-color: #f7f7f7; /* gris muy claro */
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .form-group {
@@ -155,11 +164,13 @@
 
 .form-group input {
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2; /* gris claro */
   border-radius: 5px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
   width: 100%;
+  color: #000; /* texto de color negro */
 }
 
 .form-group input:focus {
