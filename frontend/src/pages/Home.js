@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/Home.css';
 
 function Home() {
@@ -9,6 +9,21 @@ function Home() {
   };
 
   const [formData, setFormData] = useState(savedData);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const handlePlayPause = () => {
+    const video = videoRef.current;
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setIsPlaying(true);
+      } else {
+        video.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,9 +67,20 @@ function Home() {
       <section className="about-section">
         <div className="about-grid">
           <div className="about-video">
-            <video src="/videos/video_motivacion.mp4" controls autoPlay muted loop>
-              Your browser does not support the video tag.
-            </video>
+            <div className="video-container">
+              <video 
+                src="/videos/video_motivacion.mp4" 
+                controls 
+                loop
+                className="video-player"
+                ref={videoRef}
+              >
+                Your browser does not support the video tag.
+              </video>
+              <div className="play-button" onClick={handlePlayPause}>
+                <i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i>
+              </div>
+            </div>
           </div>
           <div className="about-content">
             <h2>Nuestra Misión</h2>
