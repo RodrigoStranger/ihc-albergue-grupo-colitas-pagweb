@@ -52,7 +52,7 @@ function Home() {
       <section className="about-section">
         <div className="about-grid">
           <div className="about-video">
-            <video src="./videos/video_motivacion.mp4" controls autoPlay muted loop>
+            <video src="/videos/video_motivacion.mp4" controls autoPlay muted loop>
               Your browser does not support the video tag.
             </video>
           </div>
