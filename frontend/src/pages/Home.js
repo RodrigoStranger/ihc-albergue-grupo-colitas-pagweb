@@ -2,16 +2,33 @@ import React, { useState } from 'react';
 import '../styles/Home.css';
 
 function Home() {
-  const [formData, setFormData] = useState({
+  // Get saved form data from sessionStorage or initialize with empty values
+  const savedData = JSON.parse(sessionStorage.getItem('formData')) || {
     name: '',
     message: ''
-  });
+  };
+
+  const [formData, setFormData] = useState(savedData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
+    if (name === 'name') {
+      // Only allow letters (both uppercase and lowercase)
+      const lettersOnly = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: lettersOnly
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+    // Save form data to sessionStorage
+    sessionStorage.setItem('formData', JSON.stringify({
+      name: formData.name,
+      message: formData.message
     }));
   };
 
@@ -20,7 +37,9 @@ function Home() {
     const whatsappMessage = encodeURIComponent(`Hola, vengo desde la página del grupo Colitas Arequipa. Mi nombre es ${formData.name} y quiero saber acerca de ${formData.message}`);
     const whatsappUrl = `https://wa.me/+51921136113?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
+    // Clear form data from state and sessionStorage
     setFormData({ name: '', message: '' });
+    sessionStorage.removeItem('formData');
   };
 
   return (
@@ -77,7 +96,7 @@ function Home() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <input 
               type="text" 
-              placeholder="Escribe tu nombre completo" 
+              placeholder="Ingresa tu nombre y apellidos completos" 
               required 
               name="name"
               value={formData.name}
