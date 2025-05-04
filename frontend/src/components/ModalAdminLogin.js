@@ -15,20 +15,26 @@ function ModalAdminLogin({ onClose }) {
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Iniciar Sesión - Administrador</h2>
+          <h2>Iniciar Sesión</h2>
           <button className="close-button" onClick={onClose}>&times;</button>
         </div>
         <form onSubmit={handleSubmit} className="admin-login-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="dni">DNI</label>
             <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              placeholder="Tu email" 
+              type="text" 
+              id="dni" 
+              name="dni" 
+              placeholder="Tu DNI" 
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) return;
+                setEmail(value);
+              }}
               required 
+              maxLength={8}
+              pattern="[0-9]{8}"
             />
           </div>
           <div className="form-group">
