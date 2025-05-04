@@ -50,13 +50,20 @@ function Home() {
       </header>
 
       <section className="about-section">
-        <div className="about-content">
-          <h2>Nuestra Misión</h2>
-          <p>
-            En Grupo Colitas, nos dedicamos a rescatar, rehabilitar y encontrar hogares
-            amorosos para animales abandonados. Creemos que cada animal merece una
-            segunda oportunidad y un hogar donde ser amado.
-          </p>
+        <div className="about-grid">
+          <div className="about-video">
+            <video src="./videos/video_motivacion.mp4" controls autoPlay muted loop>
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div className="about-content">
+            <h2>Nuestra Misión</h2>
+            <p>
+              En Grupo Colitas, nos dedicamos a rescatar, rehabilitar y encontrar hogares
+              amorosos para animales abandonados. Creemos que cada animal merece una
+              segunda oportunidad y un hogar donde ser amado.
+            </p>
+          </div>
         </div>
       </section>
 
