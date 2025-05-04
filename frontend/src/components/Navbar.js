@@ -14,9 +14,10 @@ function Navbar() {
             className="dropdown-button" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <i className={`fas ${isMobileMenuOpen ? 'fa-chevron-down rotate' : 'fa-bars'}`} style={{ marginRight: '8px' }}></i>
+            Menu
+            <i className={`fas ${isMobileMenuOpen ? 'fa-chevron-down rotate' : 'fa-chevron-down'}`} style={{ marginRight: '8px' }}></i>
           </button>
-          <div className="dropdown-menu">
+          <div className={`dropdown-menu ${isMobileMenuOpen ? 'active' : ''}`}>
             <ul>
               <li>
                 <Link to="/adoptar" onClick={() => setIsMobileMenuOpen(false)}>
@@ -55,4 +56,4 @@ function Navbar() {
   );
 }
 
-export default Navbar; 
+export default Navbar;
