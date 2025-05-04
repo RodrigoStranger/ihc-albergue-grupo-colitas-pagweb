@@ -372,6 +372,12 @@
   visibility: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  .play-button {
+    display: none;
+  }
+}
+
 .video-container:hover .play-button {
   opacity: 1;
   visibility: visible;
