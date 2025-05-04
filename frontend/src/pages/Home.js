@@ -12,24 +12,22 @@ function Home() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    let newValue = value;
+    
     if (name === 'name') {
       // Only allow letters (both uppercase and lowercase)
-      const lettersOnly = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
-      setFormData(prev => ({
-        ...prev,
-        [name]: lettersOnly
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
+      newValue = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
     }
-    // Save form data to sessionStorage
-    sessionStorage.setItem('contactFormData', JSON.stringify({
-      name: formData.name,
-      message: formData.message
-    }));
+    
+    // Save form data to sessionStorage immediately with the new value
+    const updatedData = {
+      ...formData,
+      [name]: newValue
+    };
+    sessionStorage.setItem('contactFormData', JSON.stringify(updatedData));
+    
+    // Update state
+    setFormData(updatedData);
   };
 
   const handleSubmit = (e) => {
