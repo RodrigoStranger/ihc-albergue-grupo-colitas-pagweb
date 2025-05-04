@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModalAdminLogin from './ModalAdminLogin';
 import '../styles/Footer.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
 
   return (
     <footer className="footer">
@@ -22,14 +28,24 @@ function Footer() {
             </a>
           </div>
         </div>
+        <div className="footer-section admin-section">
+          <h3>Administración</h3>
+          <button 
+            className="admin-login-btn"
+            onClick={() => setShowModal(true)}
+          >
+            ¿Eres administrador?
+          </button>
+        </div>
       </div>
       <div className="footer-bottom">
         <p>
           &copy; {currentYear} Grupo Colitas. Todos los derechos reservados.
           <br />
-          Desarrollado por estudiantes de <a href="https://www.lasalle.edu.pe/arequipa" target="_blank" rel="noopener noreferrer">Universidad La Salle de Arequipa</a>
+          Desarrollado por estudiantes de <a href="https://www.ulasalle.edu.pe/" target="_blank" rel="noopener noreferrer">Universidad La Salle de Arequipa</a>
         </p>
       </div>
+      {showModal && <ModalAdminLogin onClose={handleModalClose} />}
     </footer>
   );
 }
