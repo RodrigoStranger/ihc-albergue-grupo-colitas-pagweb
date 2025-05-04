@@ -9,30 +9,14 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/home" className="navbar-logo">
-          Grupo Colitas
-        </Link>
-        <div className="nav-links">
-          <Link to="/adoptar" className={location.pathname === '/adoptar' ? 'active' : ''}>
-            Adoptar
-          </Link>
-          <Link to="/donar" className={location.pathname === '/donar' ? 'active' : ''}>
-            Donar
-          </Link>
-          <Link to="/voluntariado" className={location.pathname === '/voluntariado' ? 'active' : ''}>
-            Voluntariado
-          </Link>
-        </div>
         <div className="mobile-nav">
           <button 
             className="dropdown-button" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <i className="fas fa-bars"></i>
-            <span>Más Opciones</span>
-            <i className={`fas fa-chevron-down ${isMobileMenuOpen ? 'rotate' : ''}`} style={{ marginLeft: '8px' }}></i>
+            <i className={`fas ${isMobileMenuOpen ? 'fa-chevron-down rotate' : 'fa-bars'}`} style={{ marginRight: '8px' }}></i>
           </button>
-          <div className={`dropdown-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="dropdown-menu">
             <ul>
               <li>
                 <Link to="/adoptar" onClick={() => setIsMobileMenuOpen(false)}>
@@ -51,6 +35,20 @@ function Navbar() {
               </li>
             </ul>
           </div>
+        </div>
+        <Link to="/home" className="navbar-logo">
+          Grupo Colitas
+        </Link>
+        <div className="nav-links">
+          <Link to="/adoptar" className={location.pathname === '/adoptar' ? 'active' : ''}>
+            Adoptar
+          </Link>
+          <Link to="/donar" className={location.pathname === '/donar' ? 'active' : ''}>
+            Donar
+          </Link>
+          <Link to="/voluntariado" className={location.pathname === '/voluntariado' ? 'active' : ''}>
+            Voluntariado
+          </Link>
         </div>
       </div>
     </nav>
