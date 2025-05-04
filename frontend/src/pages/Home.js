@@ -3,7 +3,7 @@ import '../styles/Home.css';
 
 function Home() {
   // Get saved form data from sessionStorage or initialize with empty values
-  const savedData = JSON.parse(sessionStorage.getItem('formData')) || {
+  const savedData = JSON.parse(sessionStorage.getItem('contactFormData')) || {
     name: '',
     message: ''
   };
@@ -26,7 +26,7 @@ function Home() {
       }));
     }
     // Save form data to sessionStorage
-    sessionStorage.setItem('formData', JSON.stringify({
+    sessionStorage.setItem('contactFormData', JSON.stringify({
       name: formData.name,
       message: formData.message
     }));
@@ -39,7 +39,7 @@ function Home() {
     window.open(whatsappUrl, '_blank');
     // Clear form data from state and sessionStorage
     setFormData({ name: '', message: '' });
-    sessionStorage.removeItem('formData');
+    sessionStorage.removeItem('contactFormData');
   };
 
   return (
