@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import '../styles/Home.css';
 
 function Home() {
-  const [formData, setFormData] = useState({
+  // Get saved form data from sessionStorage or initialize with empty values
+  const savedData = JSON.parse(sessionStorage.getItem('formData')) || {
     name: '',
     message: ''
-  });
+  };
+
+  const [formData, setFormData] = useState(savedData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +25,11 @@ function Home() {
         [name]: value
       }));
     }
+    // Save form data to sessionStorage
+    sessionStorage.setItem('formData', JSON.stringify({
+      name: formData.name,
+      message: formData.message
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -29,7 +37,9 @@ function Home() {
     const whatsappMessage = encodeURIComponent(`Hola, vengo desde la página del grupo Colitas Arequipa. Mi nombre es ${formData.name} y quiero saber acerca de ${formData.message}`);
     const whatsappUrl = `https://wa.me/+51921136113?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
+    // Clear form data from state and sessionStorage
     setFormData({ name: '', message: '' });
+    sessionStorage.removeItem('formData');
   };
 
   return (
