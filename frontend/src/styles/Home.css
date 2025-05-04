@@ -158,22 +158,25 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
+  justify-content: center;
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  text-align: center;
 }
 
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   padding: 1.5rem;
   background-color: #f9f9f9;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  justify-content: space-between;
 }
 
 .contact-item:hover {
@@ -183,15 +186,18 @@
 .contact-item i {
   font-size: 1.5rem;
   color: #0DB199;
+  padding-left: 2rem;
 }
 
 .contact-item h3 {
   color: #333;
   margin-bottom: 0.5rem;
+  margin: auto;
 }
 
 .contact-item p {
   color: #666;
+  margin: auto;
 }
 
 .contact-form {
