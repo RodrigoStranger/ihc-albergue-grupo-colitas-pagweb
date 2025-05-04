@@ -80,7 +80,7 @@
 
 .feature-card i {
   font-size: 2.5rem;
-  color: #ff6b6b;
+  color: #0DB199;
   margin-bottom: 1rem;
 }
 
@@ -96,7 +96,7 @@
 .cta-section {
   padding: 5rem 2rem;
   text-align: center;
-  background-color: #ff6b6b;
+  background-color: #0DB199;
   color: white;
 }
 
@@ -127,7 +127,7 @@
 
 .cta-button:not(.secondary) {
   background-color: white;
-  color: #ff6b6b;
+  color: #0DB199;
 }
 
 .cta-button.secondary {
@@ -182,7 +182,7 @@
 
 .contact-item i {
   font-size: 1.5rem;
-  color: #ff6b6b;
+  color: #0DB199;
 }
 
 .contact-item h3 {
@@ -215,7 +215,7 @@
 
 .submit-button {
   padding: 1rem;
-  background-color: #ff6b6b;
+  background-color: #0DB199;
   color: white;
   border: none;
   border-radius: 5px;
@@ -225,7 +225,7 @@
 }
 
 .submit-button:hover {
-  background-color: #ff5252;
+  background-color: #028f7a;
 }
 
 @media (max-width: 768px) {
