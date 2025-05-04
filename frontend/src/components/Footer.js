@@ -26,6 +26,12 @@ function Footer() {
             <a href="https://www.tiktok.com/@grupocolitasarequipa?_t=ZM-8vaS8VtvcAv&_r=1" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-tiktok"></i>
             </a>
+            <a href="https://www.instagram.com/grupo_colitas_arequipa/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/+51921136113" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-whatsapp"></i>
+            </a>
           </div>
         </div>
         <div className="footer-section admin-section">
