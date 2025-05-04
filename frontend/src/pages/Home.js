@@ -9,10 +9,19 @@ function Home() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    if (name === 'name') {
+      // Only allow letters (both uppercase and lowercase)
+      const lettersOnly = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: lettersOnly
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -77,7 +86,7 @@ function Home() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <input 
               type="text" 
-              placeholder="Escribe tu nombre completo" 
+              placeholder="Ingresa tu nombre y apellidos completos" 
               required 
               name="name"
               value={formData.name}
