@@ -205,13 +205,13 @@
   .footer-section {
     width: 100%;
     max-width: 300px;
-    margin: 1rem auto;
+    margin: -1rem auto;
   }
 
   .admin-section {
     width: 100%;
     max-width: 300px;
-    margin: 1rem auto;
+    margin: -1rem auto;
   }
 
   .social-links {
@@ -220,6 +220,7 @@
 
   .social-links a {
     margin: 0.5rem;
+    margin-top: -0.5rem;
   }
 
   .modal-content {
