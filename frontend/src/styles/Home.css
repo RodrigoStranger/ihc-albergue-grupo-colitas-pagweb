@@ -176,7 +176,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   transition: transform 0.3s ease;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .contact-item:hover {
@@ -192,12 +192,10 @@
 .contact-item h3 {
   color: #333;
   margin-bottom: 0.5rem;
-  margin: auto;
 }
 
 .contact-item p {
   color: #666;
-  margin: auto;
 }
 
 .contact-form {
