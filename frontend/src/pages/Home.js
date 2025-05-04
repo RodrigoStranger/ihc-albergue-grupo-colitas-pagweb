@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Home.css';
 
 function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const whatsappMessage = encodeURIComponent(`Hola, vengo desde la página del grupo Colitas Arequipa. Mi nombre es ${formData.name} y quiero saber acerca de ${formData.message}`);
+    const whatsappUrl = `https://wa.me/+51921136113?text=${whatsappMessage}`;
+    window.open(whatsappUrl, '_blank');
+    setFormData({ name: '', message: '' });
+  };
+
   return (
     <div className="home">
       <header className="hero">
@@ -51,35 +72,25 @@ function Home() {
       </section>
 
       <section className="contact-section">
-        <h2>Contacto</h2>
+        <h2>Contáctate con nosotros</h2>
         <div className="contact-container">
-          <div className="contact-info">
-            <div className="contact-item">
-              <i className="fas fa-map-marker-alt"></i>
-              <div>
-                <h3>Ubicación</h3>
-                <p>Av. Principal 123, Ciudad</p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <i className="fas fa-phone"></i>
-              <div>
-                <h3>Teléfono</h3>
-                <p>+123 456 7890</p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <i className="fas fa-envelope"></i>
-              <div>
-                <h3>Email</h3>
-                <p>info@grupocolitas.com</p>
-              </div>
-            </div>
-          </div>
-          <form className="contact-form">
-            <input type="text" placeholder="Nombre" required />
-            <input type="email" placeholder="Email" required />
-            <textarea placeholder="Mensaje" required></textarea>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              placeholder="Nombre" 
+              required 
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+
+            <textarea 
+              placeholder="Mensaje" 
+              required
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+            ></textarea>
             <button type="submit" className="submit-button">Enviar Mensaje</button>
           </form>
         </div>
