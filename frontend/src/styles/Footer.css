@@ -171,18 +171,20 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0.2rem 0 0; /* Ajuste para bajar el botón */
+  margin: 0.2rem 0 0;
   width: 100%;
   max-width: 200px;
   text-align: center;
   position: relative;
-  top: 0; /* Restablecer posición */
+  top: 0;
 }
 
 .admin-login-btn:hover {
   background-color: #0DB199;
-  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* Estilos para el modal */
 .modal-overlay {
   position: fixed;
@@ -276,11 +278,6 @@
   box-shadow: 0 0 0 3px rgba(13, 177, 153, 0.1);
 }
 
-.form-group input:focus {
-  outline: none;
-  border-color: #0DB199;
-}
-
 .submit-button {
   background-color: #0DB199;
   color: white;
@@ -299,10 +296,6 @@
   background-color: #028f7a;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.submit-button:hover {
-  background-color: #028f7a;
 }
 
 /* Estilos responsive */

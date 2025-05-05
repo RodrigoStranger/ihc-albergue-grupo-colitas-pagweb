@@ -15,10 +15,10 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-section">
           <h3>Grupo Colitas</h3>
-          <p>Dando amor y esperanza a los animales necesitados desde 2024</p>
+          <p>Dando amor y esperanza a los animales necesitados desde 2016</p>
         </div>
         <div className="footer-section social-section">
-          <h3>Síguenos</h3>
+          <h3>Siguenos</h3>
           <div className="social-links">
             <a href="https://www.facebook.com/profile.php?id=100088175020547&rdid=vqISWL2JHRi89qNO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AKkzZcoLX%2F" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-facebook"></i>
