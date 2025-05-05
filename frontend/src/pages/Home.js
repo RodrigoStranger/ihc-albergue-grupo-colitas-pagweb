@@ -14,7 +14,9 @@ function Home() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const videoRefs = useRef([]);
+  const sliderRef = useRef(null);
   const totalVideos = 3;
+  const isTransitioning = useRef(false);
 
   const pauseAllVideos = () => {
     videoRefs.current.forEach(video => {
@@ -26,13 +28,27 @@ function Home() {
   };
 
   const nextVideo = () => {
+    if (isTransitioning.current) return;
     pauseAllVideos();
-    setCurrentVideo((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
+    isTransitioning.current = true;
+    
+    setCurrentVideo(prev => (prev + 1) % totalVideos);
+    
+    setTimeout(() => {
+      isTransitioning.current = false;
+    }, 500);
   };
 
   const prevVideo = () => {
+    if (isTransitioning.current) return;
     pauseAllVideos();
-    setCurrentVideo((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
+    isTransitioning.current = true;
+    
+    setCurrentVideo(prev => (prev - 1 + totalVideos) % totalVideos);
+    
+    setTimeout(() => {
+      isTransitioning.current = false;
+    }, 500);
   };
 
   const handlePlayPause = () => {
@@ -171,7 +187,15 @@ function Home() {
                 &lt;
               </button>
               <div className="video-container">
-                <div className="video-slider" style={{ transform: `translateX(-${currentVideo * 100}%)` }}>
+                <div 
+                  className="video-slider" 
+                  style={{ 
+                    transform: `translateX(-${currentVideo * 100}%)`,
+                    transition: 'transform 0.5s ease-in-out'
+                  }}
+                  ref={sliderRef}
+                >
+
                   <div className="video-slide">
                     <iframe 
                       ref={el => videoRefs.current[0] = el}
@@ -195,7 +219,7 @@ function Home() {
                   <div className="video-slide">
                     <iframe 
                       ref={el => videoRefs.current[2] = el}
-                      src="https://www.youtube.com/embed/IQSo1ZEFX7w?enablejsapi=1" 
+                      src="https://www.youtube.com/embed/VzgGayMri4E?enablejsapi=1"
                       title="Proceso de Esterilización" 
                       frameBorder="0" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -204,7 +228,12 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <button className="carousel-button next" onClick={nextVideo}>&gt;</button>
+              <button 
+                className={`carousel-button next ${isHovered ? 'visible' : ''}`} 
+                onClick={nextVideo}
+              >
+                &gt;
+              </button>
             </div>
           </div>
         </div>
