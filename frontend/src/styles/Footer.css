@@ -1,10 +1,12 @@
 .footer {
   background-color: #2c3e50;
   color: white;
-  padding: 4rem 0 0;
+  padding: 2rem 0 0;
   margin: 0;
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -24,14 +26,14 @@
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-bottom: 0;
-  position: relative;
-  z-index: 2;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -47,9 +49,15 @@
 }
 
 .footer-section {
-  flex: 1;
-  min-width: 250px;
-  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -74,17 +82,26 @@
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: -1.8rem 0 0.5rem; /* Subir más los íconos */
+  flex-wrap: nowrap;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  top: -10px; /* Ajuste adicional para subir */
 }
 
 .social-links a {
   color: white;
-  font-size: 10rem;
+  font-size: 1.8rem;
   transition: color 0.3s ease;
-  margin: 0 1rem;
+  margin: 0 0.5rem; /* Añadir espacio horizontal */
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Evitar que se encojan */
 }
 
 .social-links a:hover {
@@ -147,16 +164,19 @@
 }
 
 .admin-login-btn {
-  display: inline-block;
   background-color: transparent;
   border: 2px solid #0DB199;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0.5rem auto;
-  display: block;
+  margin: 0.2rem 0 0; /* Ajuste para bajar el botón */
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  position: relative;
+  top: 0; /* Restablecer posición */
 }
 
 .admin-login-btn:hover {
@@ -325,9 +345,28 @@
 
 @media (max-width: 768px) {
   .footer-content {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    padding: 1rem;
     gap: 2rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1.5rem; /* Añadido espacio inferior a cada sección */
+  }
+  
+  .social-section {
+    order: 1; /* Mover la sección de redes sociales arriba */
+    margin-bottom: 1rem; /* Reducir espacio inferior */
+  }
+  
+  .footer-section:first-child {
+    order: 2; /* Mover Grupo Colitas después de redes sociales */
+  }
+  
+  .admin-section {
+    order: 3; /* Mantener administración al final */
+    margin-top: 1rem; /* Añadir espacio arriba de administración */
+    display: block !important; /* Asegurar que sea visible */
   }
 
   .footer-section {
@@ -339,6 +378,9 @@
   .social-section {
     text-align: center;
     flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar contenido */
   }
 
   .social-links {
@@ -378,16 +420,24 @@
 
 .social-links {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-top: -1rem;
+  gap: 0.8rem; /* Reducir espacio entre íconos */
+  flex-wrap: nowrap;
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0 0.5rem; /* Reducir padding horizontal */
+  white-space: nowrap;
 }
 
 .social-links a {
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.3rem; /* Reducir ligeramente el tamaño */
   transition: color 0.3s ease;
+  display: inline-block;
+  min-width: 24px; /* Reducir ancho mínimo */
+  text-align: center;
+  flex-shrink: 0;
+  padding: 0 0.2rem; /* Añadir un pequeño espacio interno */
 }
 
 .social-links a:hover {
@@ -396,8 +446,9 @@
 
 .footer-bottom {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: -2.5rem;
+  margin-top: -1.5rem; /* Ajustado para subir el texto */
+  margin-bottom: 1rem; /* Ajustado para reducir espacio inferior */
+  padding: 0.5rem 0; /* Ajuste de padding vertical */
 }
 
 .footer-bottom p {
@@ -438,6 +489,10 @@
 @media (max-width: 480px) {
   .footer {
     padding: 1.5rem 0.5rem 1rem;
+  }
+  
+  .footer-bottom {
+    margin-top: 0.5rem; /* Ajustado para bajar un poco el texto en móviles */
   }
 
   .footer-section h3 {
