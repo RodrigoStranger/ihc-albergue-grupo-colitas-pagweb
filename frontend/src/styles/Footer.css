@@ -82,17 +82,26 @@
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: -1.8rem 0 0.5rem; /* Subir más los íconos */
+  flex-wrap: nowrap;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  top: -10px; /* Ajuste adicional para subir */
 }
 
 .social-links a {
   color: white;
-  font-size: 10rem;
+  font-size: 1.8rem;
   transition: color 0.3s ease;
-  margin: 0 1rem;
+  margin: 0 0.5rem; /* Añadir espacio horizontal */
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Evitar que se encojan */
 }
 
 .social-links a:hover {
@@ -162,10 +171,12 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
+  margin: 0.2rem 0 0; /* Ajuste para bajar el botón */
   width: 100%;
   max-width: 200px;
   text-align: center;
+  position: relative;
+  top: 0; /* Restablecer posición */
 }
 
 .admin-login-btn:hover {
