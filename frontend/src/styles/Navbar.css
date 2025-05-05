@@ -152,7 +152,7 @@
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #2c3e50;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: absolute;
@@ -172,7 +172,7 @@
 }
 
 .dropdown-menu {
-  background-color: #0DB199;
+  background-color: #2c3e50;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: absolute;
@@ -193,7 +193,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #0DB199;
+  background-color: #2c3e50;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -217,7 +217,7 @@
 @media (max-width: 768px) {
   .dropdown-menu {
     position: fixed;
-    top: 80px;
+    top: 67px;
     right: 0;
     width: 80%;
     overflow-y: auto;
@@ -229,8 +229,10 @@
   }
   
   .dropdown-menu ul {
-    background-color: #0DB199;
-    border-radius: 8px;
+    background-color: #2c3e50;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: auto;
   }
