@@ -864,6 +864,21 @@
   letter-spacing: 1px;
 }
 
+/* Estilo específico para el botón de firmar petición */
+.petition-banner .cta-button:not(.secondary) {
+  background-color: white;
+  color: #0DB199;
+  border: 2px solid white; /* Borde blanco */
+}
+
+.petition-banner .cta-button:not(.secondary):hover {
+  background-color: white;
+  color: #0DB199;
+  border: 2px solid white; /* Borde blanco en hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 177, 153, 0.2);
+}
+
 .cta-button:hover {
   background-color: transparent;
   color: #0DB199;
