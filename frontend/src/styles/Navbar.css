@@ -167,7 +167,8 @@
 }
 
 .dropdown-button:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #ffffff !important;
+  color: #2c3e50 !important;
 }
 
 .dropdown-button i {
@@ -214,14 +215,16 @@
 
 .dropdown-menu a {
   display: block;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   color: white;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
 .dropdown-menu a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #ffffff !important;
+  color: #2c3e50 !important;
 }
 
 @media (max-width: 768px) {

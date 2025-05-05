@@ -39,7 +39,7 @@ function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             Menu
-            <i className={`fas ${isMobileMenuOpen ? 'fa-chevron-down rotate' : 'fa-chevron-down'}`} style={{ marginRight: '8px' }}></i>
+            <i className={`fas ${isMobileMenuOpen ? 'fa-chevron-down' : 'fa-bars'}`} style={{ marginRight: '8px' }}></i>
           </button>
           <div className={`dropdown-menu ${isMobileMenuOpen ? 'active' : ''}`}>
             <ul>
