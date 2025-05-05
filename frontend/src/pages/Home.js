@@ -131,7 +131,7 @@ function Home() {
             <br />
             <h2>Asociación civil sin fines de lucro</h2>
             <p>
-            Nuestra misión es rescatar animales de la calle en pésimas condiciones, curarlos, esterilizarlos y darlos en adopción. Tenemos un albergue con capacidad para albergar un maximo de 85 perritos y gatitos de manera adecuada según sus necesidades, sin tenerlos hacinados.
+            Nuestra misión es rescatar animales de la calle en pésimas condiciones, curarlos, esterilizarlos y darlos en adopción. Tenemos un albergue con capacidad para albergar un maximo de 25 perritos de manera adecuada según sus necesidades, sin tenerlos hacinados.
             </p>
             <br />
             <h2>No somos un Albergue eutanásico</h2>
