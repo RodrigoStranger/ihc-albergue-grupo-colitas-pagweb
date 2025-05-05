@@ -579,13 +579,73 @@
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #ffffff;
+  position: relative;
+  display: inline-block;
+}
+
+.cta-section h2::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 3px;
+  background-color: #0DB199;
+  bottom: -10px;
+  left: 20%;
+}
+
+.sterilization-intro {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  max-width: 800px;
+  margin: 2.5rem auto;
+  line-height: 1.7;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .cta-section p {
   font-size: 1.2rem;
-  margin: 1rem auto 2rem;
+  margin-bottom: 2rem;
   max-width: 800px;
-  line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7 !important;
+}
+
+/* Two Column Layout */
+.two-column-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 6rem;
+  padding: 0 1rem;
+}
+
+.petition-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.video-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .two-column-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .petition-column,
+  .video-column {
+    width: 100%;
+    max-width: 600px;
+  }
 }
 
 .sterilization-info {
@@ -595,16 +655,115 @@
   line-height: 1.7 !important;
 }
 
+.video-carousel {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.video-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-slide iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border: none;
+  aspect-ratio: 16/9;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  color: #2c3e50;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.video-carousel:hover .carousel-button.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-button:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button.prev {
+  left: 20px;
+}
+
+.carousel-button.next {
+  right: 20px;
+}
+
+@media (max-width: 600px) {
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
 .petition-banner {
   background: linear-gradient(135deg, #0DB199, #0a8a7a);
   border-radius: 15px;
   padding: 2rem;
-  margin: 2.5rem auto;
-  max-width: 800px;
+  width: 100%;
   text-align: center;
   color: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .petition-banner h3 {

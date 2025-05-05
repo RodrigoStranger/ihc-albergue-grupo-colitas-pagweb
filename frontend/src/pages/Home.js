@@ -11,6 +11,29 @@ function Home() {
   const [formData, setFormData] = useState(savedData);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRefs = useRef([]);
+  const totalVideos = 3;
+
+  const pauseAllVideos = () => {
+    videoRefs.current.forEach(video => {
+      if (video) {
+        const iframe = video.contentWindow || video.contentDocument.document || video.contentDocument;
+        iframe.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      }
+    });
+  };
+
+  const nextVideo = () => {
+    pauseAllVideos();
+    setCurrentVideo((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
+  };
+
+  const prevVideo = () => {
+    pauseAllVideos();
+    setCurrentVideo((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
+  };
 
   const handlePlayPause = () => {
     const video = videoRef.current;
@@ -124,19 +147,67 @@ function Home() {
 
       <section className="cta-section">
         <h2>Esterilizaciones</h2>
-        <p>Sección Educativa sobre Esterilización</p>
-        <p className="sterilization-info">
-          La educación sobre la importancia de la esterilización es fundamental para prevenir la sobrepoblación de animales y reducir el sufrimiento de aquellos que se encuentran en las calles. Esta sección proporciona información clara y accesible para los usuarios.
-        </p>
-        
-        <div className="petition-banner">
-          <h3>¡Necesitamos tu ayuda!</h3>
-          <p>Estamos recogiendo firmas para presentar ante las autoridades del Gobierno Regional de Arequipa, solicitando mayor apoyo y recursos para los programas de esterilización en nuestra región.</p>
-          <p>Tu firma puede hacer la diferencia en la lucha contra el abandono y la sobrepoblación animal.</p>
-          <button className="cta-button">Firmar la petición</button>
+        <p className="sterilization-intro">La educación sobre la importancia de la esterilización es fundamental para prevenir la sobrepoblación de animales y reducir el sufrimiento de aquellos que se encuentran en las calles</p>
+        <div className="two-column-layout">
+          <div className="petition-column">
+            <div className="petition-banner">
+              <h3>¡Necesitamos tu ayuda!</h3>
+              <p>Estamos recogiendo firmas para presentar ante las autoridades del Gobierno Regional de Arequipa, solicitando mayor apoyo y recursos para los programas de esterilización en nuestra región.</p>
+              <p>Tu firma puede hacer la diferencia en la lucha contra el abandono y la sobrepoblación animal.</p>
+              <button className="cta-button">Firmar la petición</button>
+            </div>
+          </div>
+          
+          <div className="video-column">
+            <div 
+              className="video-carousel"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <button 
+                className={`carousel-button prev ${isHovered ? 'visible' : ''}`} 
+                onClick={prevVideo}
+              >
+                &lt;
+              </button>
+              <div className="video-container">
+                <div className="video-slider" style={{ transform: `translateX(-${currentVideo * 100}%)` }}>
+                  <div className="video-slide">
+                    <iframe 
+                      ref={el => videoRefs.current[0] = el}
+                      src="https://www.youtube.com/embed/GOBRso0M-6Q?enablejsapi=1" 
+                      title="Esterilización Responsable" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen>
+                    </iframe>
+                  </div>
+                  <div className="video-slide">
+                    <iframe 
+                      ref={el => videoRefs.current[1] = el}
+                      src="https://www.youtube.com/embed/6gU_yF_rHrY?enablejsapi=1" 
+                      title="Beneficios de la Esterilización" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen>
+                    </iframe>
+                  </div>
+                  <div className="video-slide">
+                    <iframe 
+                      ref={el => videoRefs.current[2] = el}
+                      src="https://www.youtube.com/embed/IQSo1ZEFX7w?enablejsapi=1" 
+                      title="Proceso de Esterilización" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen>
+                    </iframe>
+                  </div>
+                </div>
+              </div>
+              <button className="carousel-button next" onClick={nextVideo}>&gt;</button>
+            </div>
+          </div>
         </div>
-
-
       </section>
 
       <section className="contact-section">
