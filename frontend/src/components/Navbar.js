@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
 function Navbar() {
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        // Check if the click is on the dropdown button
+        const dropdownButton = document.querySelector('.dropdown-button');
+        if (dropdownButton && !dropdownButton.contains(event.target)) {
+          setIsMobileMenuOpen(false);
+        }
+      }
+    };
+
+    // Add event listener if menu is open
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="mobile-nav">
+        <div className="mobile-nav" ref={dropdownRef}>
           <button 
             className="dropdown-button" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
