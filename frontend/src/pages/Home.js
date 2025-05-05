@@ -113,6 +113,15 @@ function Home() {
                 loop
                 className="video-player"
                 ref={videoRef}
+                playsInline
+                webkit-playsinline="true"
+                preload="metadata"
+                poster="/images/video-preview.jpg"
+                style={{
+                  width: '100%',
+                  display: 'block',
+                  backgroundColor: '#000'
+                }}
               >
                 Your browser does not support the video tag.
               </video>
