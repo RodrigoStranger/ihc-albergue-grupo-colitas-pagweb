@@ -108,11 +108,12 @@ function Home() {
           <div className="about-video">
             <div className="video-container">
               <video 
-                src="/videos/video_motivacion.mp4" 
+                src={`${process.env.PUBLIC_URL}/videos/video_motivacion.mp4`}
                 controls 
                 loop
                 className="video-player"
                 ref={videoRef}
+                preload="metadata"
               >
                 Your browser does not support the video tag.
               </video>
