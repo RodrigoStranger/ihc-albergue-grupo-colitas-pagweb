@@ -123,12 +123,20 @@ function Home() {
       </section>
 
       <section className="cta-section">
-        <h2>¿Quieres Ayudar?</h2>
-        <p>Hay muchas formas de apoyar nuestra causa</p>
-        <div className="cta-buttons">
-          <button className="cta-button">Donar</button>
-          <button className="cta-button secondary">Ser Voluntario</button>
+        <h2>Esterilizaciones</h2>
+        <p>Sección Educativa sobre Esterilización</p>
+        <p className="sterilization-info">
+          La educación sobre la importancia de la esterilización es fundamental para prevenir la sobrepoblación de animales y reducir el sufrimiento de aquellos que se encuentran en las calles. Esta sección proporciona información clara y accesible para los usuarios.
+        </p>
+        
+        <div className="petition-banner">
+          <h3>¡Necesitamos tu ayuda!</h3>
+          <p>Estamos recogiendo firmas para presentar ante las autoridades del Gobierno Regional de Arequipa, solicitando mayor apoyo y recursos para los programas de esterilización en nuestra región.</p>
+          <p>Tu firma puede hacer la diferencia en la lucha contra el abandono y la sobrepoblación animal.</p>
+          <button className="cta-button">Firmar la petición</button>
         </div>
+
+
       </section>
 
       <section className="contact-section">

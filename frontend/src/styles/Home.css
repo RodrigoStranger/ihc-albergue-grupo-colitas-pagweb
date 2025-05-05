@@ -564,56 +564,152 @@
   color: #333;
   margin-bottom: 1rem;
 }
-
 .feature-card p {
   color: #666;
 }
 
 .cta-section {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   text-align: center;
-  background-color: #0DB199;
+  background-color: #2c3e50;
   color: white;
 }
 
 .cta-section h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 .cta-section p {
   font-size: 1.2rem;
-  margin-bottom: 2rem;
+  margin: 1rem auto 2rem;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.sterilization-info {
+  font-size: 1.1rem !important;
+  color: #e0e0e0 !important;
+  margin-bottom: 2.5rem !important;
+  line-height: 1.7 !important;
+}
+
+.petition-banner {
+  background: linear-gradient(135deg, #0DB199, #0a8a7a);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2.5rem auto;
+  max-width: 800px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.petition-banner h3 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.petition-banner p {
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.petition-banner .cta-button {
+  background-color: white;
+  color: #0DB199;
+  border: 2px solid white;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.petition-banner .cta-button:hover {
+  background-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sterilization-details {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: left;
+}
+
+.sterilization-details h3 {
+  color: #0DB199;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.sterilization-details ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sterilization-details li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.sterilization-details li:before {
+  content: '✓';
+  color: #0DB199;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
 }
 
 .cta-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .cta-button {
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  border: none;
-  border-radius: 5px;
+  border: 2px solid #0DB199;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #0DB199;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .cta-button:not(.secondary) {
   background-color: white;
   color: #0DB199;
-}
-
-.cta-button.secondary {
-  background-color: transparent;
-  border: 2px solid white;
-  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .cta-button:hover {
-  opacity: 0.9;
+  background-color: transparent;
+  color: #0DB199;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 177, 153, 0.2);
 }
 
 .contact-section {
