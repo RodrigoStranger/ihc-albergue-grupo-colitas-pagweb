@@ -1,31 +1,29 @@
+/* Estilos base del footer */
 .footer {
   background-color: #2c3e50;
   color: white;
-  padding: 0rem 0 0;
+  padding: 2rem 0 0;
   margin: 0;
   position: relative;
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
-  min-height: calc(100vh - 600px); /* Ajusta este valor según sea necesario */
+  margin-top: auto; /* Esto empuja el footer hacia abajo */
+}
+
+/* Contenedor principal de la aplicación */
+.App {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos toda la altura de la ventana */
 }
 
-@media (max-width: 768px) {
-  .footer {
-    padding: 3rem 0 0;
-    margin: 0;
-    min-height: auto;
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 2rem 0 0;
-    margin: 0;
-  }
+/* Contenido principal - esto empuja el footer hacia abajo */
+.main-content {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 2rem 0 0;
+  margin: 0;
 }
 
 .footer-content {
