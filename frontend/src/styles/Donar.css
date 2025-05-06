@@ -40,3 +40,58 @@
   font-size: 1.1rem;
   line-height: 1.6;
 }
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+  .donar-container {
+    padding: 1rem;
+    min-height: calc(100vh - 160px);
+  }
+  
+  .donar-content {
+    padding: 1.5rem;
+  }
+  
+  .donar-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .coming-soon {
+    padding: 1.5rem;
+  }
+  
+  .coming-soon h2 {
+    font-size: 1.5rem;
+  }
+  
+  .coming-soon p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .donar-container {
+    padding: 0.75rem;
+  }
+  
+  .donar-content {
+    padding: 1.25rem;
+  }
+  
+  .donar-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .coming-soon {
+    padding: 1.25rem;
+  }
+  
+  .coming-soon h2 {
+    font-size: 1.35rem;
+  }
+  
+  .coming-soon p {
+    font-size: 0.95rem;
+  }
+}
