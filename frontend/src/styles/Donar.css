@@ -45,9 +45,9 @@
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
   .donar-container {
-    padding: 1rem;
-    min-height: calc(100vh - 200px);
-    margin-top: 20px; /* Espacio reducido para tablets */
+    padding: 1.5rem;
+    min-height: calc(100vh - 100px);
+    margin-top: 1.5rem;
   }
   
   .donar-content {

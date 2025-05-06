@@ -45,9 +45,9 @@
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
   .voluntariado-container {
-    padding: 1.25rem;
-    min-height: calc(100vh - 200px); /* Reducido el espacio inferior en móviles */
-    margin-top: 2rem;
+    padding: 1.5rem;
+    min-height: calc(100vh - 100px);
+    margin-top: 1.5rem;
   }
   
   .voluntariado-content {

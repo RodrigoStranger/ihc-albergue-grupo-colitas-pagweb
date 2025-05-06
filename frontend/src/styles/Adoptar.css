@@ -46,8 +46,8 @@
 @media (max-width: 768px) {
   .adoptar-container {
     padding: 1.5rem;
-    min-height: calc(100vh - 240px); /* Reducido el espacio inferior en tablets */
-    margin-top: 3rem;
+    min-height: calc(100vh - 100px);
+    margin-top: 1.5rem;
   }
   
   .adoptar-content {
@@ -74,9 +74,7 @@
 
 @media (max-width: 480px) {
   .adoptar-container {
-    padding: 1.25rem;
-    min-height: calc(100vh - 200px); /* Reducido el espacio inferior en móviles */
-    margin-top: 2rem;
+    padding: 0.75rem;
   }
   
   .adoptar-content {
