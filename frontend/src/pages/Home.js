@@ -254,7 +254,7 @@ function Home() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <input 
               type="text" 
-              placeholder="Ingresa tu nombre y apellidos completos" 
+              placeholder="Ingresa tu nombre y apellidos" 
               required 
               name="name"
               value={formData.name}
