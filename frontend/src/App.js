@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
+import Adoptar from './pages/Adoptar';
+import Donar from './pages/Donar';
+import Voluntariado from './pages/Voluntariado';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
-
-function EmptyPage() {
-  return <div style={{ height: '100vh', backgroundColor: 'white' }}></div>;
-}
 
 function App() {
   return (
@@ -18,9 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/adoptar" element={<EmptyPage />} />
-          <Route path="/donar" element={<EmptyPage />} />
-          <Route path="/voluntariado" element={<EmptyPage />} />
+          <Route path="/adoptar" element={<Adoptar />} />
+          <Route path="/donar" element={<Donar />} />
+          <Route path="/voluntariado" element={<Voluntariado />} />
           {/* Ruta comodín para páginas no encontradas */}
           <Route path="*" element={<NotFound />} />
         </Routes>
