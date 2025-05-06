@@ -1,10 +1,11 @@
 .donar-container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 280px);
   background-color: #f9f9f9;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+  margin-top: 30px; /* Espacio adicional debajo del Navbar */
 }
 
 .donar-content {
@@ -45,7 +46,8 @@
 @media (max-width: 768px) {
   .donar-container {
     padding: 1rem;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 200px);
+    margin-top: 20px; /* Espacio reducido para tablets */
   }
   
   .donar-content {
