@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import '../styles/ModalAdminLogin.css';
 
 function ModalAdminLogin({ onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const modalRef = React.useRef();
+
+  // Cerrar el modal al hacer clic fuera del contenido
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    // Agregar el event listener cuando el componente se monta
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Limpiar el event listener cuando el componente se desmonte
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,11 +31,18 @@ function ModalAdminLogin({ onClose }) {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-admin modal-overlay">
+      <div className="modal-content" ref={modalRef}>
         <div className="modal-header">
           <h2>Iniciar Sesión</h2>
-          <button className="close-button" onClick={onClose}>&times;</button>
+          <button 
+            type="button" 
+            className="close-button" 
+            onClick={onClose}
+            aria-label="Cerrar modal"
+          >
+            &times;
+          </button>
         </div>
         <form onSubmit={handleSubmit} className="admin-login-form">
           <div className="form-group">

@@ -1,0 +1,109 @@
+/* Estilos para el overlay del modal */
+.modal-admin.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilos para el contenido del modal */
+.modal-admin .modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Estilos para el encabezado del modal */
+.modal-admin .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Estilos para el botón de cierre */
+.modal-admin .close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #4a5568;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.modal-admin .close-button:hover {
+  background-color: #f7fafc;
+  color: #2d3748;
+}
+
+/* Estilos para el formulario */
+.modal-admin .admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-admin .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-admin .form-group label {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.modal-admin .form-group input {
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.modal-admin .form-group input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* Estilos específicos para el botón de envío del modal de administrador */
+.modal-admin .submit-button {
+  background-color: #0DB199;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.modal-admin .submit-button:hover {
+  background-color: #0a8c7a;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-admin .submit-button:active {
+  background-color: #086b5d;
+  transform: translateY(0);
+}
