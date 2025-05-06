@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   padding: 1.5rem 2rem;
-  margin-top: 30px; /* Espacio adicional debajo del Navbar */
+  margin-top: 30px;
 }
 
 .adoptar-content {
@@ -45,9 +45,9 @@
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
   .adoptar-container {
-    padding: 1rem;
-    min-height: calc(100vh - 200px);
-    margin-top: 20px; /* Espacio reducido para tablets */
+    padding: 1.5rem;
+    min-height: calc(100vh - 240px); /* Reducido el espacio inferior en tablets */
+    margin-top: 3rem;
   }
   
   .adoptar-content {
@@ -74,7 +74,9 @@
 
 @media (max-width: 480px) {
   .adoptar-container {
-    padding: 0.75rem;
+    padding: 1.25rem;
+    min-height: calc(100vh - 200px); /* Reducido el espacio inferior en móviles */
+    margin-top: 2rem;
   }
   
   .adoptar-content {
