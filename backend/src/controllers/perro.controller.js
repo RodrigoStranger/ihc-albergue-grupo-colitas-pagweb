@@ -1,5 +1,15 @@
 const Perro = require('../models/perro.model');
 
+// Función para convertir base64 a Buffer
+const base64ToBuffer = (base64String) => {
+  if (!base64String) return null;
+  // Remover el prefijo 'data:image/...;base64,' si existe
+  const base64Data = base64String.includes('base64,') 
+    ? base64String.split('base64,')[1] 
+    : base64String;
+  return Buffer.from(base64Data, 'base64');
+};
+
 const perroController = {
   // Obtener todos los perros
   getAllPerros: async (req, res) => {
@@ -29,7 +39,14 @@ const perroController = {
   // Crear un nuevo perro
   createPerro: async (req, res) => {
     try {
-      const perroId = await Perro.create(req.body);
+      const perroData = { ...req.body };
+      
+      // Si se envía la imagen en base64, convertirla a Buffer
+      if (perroData.FotografíaPrincipalPerro) {
+        perroData.FotografíaPrincipalPerro = base64ToBuffer(perroData.FotografíaPrincipalPerro);
+      }
+      
+      const perroId = await Perro.create(perroData);
       res.status(201).json({ id: perroId, message: 'Perro creado exitosamente' });
     } catch (error) {
       console.error('Error al crear el perro:', error);
@@ -40,7 +57,14 @@ const perroController = {
   // Actualizar un perro
   updatePerro: async (req, res) => {
     try {
-      const updated = await Perro.update(req.params.id, req.body);
+      const perroData = { ...req.body };
+      
+      // Si se envía la imagen en base64, convertirla a Buffer
+      if (perroData.FotografíaPrincipalPerro) {
+        perroData.FotografíaPrincipalPerro = base64ToBuffer(perroData.FotografíaPrincipalPerro);
+      }
+      
+      const updated = await Perro.update(req.params.id, perroData);
       if (!updated) {
         return res.status(404).json({ message: 'Perro no encontrado' });
       }

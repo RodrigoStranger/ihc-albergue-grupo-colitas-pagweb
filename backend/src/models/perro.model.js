@@ -1,11 +1,22 @@
 const { pool } = require('../config/database');
 
+// Función para convertir Buffer a base64
+const bufferToBase64 = (buffer) => {
+  if (!buffer) return null;
+  return `data:image/png;base64,${buffer.toString('base64')}`;
+};
+
 const Perro = {
   // Obtener todos los perros
   getAll: async () => {
     try {
       const [rows] = await pool.query('SELECT * FROM Perros');
-      return rows;
+      
+      // Convertir el buffer de la imagen a base64
+      return rows.map(perro => ({
+        ...perro,
+        FotografíaPrincipalPerro: bufferToBase64(perro.FotografíaPrincipalPerro)
+      }));
     } catch (error) {
       console.error('Error al obtener los perros:', error);
       throw error;
@@ -16,7 +27,14 @@ const Perro = {
   getById: async (id) => {
     try {
       const [rows] = await pool.query('SELECT * FROM Perros WHERE IdPerro = ?', [id]);
-      return rows[0];
+      if (rows.length === 0) return null;
+      
+      // Convertir el buffer de la imagen a base64
+      const perro = rows[0];
+      return {
+        ...perro,
+        FotografíaPrincipalPerro: bufferToBase64(perro.FotografíaPrincipalPerro)
+      };
     } catch (error) {
       console.error('Error al obtener el perro:', error);
       throw error;
