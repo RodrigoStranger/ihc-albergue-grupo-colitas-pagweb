@@ -23,17 +23,14 @@ app.use(express.urlencoded({
 // Configurar middleware para archivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Middleware para loggear las peticiones
+// Middleware para registrar peticiones
 app.use((req, res, next) => {
-  console.log(`\n=== Nueva petición [${new Date().toISOString()}] ===`);
-  console.log(`${req.method} ${req.url}`);
-  console.log('Headers:', req.headers);
-  console.log('Content-Type:', req.get('Content-Type'));
+  const start = Date.now();
   
-  // Para peticiones POST, loggear el body
-  if (req.method === 'POST') {
-    console.log('Body:', req.body);
-  }
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(`${req.method} ${req.originalUrl} - ${res.statusCode} [${duration}ms]`);
+  });
   
   next();
 });
@@ -66,11 +63,10 @@ const startServer = async () => {
     
     // Iniciar el servidor
     app.listen(PORT, () => {
-      console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
-      console.log(`Conectado a la base de datos: ${process.env.MYSQL_DATABASE}`);
+      console.log(`Servidor en ejecución en http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error('No se pudo iniciar el servidor:', error);
+    console.error('Error al iniciar el servidor');
     process.exit(1);
   }
 };

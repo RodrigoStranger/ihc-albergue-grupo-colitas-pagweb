@@ -25,10 +25,6 @@ const upload = multer({
 
 // Middleware para manejar la subida del archivo
 const handleFileUpload = (req, res, next) => {
-  console.log('=== Datos de la petición ===');
-  console.log('Headers:', req.headers);
-  console.log('Content-Type:', req.get('Content-Type'));
-  
   // Configurar multer para manejar el formulario
   const uploadSingle = upload.single('ImagenFirma');
   

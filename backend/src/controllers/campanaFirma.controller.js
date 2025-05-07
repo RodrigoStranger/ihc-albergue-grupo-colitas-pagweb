@@ -15,22 +15,11 @@ const campanaFirmaController = {
   // Crear una nueva campaña de firmas
   createCampanaFirma: async (req, res) => {
     try {
-      console.log('=== Datos recibidos en el controlador ===');
-      console.log('Body:', req.body);
-      console.log('File:', req.file);
-      console.log('File keys:', req.file ? Object.keys(req.file) : 'No file');
-
       // Verificar que se haya enviado un archivo
       if (!req.file) {
         return res.status(400).json({
           success: false,
-          message: 'No se ha proporcionado ninguna imagen',
-          receivedFields: {
-            body: Object.keys(req.body),
-            file: req.file ? 'Presente' : 'Ausente',
-            fileName: req.file ? req.file.originalname : 'N/A',
-            fileKeys: req.file ? Object.keys(req.file) : []
-          }
+          message: 'No se ha proporcionado ninguna imagen'
         });
       }
 
@@ -83,8 +72,7 @@ const campanaFirmaController = {
         console.error('Error al verificar DNI existente:', error);
         return res.status(500).json({
           success: false,
-          message: 'Error al verificar el DNI',
-          error: error.message
+          message: 'Error al verificar el DNI'
         });
       }
 
@@ -93,27 +81,15 @@ const campanaFirmaController = {
       const filePath = path.join(UPLOAD_DIR, fileName);
 
       try {
-        console.log('Procesando imagen...');
-        console.log('Tamaño del buffer:', req.file.buffer ? req.file.buffer.length : 'No hay buffer');
-        console.log('Campos del archivo:', Object.keys(req.file));
-        
         // Usar sharp para procesar la imagen en memoria
         await sharp(req.file.buffer)
           .toFormat('png')
           .toFile(filePath);
-          
-        console.log(`Imagen guardada en: ${filePath}`);
       } catch (error) {
         console.error('Error al procesar la imagen:', error);
         return res.status(500).json({
           success: false,
-          message: 'Error al procesar la imagen',
-          error: error.message,
-          fileInfo: {
-            keys: Object.keys(req.file),
-            hasBuffer: !!req.file.buffer,
-            bufferLength: req.file.buffer ? req.file.buffer.length : 0
-          }
+          message: 'Error al procesar la imagen'
         });
       }
 
@@ -138,7 +114,6 @@ const campanaFirmaController = {
         try {
           if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
-            console.log('Imagen eliminada después de error en la base de datos:', filePath);
           }
         } catch (fsError) {
           console.error('Error al limpiar la imagen:', fsError);
@@ -146,8 +121,7 @@ const campanaFirmaController = {
 
         res.status(500).json({
           success: false,
-          message: 'Error al registrar la firma en la base de datos',
-          error: error.message
+          message: 'Error al registrar la firma en la base de datos'
         });
       }
 
