@@ -11,6 +11,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     ImagenFirma: null
   });
   const [error, setError] = useState('');
+  const [showImageError, setShowImageError] = useState(false);
   const modalRef = useRef();
 
   // Reset form when modal is closed
@@ -23,6 +24,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
         ImagenFirma: null
       });
       setError('');
+      setShowImageError(false);
     }
   }, [show]);
 
@@ -66,6 +68,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
         ImagenFirma: file
       }));
       setError('');
+      setShowImageError(false);
       return true;
     } else {
       setError('Por favor, seleccione un archivo de imagen válido');
@@ -86,6 +89,8 @@ function ModalFormulario({ show, onClose, onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setShowImageError(false);
     
     // Validaciones
     if (!/^\d{8}$/.test(formData.DniFirma)) {
@@ -104,7 +109,8 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     }
     
     if (!formData.ImagenFirma) {
-      setError('Debe seleccionar una imagen');
+      setShowImageError(true);
+      document.getElementById('file-upload-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
@@ -232,7 +238,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           <div className="form-group">
             <label htmlFor="ImagenFirma" required>Imagen de Firma</label>
             <div className="file-upload-container">
-              <div className="file-upload-area" onClick={() => document.getElementById('ImagenFirma').click()}>
+              <div id="file-upload-area" className="file-upload-area" onClick={() => document.getElementById('ImagenFirma').click()}>
                 <input 
                   type="file" 
                   id="ImagenFirma"
@@ -240,16 +246,17 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                   accept="image/*"
                   onChange={handleFileInputChange}
                   className="file-input"
-                  required
                 />
                 <div className="upload-content">
                   {formData.ImagenFirma ? (
                     <>
                       <i className="fas fa-check-circle" style={{color: '#10B981', fontSize: '2rem'}}></i>
                       <p>¡Imagen cargada exitosamente!</p>
-                      <p className="file-info">
-                        <strong>Archivo seleccionado:</strong> {formData.ImagenFirma.name}
-                      </p>
+                      <div className="file-info">
+                        <p><strong>Archivo seleccionado:</strong> {formData.ImagenFirma.name}</p>
+                        <p><strong>Tamaño:</strong> {(formData.ImagenFirma.size / 1024 / 1024).toFixed(2)} MB</p>
+                        <p className="file-note">Puede volver a cargar una nueva imagen si lo desea dando clic en el recuadro</p>
+                      </div>
                     </>
                   ) : (
                     <>
@@ -261,6 +268,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                     </>
                   )}
                 </div>
+                {showImageError && !formData.ImagenFirma && (
+                  <p className="error-message" style={{color: '#ef4444', margin: '8px 0 0 0', textAlign: 'center'}}>Cargue su firma para continuar</p>
+                )}
               </div>
             </div>
           </div>
@@ -270,7 +280,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
             className="submit-button"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Enviando...' : 'Enviar Firma'}
+            {isSubmitting ? 'Enviando...' : 'Enviar Petición'}
           </button>
           
           <div className="data-protection-notice">
