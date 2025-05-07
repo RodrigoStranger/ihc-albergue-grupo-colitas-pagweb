@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { submitPetition } from '../services/api';
+import ModalConfirmacionFirmas from './ModalConfirmacionFirmas';
 import '../styles/ModalFormulario.css';
 
 function ModalFormulario({ show, onClose, onSubmit }) {
@@ -80,6 +81,8 @@ function ModalFormulario({ show, onClose, onSubmit }) {
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [formDataToSend, setFormDataToSend] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,7 +108,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       return;
     }
 
-    // Si todo está bien, enviar el formulario
+    // Si todo está bien, preparar los datos del formulario
     const formDataToSend = new FormData();
     formDataToSend.append('DniFirma', formData.DniFirma);
     formDataToSend.append('NombreFirma', formData.NombreFirma);
@@ -119,10 +122,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       // Enviar la petición al backend
       await submitPetition(formDataToSend);
       
-      // Si llega aquí, la petición fue exitosa
-      alert('¡Firma enviada exitosamente!');
-      onSubmit(formDataToSend);
-      onClose();
+      // Guardar los datos del formulario y mostrar el modal de éxito
+      setFormDataToSend(formDataToSend);
+      setShowSuccessModal(true);
     } catch (error) {
       console.error('Error al enviar la petición:', error);
       setError(error.message || 'Ocurrió un error al enviar la petición');
@@ -149,45 +151,60 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     height: '100%'
   };
 
+  const handleSuccessClose = () => {
+    setShowSuccessModal(false);
+    if (formDataToSend) {
+      onSubmit(formDataToSend);
+    }
+    onClose();
+  };
+
+  if (!show) return null;
+
   return (
-    <div className="modal-formulario" style={modalStyle}>
-      <div className="modal-content" ref={modalRef}>
-        <div className="modal-header">
-          <h2>Registra tú petición</h2>
-          <button 
-            type="button" 
-            className="close-button" 
-            onClick={onClose}
-            aria-label="Cerrar modal"
-          >
-            &times;
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="formulario-form">
-          {error && <div className="error-message">{error}</div>}
-          
-          <div className="form-group">
-            <label htmlFor="dni" required>DNI</label>
-            <input 
-              type="text" 
-              id="DniFirma"
-              name="DniFirma"
-              placeholder="Ingrese su DNI"
-              value={formData.DniFirma}
-              onChange={(e) => {
-                const value = e.target.value.replace(/\D/g, '');
-                if (value.length <= 8) {
-                  setFormData(prev => ({ ...prev, DniFirma: value }));
-                }
-              }}
-              required
-              maxLength={8}
-              pattern="[0-9]{8}"
-            />
+    <>
+      <ModalConfirmacionFirmas 
+        show={showSuccessModal}
+        onClose={handleSuccessClose}
+      />
+      <div className="modal-formulario" style={modalStyle}>
+        <div className="modal-content" ref={modalRef}>
+          <div className="modal-header">
+            <h2>Registra tú petición</h2>
+            <button 
+              type="button" 
+              className="close-button" 
+              onClick={onClose}
+              aria-label="Cerrar modal"
+            >
+              &times;
+            </button>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="nombre" required>Nombres Completos</label>
+          <form onSubmit={handleSubmit} className="formulario-form">
+            {error && <div className="error-message">{error}</div>}
+            
+            <div className="form-group">
+              <label htmlFor="dni" required>DNI</label>
+              <input 
+                type="text" 
+                id="DniFirma"
+                name="DniFirma"
+                placeholder="Ingrese su DNI"
+                value={formData.DniFirma}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, '');
+                  if (value.length <= 8) {
+                    setFormData(prev => ({ ...prev, DniFirma: value }));
+                  }
+                }}
+                required
+                maxLength={8}
+                pattern="[0-9]{8}"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="nombre" required>Nombres Completos</label>
             <input 
               type="text" 
               id="NombreFirma"
@@ -260,8 +277,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
             <p>Sus datos personales serán protegidos de acuerdo con la Ley N° 29733 - Ley de Protección de Datos Personales.</p>
           </div>
         </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
