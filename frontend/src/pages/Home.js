@@ -3,13 +3,10 @@ import '../styles/Home.css';
 import ModalFormulario from '../components/ModalFormulario';
 
 function Home() {
-  // Get saved form data from sessionStorage or initialize with empty values
-  const savedData = JSON.parse(sessionStorage.getItem('contactFormData')) || {
+  const [formData, setFormData] = useState({
     name: '',
     message: ''
-  };
-
-  const [formData, setFormData] = useState(savedData);
+  });
   const [showModal, setShowModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -71,19 +68,15 @@ function Home() {
     let newValue = value;
     
     if (name === 'name') {
-      // Only allow letters (both uppercase and lowercase)
+      // Solo permite letras (mayúsculas y minúsculas) y espacios
       newValue = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
     }
     
-    // Save form data to sessionStorage immediately with the new value
-    const updatedData = {
-      ...formData,
+    // Actualizar el estado
+    setFormData(prev => ({
+      ...prev,
       [name]: newValue
-    };
-    sessionStorage.setItem('contactFormData', JSON.stringify(updatedData));
-    
-    // Update state
-    setFormData(updatedData);
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -91,9 +84,8 @@ function Home() {
     const whatsappMessage = encodeURIComponent(`Hola, vengo desde la página del grupo Colitas Arequipa. Mi nombre es ${formData.name} y quiero saber acerca de ${formData.message}`);
     const whatsappUrl = `https://wa.me/+51921136113?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
-    // Clear form data from state and sessionStorage
+    // Limpiar el formulario
     setFormData({ name: '', message: '' });
-    sessionStorage.removeItem('contactFormData');
   };
 
   return (

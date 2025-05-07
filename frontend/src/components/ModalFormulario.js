@@ -11,6 +11,19 @@ function ModalFormulario({ show, onClose, onSubmit }) {
   const [error, setError] = useState('');
   const modalRef = useRef();
 
+  // Reset form when modal is closed
+  useEffect(() => {
+    if (!show) {
+      setFormData({
+        DniFirma: '',
+        NombreFirma: '',
+        MotivoFirma: '',
+        ImagenFirma: null
+      });
+      setError('');
+    }
+  }, [show]);
+
   // Cerrar el modal al hacer clic fuera del contenido
   useEffect(() => {
     const handleClickOutside = (event) => {
