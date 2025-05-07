@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../styles/Home.css';
+import ModalFormulario from '../components/ModalFormulario';
 
 function Home() {
   // Get saved form data from sessionStorage or initialize with empty values
@@ -9,6 +10,7 @@ function Home() {
   };
 
   const [formData, setFormData] = useState(savedData);
+  const [showModal, setShowModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -179,7 +181,12 @@ function Home() {
               <h3>¡Necesitamos tu ayuda!</h3>
               <p>Estamos recogiendo firmas para presentar ante las autoridades del Gobierno Regional de Arequipa, solicitando mayor apoyo y recursos para los programas de esterilización en nuestra región.</p>
               <p>Tu firma puede hacer la diferencia en la lucha contra el abandono y la sobrepoblación animal.</p>
-              <button className="cta-button">Firmar la petición</button>
+              <button 
+                className="cta-button"
+                onClick={() => setShowModal(true)}
+              >
+                Firmar la petición
+              </button>
             </div>
           </div>
           
@@ -272,8 +279,20 @@ function Home() {
           </form>
         </div>
       </section>
+      
+      {showModal && (
+        <ModalFormulario 
+          show={showModal} 
+          onClose={() => setShowModal(false)}
+          onSubmit={(formData) => {
+            console.log('Datos del formulario:', formData);
+            // Aquí puedes agregar la lógica para enviar los datos
+            setShowModal(false);
+          }}
+        />
+      )}
     </div>
   );
 }
 
-export default Home; 
+export default Home;

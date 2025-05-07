@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/ModalAdminLogin.css';
 
-function ModalAdminLogin({ onClose }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const modalRef = React.useRef();
+function ModalAdminLogin({ show, onClose, onSubmit }) {
+  const [formData, setFormData] = useState({
+    dni: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const modalRef = useRef();
 
   // Cerrar el modal al hacer clic fuera del contenido
   useEffect(() => {
@@ -14,24 +17,43 @@ function ModalAdminLogin({ onClose }) {
       }
     };
 
-    // Agregar el event listener cuando el componente se monta
     document.addEventListener('mousedown', handleClickOutside);
-    
-    // Limpiar el event listener cuando el componente se desmonte
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí iría la lógica de autenticación
-    console.log('Iniciando sesión con:', { email, password });
-    onClose();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validaciones
+    if (!formData.dni || !formData.password) {
+      setError('Por favor, complete todos los campos');
+      return;
+    }
+    
+    if (formData.dni.length !== 8) {
+      setError('El DNI debe tener 8 dígitos');
+      return;
+    }
+    
+    // Si pasa las validaciones, enviamos los datos
+    setError('');
+    onSubmit(formData);
+  };
+
+  if (!show) return null;
+
   return (
-    <div className="modal-admin modal-overlay">
+    <div className="modal-formulario">
       <div className="modal-content" ref={modalRef}>
         <div className="modal-header">
           <h2>Iniciar Sesión</h2>
@@ -44,39 +66,42 @@ function ModalAdminLogin({ onClose }) {
             &times;
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="admin-login-form">
+        
+        {error && <div className="error-message">{error}</div>}
+        
+        <form onSubmit={handleSubmit} className="formulario-form">
           <div className="form-group">
-            <label htmlFor="dni">DNI</label>
+            <label htmlFor="dni" required>DNI</label>
             <input 
               type="text" 
               id="dni" 
               name="dni" 
-              placeholder="Tu DNI" 
-              value={email}
+              placeholder="Ingrese su DNI" 
+              value={formData.dni}
               onChange={(e) => {
                 const value = e.target.value.replace(/\D/g, '');
                 if (value.length > 8) return;
-                setEmail(value);
+                setFormData(prev => ({ ...prev, dni: value }));
               }}
-              required 
               maxLength={8}
               pattern="[0-9]{8}"
             />
           </div>
+          
           <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password" required>Contraseña</label>
             <input 
               type="password" 
               id="password" 
               name="password" 
-              placeholder="Tu contraseña" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
+              placeholder="Ingrese su contraseña" 
+              value={formData.password}
+              onChange={handleChange}
             />
           </div>
+          
           <button type="submit" className="submit-button">
-            Ingresar
+            Iniciar Sesión
           </button>
         </form>
       </div>
