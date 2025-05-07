@@ -1,16 +1,42 @@
 const express = require('express');
 const { pool, testConnection } = require('./src/config/database');
+const path = require('path');
 
 // Importar rutas
 const perrosRouter = require('./src/routes/perro.routes');
+const campanaFirmaRouter = require('./src/routes/campanaFirma.routes');
 
 // Crear la aplicación Express
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware para parsear JSON
-app.use(express.json({ limit: '50mb' })); // Aumentamos el límite para manejar imágenes
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+// Configuración de body-parser para JSON
+app.use(express.json({ limit: '50mb' }));
+
+// Configuración para datos de formulario
+app.use(express.urlencoded({ 
+  extended: false, // Cambiado a false para evitar problemas con formularios anidados
+  limit: '50mb',
+  parameterLimit: 1000000
+}));
+
+// Configurar middleware para archivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Middleware para loggear las peticiones
+app.use((req, res, next) => {
+  console.log(`\n=== Nueva petición [${new Date().toISOString()}] ===`);
+  console.log(`${req.method} ${req.url}`);
+  console.log('Headers:', req.headers);
+  console.log('Content-Type:', req.get('Content-Type'));
+  
+  // Para peticiones POST, loggear el body
+  if (req.method === 'POST') {
+    console.log('Body:', req.body);
+  }
+  
+  next();
+});
 
 // Ruta de prueba para verificar la conexión a la base de datos
 app.get('/test-db', async (req, res) => {
@@ -30,6 +56,7 @@ app.get('/', (req, res) => {
 
 // Rutas de la API
 app.use('/api/perros', perrosRouter);
+app.use('/api', campanaFirmaRouter);
 
 // Iniciar el servidor
 const startServer = async () => {
