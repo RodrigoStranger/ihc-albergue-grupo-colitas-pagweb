@@ -125,6 +125,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setIsSubmitting(true);
       setError('');
       
+      // Agregar un retraso de 2 segundos
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       // Enviar la petición al backend
       await submitPetition(formDataToSend);
       
