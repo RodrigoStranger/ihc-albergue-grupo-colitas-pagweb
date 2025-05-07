@@ -258,7 +258,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                       <div className="file-info">
                         <p><strong>Archivo seleccionado:</strong> {formData.ImagenFirma.name}</p>
                         <p><strong>Tamaño:</strong> {(formData.ImagenFirma.size / 1024 / 1024).toFixed(2)} MB</p>
-                        <p className="file-note">Puede volver a cargar una nueva imagen si lo desea dando clic en el recuadro</p>
+                        <p className="file-note">Puedes volver a cargar una nueva imagen si lo desea dando clic en el recuadro</p>
                       </div>
                     </>
                   ) : (
