@@ -44,16 +44,24 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     }
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (file) => {
     if (file && file.type.startsWith('image/')) {
       setFormData(prev => ({
         ...prev,
         ImagenFirma: file
       }));
       setError('');
+      return true;
     } else {
       setError('Por favor, seleccione un archivo de imagen válido');
+      return false;
+    }
+  };
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      handleFileChange(file);
     }
   };
 
@@ -174,20 +182,39 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           </div>
           
           <div className="form-group">
-            <label htmlFor="imagen" required>Imagen de Firma</label>
-            <input 
-              type="file" 
-              id="ImagenFirma"
-              name="ImagenFirma"
-              accept="image/*"
-              onChange={handleFileChange}
-              required
-            />
-            {formData.ImagenFirma && (
-              <div className="file-preview">
-                Archivo seleccionado: {formData.ImagenFirma.name}
+            <label htmlFor="ImagenFirma" required>Imagen de Firma</label>
+            <div className="file-upload-container">
+              <div className="file-upload-area" onClick={() => document.getElementById('ImagenFirma').click()}>
+                <input 
+                  type="file" 
+                  id="ImagenFirma"
+                  name="ImagenFirma"
+                  accept="image/*"
+                  onChange={handleFileInputChange}
+                  className="file-input"
+                  required
+                />
+                <div className="upload-content">
+                  {formData.ImagenFirma ? (
+                    <>
+                      <i className="fas fa-check-circle" style={{color: '#10B981', fontSize: '2rem'}}></i>
+                      <p>¡Imagen cargada exitosamente!</p>
+                      <p className="file-info">
+                        <strong>Archivo seleccionado:</strong> {formData.ImagenFirma.name}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <i className="fas fa-cloud-upload-alt"></i>
+                      <p>Arrastra tu imagen aquí o haz clic para seleccionar</p>
+                      <p className="file-info">
+                        Formatos soportados: JPG, PNG (máx. 5MB)
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
-            )}
+            </div>
           </div>
           
           <button type="submit" className="submit-button">

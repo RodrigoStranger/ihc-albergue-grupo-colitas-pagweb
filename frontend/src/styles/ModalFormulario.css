@@ -100,18 +100,58 @@
 }
 
 /* Estilos para el input de archivo */
-.modal-formulario input[type="file"] {
-  padding: 0.5rem 0;
+.modal-formulario .file-upload-container {
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
-.modal-formulario .file-preview {
-  margin-top: 0.5rem;
+.modal-formulario .file-upload-area {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.modal-formulario .file-upload-area:hover {
+  border-color: #0DB199;
+  background-color: #f0fdfa;
+}
+
+.modal-formulario .file-input {
+  display: none;
+}
+
+.modal-formulario .upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-formulario .upload-content i {
+  font-size: 2rem;
+  color: #0DB199;
+  margin-bottom: 0.5rem;
+}
+
+.modal-formulario .upload-content p {
+  margin: 0;
+  color: #475569;
   font-size: 0.9rem;
-  color: #666;
-  background: #f8f9fa;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px dashed #ddd;
+}
+
+.modal-formulario .upload-content .file-info {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.modal-formulario .file-upload-area.dragover {
+  background-color: #e0f2fe;
+  border-color: #0DB199;
 }
 
 /* Botón de envío */
