@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { pool, testConnection } = require('./src/config/database');
 const path = require('path');
 
@@ -9,6 +10,17 @@ const campanaFirmaRouter = require('./src/routes/campanaFirma.routes');
 // Crear la aplicación Express
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Configuración de CORS
+const corsOptions = {
+  origin: 'http://localhost:3000', // URL del frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+// Aplicar CORS
+app.use(cors(corsOptions));
 
 // Configuración de body-parser para JSON
 app.use(express.json({ limit: '50mb' }));

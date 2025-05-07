@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { submitPetition } from '../services/api';
 import '../styles/ModalFormulario.css';
 
 function ModalFormulario({ show, onClose, onSubmit }) {
@@ -78,7 +79,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validaciones
@@ -109,8 +112,23 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     formDataToSend.append('MotivoFirma', formData.MotivoFirma);
     formDataToSend.append('ImagenFirma', formData.ImagenFirma);
 
-    onSubmit(formDataToSend);
-    onClose();
+    try {
+      setIsSubmitting(true);
+      setError('');
+      
+      // Enviar la petición al backend
+      const response = await submitPetition(formDataToSend);
+      
+      // Si llega aquí, la petición fue exitosa
+      alert('¡Firma enviada exitosamente!');
+      onSubmit(formDataToSend);
+      onClose();
+    } catch (error) {
+      console.error('Error al enviar la petición:', error);
+      setError(error.message || 'Ocurrió un error al enviar la petición');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!show) return null;
@@ -230,8 +248,12 @@ function ModalFormulario({ show, onClose, onSubmit }) {
             </div>
           </div>
           
-          <button type="submit" className="submit-button">
-            Enviar Petición
+          <button 
+            type="submit" 
+            className="btn-enviar"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Enviando...' : 'Enviar Firma'}
           </button>
           
           <div className="data-protection-notice">

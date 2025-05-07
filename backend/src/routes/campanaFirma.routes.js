@@ -57,6 +57,6 @@ const handleFileUpload = (req, res, next) => {
 };
 
 // Ruta para crear una nueva campaña de firmas
-router.post('/campana-firmas', handleFileUpload, campanaFirmaController.createCampanaFirma);
+router.post('/campanafirmas', handleFileUpload, campanaFirmaController.createCampanaFirma);
 
 module.exports = router;
