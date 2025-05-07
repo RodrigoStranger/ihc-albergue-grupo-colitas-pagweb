@@ -117,7 +117,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setError('');
       
       // Enviar la petición al backend
-      const response = await submitPetition(formDataToSend);
+      await submitPetition(formDataToSend);
       
       // Si llega aquí, la petición fue exitosa
       alert('¡Firma enviada exitosamente!');
@@ -250,7 +250,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           
           <button 
             type="submit" 
-            className="btn-enviar"
+            className="submit-button"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Enviando...' : 'Enviar Firma'}
