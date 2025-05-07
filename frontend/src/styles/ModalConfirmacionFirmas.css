@@ -24,6 +24,49 @@
   max-width: 400px !important;
   position: relative;
   z-index: 2001;
+  margin: 1rem;
+  box-sizing: border-box;
+}
+
+/* Estilos para tabletas */
+@media (max-width: 768px) {
+  .modal-confirmacion-content {
+    width: 90% !important;
+    max-width: 350px !important;
+    padding: 0.75rem;
+  }
+  
+  .modal-confirmacion h2 {
+    font-size: 1.1rem;
+  }
+  
+  .modal-confirmacion p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Estilos para móviles */
+@media (max-width: 480px) {
+  .modal-confirmacion-content {
+    width: 95% !important;
+    max-width: 300px !important;
+    padding: 0.5rem;
+  }
+  
+  .modal-confirmacion h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal-confirmacion p {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .modal-confirmacion .submit-button {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
 @keyframes modalFadeIn {
