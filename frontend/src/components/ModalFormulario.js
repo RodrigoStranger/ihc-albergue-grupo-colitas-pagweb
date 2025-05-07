@@ -27,10 +27,21 @@ function ModalFormulario({ show, onClose, onSubmit }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // Validación especial para el campo de nombre completo
+    if (name === 'NombreFirma') {
+      // Solo permite letras, espacios y algunos caracteres especiales comunes en nombres
+      const onlyLettersAndSpaces = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: onlyLettersAndSpaces
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleFileChange = (e) => {
@@ -103,7 +114,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     <div className="modal-formulario" style={modalStyle}>
       <div className="modal-content" ref={modalRef}>
         <div className="modal-header">
-          <h2>Registrar Firma</h2>
+          <h2>Registra tú petición</h2>
           <button 
             type="button" 
             className="close-button" 
@@ -117,7 +128,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           {error && <div className="error-message">{error}</div>}
           
           <div className="form-group">
-            <label htmlFor="dni">DNI *</label>
+            <label htmlFor="dni" required>DNI</label>
             <input 
               type="text" 
               id="DniFirma"
@@ -137,7 +148,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           </div>
           
           <div className="form-group">
-            <label htmlFor="nombre">Nombre Completo *</label>
+            <label htmlFor="nombre" required>Nombres Completos</label>
             <input 
               type="text" 
               id="NombreFirma"
@@ -150,7 +161,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           </div>
           
           <div className="form-group">
-            <label htmlFor="motivo">Motivo *</label>
+            <label htmlFor="motivo" required>Motivo</label>
             <textarea 
               id="MotivoFirma"
               name="MotivoFirma"
@@ -163,7 +174,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           </div>
           
           <div className="form-group">
-            <label htmlFor="imagen">Imagen de Firma *</label>
+            <label htmlFor="imagen" required>Imagen de Firma</label>
             <input 
               type="file" 
               id="ImagenFirma"
@@ -180,8 +191,12 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           </div>
           
           <button type="submit" className="submit-button">
-            Enviar Firma
+            Enviar Petición
           </button>
+          
+          <div className="data-protection-notice">
+            <p>Sus datos personales serán protegidos de acuerdo con la Ley N° 29733 - Ley de Protección de Datos Personales.</p>
+          </div>
         </form>
       </div>
     </div>

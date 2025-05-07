@@ -115,7 +115,7 @@
 
 /* Botón de envío */
 .modal-formulario .submit-button {
-  background-color: #4a90e2;
+  background-color: #0DB199; /* Color verde turquesa */
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -123,12 +123,20 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   margin-top: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .modal-formulario .submit-button:hover {
-  background-color: #357abd;
+  background-color: #0c9d87; /* Color un poco más oscuro al pasar el mouse */
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.modal-formulario .submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* Mensaje de error */
@@ -143,8 +151,26 @@
 
 /* Campos obligatorios */
 .modal-formulario label[required]::after {
-  content: ' *';
-  color: #ef4444;
+  content: ' *' !important;
+  color: #ef4444 !important;
+  margin-left: 2px;
+}
+
+/* Mensaje de protección de datos */
+.modal-formulario .data-protection-notice {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f0f9f7; /* Fondo más claro del color principal */
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #000000; /* Color más oscuro para mejor legibilidad */
+  text-align: center;
+  border-left: 3px solid #0DB199; /* Color principal */
+}
+
+.modal-formulario .data-protection-notice p {
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* Responsive */
