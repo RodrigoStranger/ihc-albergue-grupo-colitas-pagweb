@@ -27,7 +27,7 @@ function ModalAdminLogin({ show, onClose, onSubmit }) {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: name === 'dni' ? value.replace(/\D/g, '') : value
     }));
   };
 
@@ -67,9 +67,8 @@ function ModalAdminLogin({ show, onClose, onSubmit }) {
           </button>
         </div>
         
-        {error && <div className="error-message">{error}</div>}
-        
         <form onSubmit={handleSubmit} className="formulario-form">
+          {error && <div className="error-message">{error}</div>}
           <div className="form-group">
             <label htmlFor="dni" required>DNI</label>
             <input 
@@ -78,13 +77,12 @@ function ModalAdminLogin({ show, onClose, onSubmit }) {
               name="dni" 
               placeholder="Ingrese su DNI" 
               value={formData.dni}
-              onChange={(e) => {
-                const value = e.target.value.replace(/\D/g, '');
-                if (value.length > 8) return;
-                setFormData(prev => ({ ...prev, dni: value }));
-              }}
+              onChange={handleChange}
+              required
+              minLength={8}
               maxLength={8}
               pattern="[0-9]{8}"
+              title="El DNI debe tener exactamente 8 dígitos"
             />
           </div>
           
@@ -97,6 +95,8 @@ function ModalAdminLogin({ show, onClose, onSubmit }) {
               placeholder="Ingrese su contraseña" 
               value={formData.password}
               onChange={handleChange}
+              required
+              title="Este campo es obligatorio"
             />
           </div>
           

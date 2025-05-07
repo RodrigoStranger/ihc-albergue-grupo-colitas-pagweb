@@ -49,8 +49,18 @@
   color: #ef4444; /* Rojo al pasar el mouse */
 }
 
+/* Estilos para mensajes de error */
+.modal-admin .error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
 /* Estilos para el formulario */
-.modal-admin .admin-login-form {
+.modal-admin .admin-login-form, .modal-admin .formulario-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -73,6 +83,11 @@
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.2s;
+}
+
+/* Estilos para campos inválidos */
+.modal-admin input:invalid {
+  border-color: #f87171;
 }
 
 .modal-admin .form-group input:focus {
