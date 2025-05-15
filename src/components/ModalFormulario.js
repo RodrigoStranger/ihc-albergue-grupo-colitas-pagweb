@@ -307,7 +307,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
             className="submit-button"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Enviando...' : 'Enviar Petición'}
+            {isSubmitting ? 'Enviando Petición...' : 'Enviar Petición'}
           </button>
           
           <div className="data-protection-notice">
