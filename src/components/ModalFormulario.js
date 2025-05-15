@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { submitPetition } from '../services/api';
 import ModalConfirmacionFirmas from './ModalConfirmacionFirmas';
 import '../styles/ModalFormulario.css';
 
@@ -125,18 +124,15 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setIsSubmitting(true);
       setError('');
       
-      // Agregar un retraso de 2 segundos
+      // Simular envío de formulario
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Enviar la petición al backend
-      await submitPetition(formDataToSend);
-      
-      // Guardar los datos del formulario y mostrar el modal de éxito
+      // Mostrar el modal de éxito sin guardar nada
       setFormDataToSend(formDataToSend);
       setShowSuccessModal(true);
     } catch (error) {
-      console.error('Error al enviar la petición:', error);
-      setError(error.message || 'Ocurrió un error al enviar la petición');
+      console.error('Error al procesar la petición:', error);
+      setError('Ocurrió un error al procesar la petición');
     } finally {
       setIsSubmitting(false);
     }
