@@ -171,7 +171,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           NombreFirma: formData.NombreFirma,
           MotivoFirma: formData.MotivoFirma,
           ImagenFirma: publicUrl,
-          FechaRegistro: new Date().toISOString()
+          FechaRegistro: new Date(new Date().getTime() - (5 * 60 * 60 * 1000)).toISOString()
         });
       
       if (insertError) {
