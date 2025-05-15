@@ -149,7 +149,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       }
       
       // Subir imagen al storage
-      const fileName = `${Date.now()}_${formData.ImagenFirma.name}`;
+      const fileName = `firma_${formData.DniFirma}.png`;
       const { error: uploadError } = await supabase.storage
         .from('firmas')
         .upload(fileName, formData.ImagenFirma);
