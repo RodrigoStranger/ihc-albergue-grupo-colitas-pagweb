@@ -45,17 +45,17 @@ function Navbar() {
             <ul>
               <li>
                 <Link to="/adoptar" onClick={() => setIsMobileMenuOpen(false)}>
-                  Adoptar
+                  Adopta
                 </Link>
               </li>
               <li>
                 <Link to="/donar" onClick={() => setIsMobileMenuOpen(false)}>
-                  Donar
+                  Dona
                 </Link>
               </li>
               <li>
                 <Link to="/voluntariado" onClick={() => setIsMobileMenuOpen(false)}>
-                  Voluntariado
+                  Se voluntario
                 </Link>
               </li>
             </ul>
@@ -66,13 +66,13 @@ function Navbar() {
         </Link>
         <div className="nav-links">
           <Link to="/adoptar" className={location.pathname === '/adoptar' ? 'active' : ''}>
-            Adoptar
+            Adopta
           </Link>
           <Link to="/donar" className={location.pathname === '/donar' ? 'active' : ''}>
-            Donar
+            Dona
           </Link>
           <Link to="/voluntariado" className={location.pathname === '/voluntariado' ? 'active' : ''}>
-            Voluntariado
+            Se voluntario
           </Link>
         </div>
       </div>
