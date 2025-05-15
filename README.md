@@ -1,11 +1,11 @@
-# ihc-albergue-grupo-colitas-pagweb
+# Página web Grupo colitas
 
 Este es el repositorio del proyecto de página web para el albergue Grupo Colitas.
 
 ## Documentación
 
 Puedes encontrar la documentación completa del proyecto en:
-- [DeepWiki](https://deepwiki.com/RodrigoStranger/ihc-albergue-grupo-colitas-pagweb)
+- [![Ask DeepWiki](https://deepwiki.com/RodrigoStranger/ihc-albergue-grupo-colitas-pagweb)
 
 ## Configuración del Proyecto
 
