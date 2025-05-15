@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ModalConfirmacionFirmas from './ModalConfirmacionFirmas';
+import supabase from '../supabase/client';
 import '../styles/ModalFormulario.css';
 
 function ModalFormulario({ show, onClose, onSubmit }) {
@@ -124,15 +125,42 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setIsSubmitting(true);
       setError('');
       
-      // Simular envío de formulario
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Subir imagen al storage
+      const fileName = `${Date.now()}_${formData.ImagenFirma.name}`;
+      const { error: uploadError } = await supabase.storage
+        .from('firmas')
+        .upload(fileName, formData.ImagenFirma);
       
-      // Mostrar el modal de éxito sin guardar nada
+      if (uploadError) {
+        throw uploadError;
+      }
+      
+      // Obtener URL pública de la imagen
+      const { data: { publicUrl } } = supabase.storage
+        .from('firmas')
+        .getPublicUrl(fileName);
+      
+      // Insertar registro en la base de datos
+      const { error: insertError } = await supabase
+        .from('CampañaFirmas')
+        .insert({
+          DniFirma: formData.DniFirma,
+          NombreFirma: formData.NombreFirma,
+          MotivoFirma: formData.MotivoFirma,
+          ImagenFirma: publicUrl,
+          FechaRegistro: new Date().toISOString()
+        });
+      
+      if (insertError) {
+        throw insertError;
+      }
+      
+      // Mostrar modal de éxito
       setFormDataToSend(formDataToSend);
       setShowSuccessModal(true);
     } catch (error) {
       console.error('Error al procesar la petición:', error);
-      setError('Ocurrió un error al procesar la petición');
+      setError(`Ocurrió un error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
