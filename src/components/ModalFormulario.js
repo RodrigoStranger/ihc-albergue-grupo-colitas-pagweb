@@ -125,6 +125,29 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setIsSubmitting(true);
       setError('');
       
+      // Consultar si el DNI existe
+      const { data: existingDni, error: checkError } = await supabase
+        .from('CampañaFirmas')
+        .select('DniFirma')
+        .eq('DniFirma', formData.DniFirma)
+        .single();
+      
+      // Si el DNI ya existe, no hacer nada
+      if (existingDni) {
+        setError('Ya existe una firma con este DNI');
+        // Desplazar al título del encabezado
+        const titleElement = document.querySelector('#modal-formulario-top h2');
+        if (titleElement) {
+          titleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      
+      // Manejar cualquier otro error de consulta
+      if (checkError && checkError.code !== 'PGRST116') {
+        throw checkError;
+      }
+      
       // Subir imagen al storage
       const fileName = `${Date.now()}_${formData.ImagenFirma.name}`;
       const { error: uploadError } = await supabase.storage
@@ -202,7 +225,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       />
       <div className="modal-formulario" style={modalStyle}>
         <div className="modal-content" ref={modalRef}>
-          <div className="modal-header">
+          <div className="modal-header" id="modal-formulario-top">
             <h2>Registra tú petición</h2>
             <button 
               type="button" 
@@ -213,7 +236,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
               &times;
             </button>
           </div>
-          <form onSubmit={handleSubmit} className="formulario-form">
+          <form onSubmit={handleSubmit} className="formulario-form" id="formulario-form">
             {error && <div className="error-message">{error}</div>}
             
             <div className="form-group">
