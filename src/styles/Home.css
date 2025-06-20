@@ -72,7 +72,7 @@
 }
 
 .mobile-menu a:hover {
-  color: #0DB199;
+  color: #87CEEB;
 }
 
 @media (min-width: 768px) {
@@ -402,7 +402,7 @@
 
 .play-button i {
   font-size: 3rem;
-  color: #0DB199;
+  color: #87CEEB;
   position: relative;
   top: 2px;
   left: 4px;
@@ -413,7 +413,7 @@
 }
 
 .play-button:hover {
-  background-color: #0DB199;
+  background-color: #87CEEB;
   transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -567,7 +567,7 @@
 
 .feature-card i {
   font-size: 2.5rem;
-  color: #0DB199;
+  color: #87CEEB;
   margin-bottom: 1rem;
 }
 
@@ -599,7 +599,7 @@
   position: absolute;
   width: 60%;
   height: 3px;
-  background-color: #0DB199;
+  background-color: #87CEEB;
   bottom: -10px;
   left: 20%;
 }
@@ -763,7 +763,7 @@
 }
 
 .petition-banner {
-  background: linear-gradient(135deg, #0DB199, #0a8a7a);
+  background: linear-gradient(135deg, #87CEEB, #4FC3F7);
   border-radius: 15px;
   padding: 2rem;
   width: 100%;
@@ -793,7 +793,7 @@
 
 .petition-banner .cta-button {
   background-color: white;
-  color: #0DB199;
+  color: #87CEEB;
   border: 2px solid white;
   font-weight: 600;
   padding: 0.8rem 2rem;
@@ -819,7 +819,7 @@
 }
 
 .sterilization-details h3 {
-  color: #0DB199;
+  color: #87CEEB;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;
@@ -840,7 +840,7 @@
 
 .sterilization-details li:before {
   content: '✓';
-  color: #0DB199;
+  color: #87CEEB;
   position: absolute;
   left: 0;
   font-weight: bold;
@@ -856,10 +856,10 @@
 .cta-button {
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  border: 2px solid #0DB199;
+  border: 2px solid #87CEEB;
   border-radius: 30px;
   cursor: pointer;
-  background-color: #0DB199;
+  background-color: #87CEEB;
   color: white;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -869,7 +869,7 @@
 
 .cta-button:not(.secondary) {
   background-color: white;
-  color: #0DB199;
+  color: #87CEEB;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -878,13 +878,13 @@
 /* Estilo específico para el botón de firmar petición */
 .petition-banner .cta-button:not(.secondary) {
   background-color: white;
-  color: #0DB199;
+  color: #87CEEB;
   border: 2px solid white; /* Borde blanco */
 }
 
 .petition-banner .cta-button:not(.secondary):hover {
   background-color: white;
-  color: #0DB199;
+  color: #87CEEB;
   border: 2px solid white; /* Borde blanco en hover */
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(13, 177, 153, 0.2);
@@ -892,7 +892,7 @@
 
 .cta-button:hover {
   background-color: transparent;
-  color: #0DB199;
+  color: #87CEEB;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(13, 177, 153, 0.2);
 }
@@ -943,7 +943,7 @@
 
 .contact-item i {
   font-size: 1.5rem;
-  color: #0DB199;
+  color: #87CEEB;
   padding-left: 2rem;
 }
 
@@ -960,7 +960,7 @@
 
 .contact-item i {
   font-size: 1.5rem;
-  color: #0DB199;
+  color: #87CEEB;
   padding-left: 2rem;
 }
 
@@ -994,7 +994,7 @@
 
 .submit-button {
   padding: 1.2rem 2.5rem;
-  background-color: #0DB199;
+  background-color: #87CEEB;
   color: white;
   border: none;
   border-radius: 8px;
@@ -1007,7 +1007,7 @@
 }
 
 .submit-button:hover {
-  background-color: #0c9e8a;
+  background-color: #4FC3F7;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -81,7 +81,7 @@
 }
 
 .modal-confirmacion h2 {
-  color: #0DB199;
+  color: #87CEEB;
   margin: 0 0 0.75rem 0;
   padding: 0;
   font-size: 1.25rem;
@@ -99,7 +99,7 @@
 }
 
 .modal-confirmacion .submit-button {
-  background-color: #0DB199;
+  background-color: #87CEEB;
   color: white;
   border: none;
   padding: 0.5rem 1.25rem;
@@ -114,7 +114,7 @@
 }
 
 .modal-confirmacion .submit-button:hover {
-  background-color: #0c9d87;
+  background-color: #4FC3F7;
   transform: translateY(-1px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }

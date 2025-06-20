@@ -20,7 +20,7 @@
 .not-found-content h1 {
   font-size: 8rem;
   margin: 0;
-  color: #0DB199;
+  color: #87CEEB;
   font-weight: 700;
 }
 
@@ -39,7 +39,7 @@
 .home-link {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background-color: #0DB199;
+  background-color: #87CEEB;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -48,7 +48,7 @@
 }
 
 .home-link:hover {
-  background-color: #0a8c7a;
+  background-color: #4FC3F7;
   transform: translateY(-2px);
 }
 

@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #0DB199;
+  background-color: #4FC3F7;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -308,7 +308,7 @@
 }
 
 .admin-login-form button {
-  background-color: #0DB199;
+  background-color: #4FC3F7;
   color: white;
   border: none;
   padding: 0.5rem;
@@ -318,11 +318,11 @@
 }
 
 .admin-login-form button:hover {
-  background-color: #028f7a;
+  background-color: #4FC3F7;
 }
 
 .admin-options h4 {
-  color: #0DB199;
+  color: #4FC3F7;
   margin-bottom: 1rem;
 }
 
