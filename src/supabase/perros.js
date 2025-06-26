@@ -4,7 +4,7 @@ export const obtenerPerros = async () => {
   try {
     console.log('Iniciando consulta a Supabase...');
     const { data, error } = await client
-      .from('perros')
+      .from('Perros')
       .select('*');
 
     if (error) {
@@ -12,8 +12,21 @@ export const obtenerPerros = async () => {
       throw new Error(`Error al obtener perros: ${error.message}`);
     }
 
-    console.log('Datos obtenidos:', data);
-    return data;
+    // Obtener la URL base del bucket de Supabase
+    const { data: { publicUrl } } = client.storage
+      .from('perros') // Nombre del bucket
+      .getPublicUrl('');
+
+    // Mapear los datos para incluir la URL completa de la imagen
+    const perrosConImagen = data.map(perro => ({
+      ...perro,
+      FotoPerro: perro.FotoPerro ? 
+        `${publicUrl.split('/').slice(0, -1).join('/')}/${perro.FotoPerro}` : 
+        null
+    }));
+
+    console.log('Datos obtenidos:', perrosConImagen);
+    return perrosConImagen;
   } catch (error) {
     console.error('Error en la función obtenerPerros:', error);
     throw new Error(`Error general: ${error.message}`);
