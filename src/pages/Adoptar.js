@@ -42,6 +42,7 @@ function Adoptar() {
   if (loading) return (
     <div className="adoptar-container">
       <h1>Adopciones</h1>
+      <h1></h1>
       <div className="perros-grid">
         <div className="loading-message">
           <p>Cargando perros...</p>

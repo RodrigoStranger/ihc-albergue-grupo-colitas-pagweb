@@ -21,7 +21,7 @@
 .adoptar-container h1::after {
   content: "";
   position: absolute;
-  bottom: -10px;
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -188,7 +188,7 @@
 .perro-info-hover {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(30px);
+  transform: translateY(5px);
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   align-self: flex-end;
   pointer-events: none;
@@ -197,7 +197,7 @@
 .perro-card:hover .perro-info-hover {
   opacity: 0.8;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(-20px);
   pointer-events: auto;
 }
 
@@ -217,22 +217,34 @@
 .info-item {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.1rem;
   text-align: center;
 }
 
-.info-label {
+.perro-card .info-label {
   font-size: 0.8rem;
   font-weight: 600;
+  line-height: 0.7;
+  margin: 0;
+  padding: 0;
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 1px;
+  height: 0.8em;
+  display: block;
 }
 
-.info-value {
+.perro-card .info-value {
   font-size: 1rem;
-  color: white;
   font-weight: 700;
+  line-height: 0.8;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.01em;
+  height: 1em;
+  display: block;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
