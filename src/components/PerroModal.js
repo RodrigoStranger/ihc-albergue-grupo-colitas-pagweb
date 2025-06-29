@@ -95,10 +95,7 @@ const PerroModal = ({ perro, onClose }) => {
             
             <div className="modal-actions">
               <button className="btn-adoptar">
-                ❤️ Quiero adoptarlo
-              </button>
-              <button className="btn-contactar">
-                📞 Contactar
+                 ¡Quiero adoptarlo!
               </button>
             </div>
           </div>
