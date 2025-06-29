@@ -39,62 +39,59 @@ const PerroModal = ({ perro, onClose }) => {
           ×
         </button>
         
-        <div className="modal-content">
-          <div className="modal-image-section">
+        <div className="perro-modal-content">
+          <div className="perro-modal-image-section">
             <img 
               src={FotoPerro || "/placeholder.svg"} 
-              alt={NombrePerro}
-              className="modal-image"
+              alt={NombrePerro} 
+              className="perro-modal-image"
             />
           </div>
-          
-          <div className="modal-info-section">
-            <div className="modal-header">
+          <div className="perro-modal-info-section">
+            <div className="perro-modal-header">
               <h2 className="modal-title">{NombrePerro}</h2>
-              <span className={`modal-sexo-badge ${SexoPerro === "Hembra" ? "hembra" : "macho"}`}>
-                {SexoPerro}
-              </span>
+              <div className="perro-modal-sexo-container">
+                <span className={`modal-sexo-badge ${SexoPerro === "Hembra" ? "hembra" : "macho"}`}>
+                  {SexoPerro}
+                </span>
+              </div>
             </div>
+            <p className="modal-fecha">Ingreso: {formatearFecha(IngresoPerro)}</p>
             
             <div className="modal-info-grid">
               <div className="modal-info-item">
                 <span className="modal-info-label">Edad</span>
                 <span className="modal-info-value">{EdadPerro} años</span>
               </div>
-              
+              <div className="modal-info-item">
+                <span className="modal-info-label">Sexo</span>
+                <span className="modal-info-value">{SexoPerro}</span>
+              </div>
               <div className="modal-info-item">
                 <span className="modal-info-label">Tamaño</span>
                 <span className="modal-info-value">{EstaturaPerro}</span>
               </div>
-              
               <div className="modal-info-item">
                 <span className="modal-info-label">Pelaje</span>
                 <span className="modal-info-value">{PelajePerro}</span>
               </div>
-              
               <div className="modal-info-item">
                 <span className="modal-info-label">Actividad</span>
                 <span className="modal-info-value">{ActividadPerro}</span>
               </div>
-              
               {RazaPerro && (
                 <div className="modal-info-item">
                   <span className="modal-info-label">Raza</span>
                   <span className="modal-info-value">{RazaPerro}</span>
                 </div>
               )}
-              
-              <div className="modal-info-item">
-                <span className="modal-info-label">Fecha de ingreso</span>
-                <span className="modal-info-value">{formatearFecha(IngresoPerro)}</span>
-              </div>
             </div>
             
             <div className="modal-description">
               <h3>Descripción</h3>
               <p>{DescripcionPerro}</p>
             </div>
-            
+
             <div className="modal-actions">
               <button 
                 className="btn-adoptar"
