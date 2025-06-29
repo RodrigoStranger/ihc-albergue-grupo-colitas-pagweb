@@ -55,9 +55,7 @@ const PerroModal = ({ perro, onClose }) => {
                   {SexoPerro}
                 </span>
               </div>
-            </div>
-            <p className="modal-fecha">Ingreso: {formatearFecha(IngresoPerro)}</p>
-            
+            </div>           
             <div className="modal-info-grid">
               <div className="modal-info-item">
                 <span className="modal-info-label">Edad</span>
