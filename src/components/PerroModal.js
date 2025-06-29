@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/PerroModal.css';
 
 const PerroModal = ({ perro, onClose }) => {
+  const navigate = useNavigate();
   const {
     NombrePerro,
     EdadPerro,
@@ -94,8 +96,14 @@ const PerroModal = ({ perro, onClose }) => {
             </div>
             
             <div className="modal-actions">
-              <button className="btn-adoptar">
-                 ¡Quiero adoptarlo!
+              <button 
+                className="btn-adoptar"
+                onClick={() => {
+                  navigate(`/adoptar/${perro.IdPerro}`);
+                  onClose();
+                }}
+              >
+                ¡Quiero adoptarlo!
               </button>
             </div>
           </div>

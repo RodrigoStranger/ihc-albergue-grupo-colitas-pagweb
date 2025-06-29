@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
+import PaginaAdopcion from './components/PaginaAdopcion';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/adoptar" element={<Adoptar />} />
+            <Route path="/adoptar/:id" element={<PaginaAdopcion />} />
             <Route path="/donar" element={<Donar />} />
             <Route path="/voluntariado" element={<Voluntariado />} />
             {/* Ruta comodín para páginas no encontradas */}
