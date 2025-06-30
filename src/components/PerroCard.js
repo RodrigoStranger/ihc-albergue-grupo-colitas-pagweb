@@ -26,7 +26,6 @@ const PerroCard = ({ perro, onCardClick }) => {
 
           <div className="perro-info-hover">
             <div className="adoption-message">
-              <p className="adoption-text">¡Obsérvame!</p>
               <p className="adoption-cta">Adóptame ❤️</p>
             </div>
           </div>
