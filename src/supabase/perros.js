@@ -50,21 +50,3 @@ export const obtenerPerros = async () => {
     throw new Error(`Error general: ${error.message}`);
   }
 };
-
-// Función auxiliar para extraer el nombre del archivo de diferentes formatos de URL
-const extraerNombreArchivo = (url) => {
-  // Si es una URL firmada de Supabase
-  if (url.includes('supabase.co/storage/v1/object/sign/')) {
-    const pathAfterBucket = url.split('/perros/')[1];
-    return pathAfterBucket ? pathAfterBucket.split('?')[0] : url;
-  }
-  
-  // Si es una URL pública de Supabase
-  if (url.includes('supabase.co/storage/v1/object/public/')) {
-    const pathAfterBucket = url.split('/perros/')[1];
-    return pathAfterBucket || url;
-  }
-  
-  // Si es solo el nombre del archivo
-  return url;
-};

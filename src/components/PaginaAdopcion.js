@@ -20,6 +20,15 @@ function PaginaAdopcion() {
   const [loading, setLoading] = useState(true);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Estados para errores específicos de cada campo
+  const [fieldErrors, setFieldErrors] = useState({
+    NombreSolicitanteAdopcion: '',
+    Numero1SolicitanteAdopcion: '',
+    Numero2SolicitanteAdopcion: '',
+    DescripcionSolicitanteAdopcion: ''
+  });
 
   useEffect(() => {
     if (error) {
@@ -37,7 +46,29 @@ function PaginaAdopcion() {
           .single();
 
         if (error) throw error;
-        setPerro(data);
+        
+        // Procesar la imagen del perro igual que en perros.js
+        let perroConImagen = { ...data };
+        if (data.FotoPerro) {
+          let nombreArchivo = data.FotoPerro;
+          
+          // Si la URL contiene el path completo de Supabase, extraer solo el nombre del archivo
+          if (data.FotoPerro.includes('supabase.co/storage/v1/object/sign/perros/')) {
+            const urlParts = data.FotoPerro.split('/');
+            const fileNameWithToken = urlParts[urlParts.length - 1];
+            // Remover el token (todo lo que viene después del ?)
+            nombreArchivo = fileNameWithToken.split('?')[0];
+          }
+          
+          // Obtener la URL pública del archivo específico
+          const { data: { publicUrl } } = client.storage
+            .from('perros')
+            .getPublicUrl(nombreArchivo);
+          
+          perroConImagen.FotoPerro = publicUrl;
+        }
+        
+        setPerro(perroConImagen);
       } catch (error) {
         console.error('Error fetching perro:', error);
         setError('Error al cargar los datos del perro');
@@ -49,65 +80,132 @@ function PaginaAdopcion() {
     fetchPerro();
   }, [id]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
+  // Función para validar un campo específico
+  const validateField = (fieldName, value) => {
+    let errorMessage = '';
+    
+    switch (fieldName) {
+      case 'NombreSolicitanteAdopcion':
+        if (!value.trim()) {
+          errorMessage = 'El nombre es obligatorio';
+        } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) {
+          errorMessage = 'El nombre solo puede contener letras y espacios';
+        }
+        break;
+      case 'Numero1SolicitanteAdopcion':
+        if (!value || value.trim() === '') {
+          errorMessage = 'El número de teléfono es obligatorio';
+        } else if (value.length !== 9) {
+          errorMessage = 'El número de teléfono debe tener exactamente 9 dígitos';
+        }
+        break;
+      case 'Numero2SolicitanteAdopcion':
+        if (value && value.trim() !== '' && value.length !== 9) {
+          errorMessage = 'El segundo número de teléfono debe tener exactamente 9 dígitos';
+        }
+        break;
+      case 'DescripcionSolicitanteAdopcion':
+        if (!value.trim()) {
+          errorMessage = 'La descripción es obligatoria';
+        }
+        break;
+      default:
+        break;
+    }
+    
+    setFieldErrors(prev => ({
       ...prev,
-      [name]: value
+      [fieldName]: errorMessage
     }));
+    
+    return errorMessage === '';
   };
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Validaciones especiales para el nombre (solo letras)
+    if (name === 'NombreSolicitanteAdopcion') {
+      // Filtrar solo letras y espacios
+      const filteredValue = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: filteredValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
 
   const isFormValid = () => {
-    // Verificar que todos los campos obligatorios estén llenos y validos
-    const nombreValido = formData.NombreSolicitanteAdopcion.trim() && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.NombreSolicitanteAdopcion);
-    const telefono1Valido = formData.Numero1SolicitanteAdopcion && formData.Numero1SolicitanteAdopcion.length === 9;
-    const descripcionValida = formData.DescripcionSolicitanteAdopcion.trim();
-    
-    return nombreValido && telefono1Valido && descripcionValida;
+    // Permitir que el formulario se envíe siempre para mostrar validaciones
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     
-    // Si el formulario no es válido, mostrar el primer error
-    if (!isFormValid()) {
-      if (!formData.NombreSolicitanteAdopcion.trim()) {
-        setError('El nombre es obligatorio');
-        document.querySelector('input[name="NombreSolicitanteAdopcion"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.NombreSolicitanteAdopcion)) {
-        setError('El nombre solo puede contener letras y espacios');
-        document.querySelector('input[name="NombreSolicitanteAdopcion"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (!formData.Numero1SolicitanteAdopcion || formData.Numero1SolicitanteAdopcion.length !== 9) {
-        setError('El primer número de teléfono debe tener exactamente 9 dígitos');
-        document.querySelector('input[name="Numero1SolicitanteAdopcion"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (!formData.DescripcionSolicitanteAdopcion.trim()) {
-        setError('La descripción es obligatoria');
-        document.querySelector('textarea[name="DescripcionSolicitanteAdopcion"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      return;
-    }
-
-    // Validaciones adicionales para el segundo teléfono si está presente
-    if (formData.Numero2SolicitanteAdopcion && !/^[0-9]{9}$/.test(formData.Numero2SolicitanteAdopcion)) {
-      setError('El segundo número de teléfono debe tener exactamente 9 dígitos');
-      document.querySelector('input[name="Numero2SolicitanteAdopcion"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Limpiar errores previos
+    setFieldErrors({
+      NombreSolicitanteAdopcion: '',
+      Numero1SolicitanteAdopcion: '',
+      Numero2SolicitanteAdopcion: '',
+      DescripcionSolicitanteAdopcion: ''
+    });
+    
+    // Validar todos los campos obligatorios
+    const isNombreValid = validateField('NombreSolicitanteAdopcion', formData.NombreSolicitanteAdopcion);
+    const isTelefonoValid = validateField('Numero1SolicitanteAdopcion', formData.Numero1SolicitanteAdopcion);
+    const isTelefono2Valid = validateField('Numero2SolicitanteAdopcion', formData.Numero2SolicitanteAdopcion);
+    const isDescripcionValid = validateField('DescripcionSolicitanteAdopcion', formData.DescripcionSolicitanteAdopcion);
+    
+    // Si algún campo no es válido, no continuar
+    if (!isNombreValid || !isTelefonoValid || !isTelefono2Valid || !isDescripcionValid) {
       return;
     }
 
     try {
       setIsSubmitting(true);
       setError('');
+
+      // Verificar si el número ya tiene solicitudes
+      const { data: solicitudesExistentes, error: consultaError } = await supabase
+        .from('SolicitudesAdopcion')
+        .select('IdPerro, EstadoSolicitanteAdopcion')
+        .eq('Numero1SolicitanteAdopcion', formData.Numero1SolicitanteAdopcion);
+
+      if (consultaError) {
+        throw consultaError;
+      }
+
+      // Verificar si ya tiene una solicitud para este perro específico (sin importar el estado)
+      const solicitudMismoPerro = solicitudesExistentes.find(s => s.IdPerro === parseInt(id));
+      if (solicitudMismoPerro) {
+        setError('Ya has enviado una solicitud para este perro anteriormente. No puedes enviar múltiples solicitudes para el mismo perro. Debes esperar a que un administrador procese tu solicitud anterior (Aprobada o Rechazada) antes de poder realizar cualquier acción adicional.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Verificar si tiene alguna solicitud "En Proceso" para cualquier perro
+      const solicitudEnProceso = solicitudesExistentes.find(s => s.EstadoSolicitanteAdopcion === 'En Proceso');
+      if (solicitudEnProceso) {
+        setError('Ya tienes una solicitud en proceso para otro perro. Solo puedes tener una solicitud activa a la vez. Espera a que sea procesada antes de enviar otra.');
+        setIsSubmitting(false);
+        return;
+      }
+
       // Insertar registro en la base de datos
       const { error: insertError } = await supabase
         .from('SolicitudesAdopcion')
         .insert({
-          IdSolicitanteAdopcion: parseInt(id),
+          IdPerro: parseInt(id),
           NombreSolicitanteAdopcion: formData.NombreSolicitanteAdopcion,
           Numero1SolicitanteAdopcion: formData.Numero1SolicitanteAdopcion,
-          Numero2SolicitanteAdopcion: formData.Numero2SolicitanteAdopcion,
+          Numero2SolicitanteAdopcion: formData.Numero2SolicitanteAdopcion || null,
           DescripcionSolicitanteAdopcion: formData.DescripcionSolicitanteAdopcion,
           EstadoSolicitanteAdopcion: formData.EstadoSolicitanteAdopcion
         });
@@ -116,12 +214,13 @@ function PaginaAdopcion() {
         throw insertError;
       }
 
-      // Redirigir a una página de éxito o mostrar mensaje
-      alert('Solicitud de adopción enviada exitosamente');
-      window.history.back();
+      // Mostrar modal de éxito
+      setShowSuccessModal(true);
     } catch (error) {
       console.error('Error al procesar la solicitud:', error);
       setError(`Ocurrió un error: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -154,7 +253,11 @@ function PaginaAdopcion() {
           window.history.back();
         }}
         title="¡Solicitud enviada exitosamente!"
-        message="Gracias por tu interés en adoptar. Nos pondremos en contacto contigo pronto."
+        message={`Gracias por tu interés en adoptar a ${perro?.NombrePerro || 'nuestro perrito'}. 
+
+Tu solicitud ha sido recibida y está siendo procesada. Un administrador del albergue se pondrá en contacto contigo muy pronto a través de WhatsApp al número ${formData.Numero1SolicitanteAdopcion} para coordinar los siguientes pasos del proceso de adopción.
+
+¡Esperamos que pronto tengas un nuevo compañero peludo en casa! 🐕❤️`}
         type="success"
       />
 
@@ -170,8 +273,12 @@ function PaginaAdopcion() {
               name="NombreSolicitanteAdopcion"
               value={formData.NombreSolicitanteAdopcion}
               onChange={handleChange}
-              required
+              className={fieldErrors.NombreSolicitanteAdopcion ? 'input-error' : ''}
+              placeholder="Ej: Juan Carlos Pérez"
             />
+            {fieldErrors.NombreSolicitanteAdopcion && (
+              <div className="field-error">{fieldErrors.NombreSolicitanteAdopcion}</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -187,10 +294,11 @@ function PaginaAdopcion() {
                   setFormData(prev => ({ ...prev, Numero1SolicitanteAdopcion: value }));
                 }
               }}
-              required
-              maxLength="9"
-              pattern="[0-9]{9}"
+              className={fieldErrors.Numero1SolicitanteAdopcion ? 'input-error' : ''}
             />
+            {fieldErrors.Numero1SolicitanteAdopcion && (
+              <div className="field-error">{fieldErrors.Numero1SolicitanteAdopcion}</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -206,9 +314,11 @@ function PaginaAdopcion() {
                   setFormData(prev => ({ ...prev, Numero2SolicitanteAdopcion: value }));
                 }
               }}
-              maxLength="9"
-              pattern="[0-9]{9}"
+              className={fieldErrors.Numero2SolicitanteAdopcion ? 'input-error' : ''}
             />
+            {fieldErrors.Numero2SolicitanteAdopcion && (
+              <div className="field-error">{fieldErrors.Numero2SolicitanteAdopcion}</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -218,8 +328,12 @@ function PaginaAdopcion() {
               name="DescripcionSolicitanteAdopcion"
               value={formData.DescripcionSolicitanteAdopcion}
               onChange={handleChange}
-              required
+              className={fieldErrors.DescripcionSolicitanteAdopcion ? 'input-error' : ''}
+              placeholder="Describe por qué quieres adoptar a este perrito y cómo cuidarías de él..."
             />
+            {fieldErrors.DescripcionSolicitanteAdopcion && (
+              <div className="field-error">{fieldErrors.DescripcionSolicitanteAdopcion}</div>
+            )}
           </div>
 
           <div className="form-actions">
@@ -229,9 +343,9 @@ function PaginaAdopcion() {
             <button 
               type="submit" 
               className="btn-primary" 
-              disabled={!isFormValid()}
+              disabled={!isFormValid() || isSubmitting}
             >
-              Enviar Solicitud
+              {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
             </button>
           </div>
         </form>
@@ -248,13 +362,17 @@ function PaginaAdopcion() {
         <div className="perro-info-grid">
           <div className="perro-image">
             <img 
-              src={perro.FotoPerro ? 
-                client.storage
-                  .from('perros')
-                  .getPublicUrl(perro.FotoPerro).data.publicUrl 
-                : "/placeholder.svg"} 
+              src={perro.FotoPerro || "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkZvdG8gbm8gZGlzcG9uaWJsZTwvdGV4dD4KICA8L3N2Zz4="} 
               alt={perro.NombrePerro}
               className="perro-photo"
+              onError={(e) => {
+                console.log('Error loading image:', e.target.src);
+                // Imagen SVG base64 como fallback
+                e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlZWVlIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjMDAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVycm9yIGFsIGNhcmdhciBpbWFnZW48L3RleHQ+Cjwvc3ZnPg==";
+              }}
+              onLoad={() => {
+                console.log('Image loaded successfully');
+              }}
             />
           </div>
 

@@ -4,11 +4,7 @@ const PerroCard = ({ perro, onCardClick }) => {
   const {
     IdPerro,
     NombrePerro,
-    EdadPerro,
     SexoPerro,
-    EstaturaPerro,
-    PelajePerro,
-    ActividadPerro,
     FotoPerro,
   } = perro
 
@@ -29,27 +25,9 @@ const PerroCard = ({ perro, onCardClick }) => {
           <h3 className="nombre-perro">{NombrePerro}</h3>
 
           <div className="perro-info-hover">
-            <div className="perro-info-grid">
-              <div className="info-item">
-                <span className="info-label">Edad</span>
-                <span className="info-value">{EdadPerro} años</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Sexo</span>
-                <span className="info-value">{SexoPerro}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Tamaño</span>
-                <span className="info-value">{EstaturaPerro}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Pelaje</span>
-                <span className="info-value">{PelajePerro}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Actividad</span>
-                <span className="info-value">{ActividadPerro}</span>
-              </div>
+            <div className="adoption-message">
+              <p className="adoption-text">¡Obsérvame!</p>
+              <p className="adoption-cta">Adóptame ❤️</p>
             </div>
           </div>
         </div>

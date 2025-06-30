@@ -201,51 +201,39 @@
   pointer-events: auto;
 }
 
-.perro-info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+.adoption-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.15) !important;
   backdrop-filter: blur(20px);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: none !important;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
   text-align: center;
+  gap: 0.5rem;
 }
 
-.perro-card .info-label {
-  font-size: 0.8rem;
+.adoption-text {
+  font-size: 1.2rem;
   font-weight: 600;
-  line-height: 0.7;
-  margin: 0;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
   letter-spacing: 1px;
-  height: 0.8em;
-  display: block;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.perro-card .info-value {
-  font-size: 1rem;
+.adoption-cta {
+  font-size: 1.4rem;
   font-weight: 700;
-  line-height: 0.8;
-  margin: 0;
-  padding: 0;
   color: white;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  letter-spacing: -0.01em;
-  height: 1em;
-  display: block;
+  margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.01em;
 }
 
 /* Animaciones de entrada */
@@ -337,10 +325,17 @@
     gap: 1.5rem;
   }
 
-  .perro-info-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    padding: 1rem;
+  .adoption-message {
+    padding: 1.5rem 1rem;
+    gap: 0.3rem;
+  }
+
+  .adoption-text {
+    font-size: 1rem;
+  }
+
+  .adoption-cta {
+    font-size: 1.2rem;
   }
 
   .nombre-perro {

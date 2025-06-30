@@ -81,14 +81,15 @@
 .modal-message {
   color: #333;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .modal-error .modal-message {
-  color: #dc3545;
+  color: #333;
 }
 
 .modal-success .modal-message {
-  color: #28a745;
+  color: #2563eb;
 }
 
 .modal-actions {
@@ -119,6 +120,6 @@
 }
 
 .modal-success .modal-button {
-  background-color: #28a745;
+  background-color: #2563eb;
   color: white;
 }
