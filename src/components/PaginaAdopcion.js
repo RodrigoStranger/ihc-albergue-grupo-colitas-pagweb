@@ -181,17 +181,21 @@ function PaginaAdopcion() {
         throw consultaError;
       }
 
-      // Verificar si ya tiene una solicitud para este perro específico (sin importar el estado)
-      const solicitudMismoPerro = solicitudesExistentes.find(s => s.IdPerro === parseInt(id));
-      if (solicitudMismoPerro) {
-        setError('Ya has enviado una solicitud para este perro anteriormente. No puedes enviar múltiples solicitudes para el mismo perro. Debes esperar a que un administrador procese tu solicitud anterior (Aprobada o Rechazada) antes de poder realizar cualquier acción adicional.');
+      // Verificar si ya tiene una solicitud "En Proceso" para este perro específico
+      const solicitudMismoPerroEnProceso = solicitudesExistentes.find(s => 
+        s.IdPerro === parseInt(id) && s.EstadoSolicitanteAdopcion === 'En Proceso'
+      );
+      if (solicitudMismoPerroEnProceso) {
+        setError('Ya tienes una solicitud en proceso para este perro. Debes esperar a que sea procesada (Aprobada o Rechazada) antes de enviar otra solicitud.');
         setIsSubmitting(false);
         return;
       }
 
-      // Verificar si tiene alguna solicitud "En Proceso" para cualquier perro
-      const solicitudEnProceso = solicitudesExistentes.find(s => s.EstadoSolicitanteAdopcion === 'En Proceso');
-      if (solicitudEnProceso) {
+      // Verificar si tiene alguna solicitud "En Proceso" para cualquier otro perro
+      const solicitudOtroPerroEnProceso = solicitudesExistentes.find(s => 
+        s.IdPerro !== parseInt(id) && s.EstadoSolicitanteAdopcion === 'En Proceso'
+      );
+      if (solicitudOtroPerroEnProceso) {
         setError('Ya tienes una solicitud en proceso para otro perro. Solo puedes tener una solicitud activa a la vez. Espera a que sea procesada antes de enviar otra.');
         setIsSubmitting(false);
         return;
