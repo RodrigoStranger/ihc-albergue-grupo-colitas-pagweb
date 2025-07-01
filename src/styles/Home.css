@@ -86,12 +86,15 @@
               url('../images/Grupo_colitas.png');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed; /* Efecto parallax */
+  background-repeat: no-repeat;
   height: 80vh;
   display: flex;
   align-items: end;
   justify-content: center;
   color: white;
   padding: 0 20px;
+  will-change: transform; /* Optimización para animaciones */
 }
 
 .hero-content {

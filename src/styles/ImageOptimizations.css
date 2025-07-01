@@ -1,0 +1,83 @@
+/* Optimizaciones de rendimiento para imágenes */
+
+/* Mejoras para el hero */
+.hero {
+  /* Preparar para compositing en GPU */
+  transform: translateZ(0);
+  will-change: transform;
+  
+  /* Optimizar rendering */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimización de imágenes responsive */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* Disable parallax en móviles */
+  }
+}
+
+/* Loading spinner para imágenes */
+@keyframes imageLoadSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.image-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: imageLoadSpin 1s linear infinite;
+}
+
+/* Placeholder para imágenes */
+.image-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Optimización para contenedores de imágenes */
+.optimized-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+.optimized-image-container img {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.optimized-image-container img:hover {
+  transform: scale(1.02);
+}
+
+/* Critical CSS para Above the Fold */
+.hero-critical {
+  min-height: 80vh;
+  background-color: #2c3e50; /* Color de respaldo */
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  color: white;
+}
+
+/* Prefetch de recursos */
+.prefetch-resources::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  /* Precargar imagen en background invisible */
+  background-image: url('../images/Grupo_colitas.png');
+}

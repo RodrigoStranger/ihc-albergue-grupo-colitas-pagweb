@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../styles/Home.css';
+import '../styles/ImageOptimizations.css';
 import ModalFormulario from '../components/ModalFormulario';
 
 function Home() {
