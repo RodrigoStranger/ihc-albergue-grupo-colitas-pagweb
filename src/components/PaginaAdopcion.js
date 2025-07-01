@@ -14,7 +14,7 @@ function PaginaAdopcion() {
     Numero1SolicitanteAdopcion: '',
     Numero2SolicitanteAdopcion: '',
     DescripcionSolicitanteAdopcion: '',
-    EstadoSolicitanteAdopcion: 'En Proceso'
+    EstadoSolicitanteAdopcion: 'Pendiente'
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -181,22 +181,22 @@ function PaginaAdopcion() {
         throw consultaError;
       }
 
-      // Verificar si ya tiene una solicitud "En Proceso" para este perro específico
+      // Verificar si ya tiene una solicitud "Pendiente" para este perro específico
       const solicitudMismoPerroEnProceso = solicitudesExistentes.find(s => 
-        s.IdPerro === parseInt(id) && s.EstadoSolicitanteAdopcion === 'En Proceso'
+        s.IdPerro === parseInt(id) && s.EstadoSolicitanteAdopcion === 'Pendiente'
       );
       if (solicitudMismoPerroEnProceso) {
-        setError('Ya tienes una solicitud en proceso para este perro. Debes esperar a que sea procesada (Aprobada o Rechazada) antes de enviar otra solicitud.');
+        setError('Ya tienes una solicitud pendiente para este perro. Debes esperar a que sea procesada (Aprobada o Rechazada) antes de enviar otra solicitud.');
         setIsSubmitting(false);
         return;
       }
 
-      // Verificar si tiene alguna solicitud "En Proceso" para cualquier otro perro
+      // Verificar si tiene alguna solicitud "Pendiente" para cualquier otro perro
       const solicitudOtroPerroEnProceso = solicitudesExistentes.find(s => 
-        s.IdPerro !== parseInt(id) && s.EstadoSolicitanteAdopcion === 'En Proceso'
+        s.IdPerro !== parseInt(id) && s.EstadoSolicitanteAdopcion === 'Pendiente'
       );
       if (solicitudOtroPerroEnProceso) {
-        setError('Ya tienes una solicitud en proceso para otro perro. Solo puedes tener una solicitud activa a la vez. Espera a que sea procesada antes de enviar otra.');
+        setError('Ya tienes una solicitud pendiente para otro perro. Solo puedes tener una solicitud activa a la vez. Espera a que sea procesada antes de enviar otra.');
         setIsSubmitting(false);
         return;
       }
