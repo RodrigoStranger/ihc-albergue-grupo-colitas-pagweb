@@ -4,7 +4,8 @@ export const obtenerPerros = async () => {
   try {
     const { data, error } = await client
       .from('Perros')
-      .select('*');
+      .select('*')
+      .eq('EstadoPerro', 'Disponible');
 
     if (error) {
       throw new Error(`Error al obtener perros: ${error.message}`);
