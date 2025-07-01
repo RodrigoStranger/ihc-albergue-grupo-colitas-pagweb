@@ -182,7 +182,6 @@ function ModalFormulario({ show, onClose, onSubmit }) {
       setFormDataToSend(formDataToSend);
       setShowSuccessModal(true);
     } catch (error) {
-      console.error('Error al procesar la petición:', error);
       setError(`Ocurrió un error: ${error.message}`);
     } finally {
       setIsSubmitting(false);

@@ -171,6 +171,29 @@
   font-size: 0.95rem;
 }
 
+/* Asteriscos rojos para campos obligatorios */
+.required {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Aviso de protección de datos */
+.data-protection-notice {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid #87CEEB;
+  border-radius: 4px;
+}
+
+.data-protection-notice p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+  text-align: justify;
+}
+
 .form-group input,
 .form-group textarea {
   padding: 0.75rem;

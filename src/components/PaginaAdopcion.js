@@ -70,7 +70,6 @@ function PaginaAdopcion() {
         
         setPerro(perroConImagen);
       } catch (error) {
-        console.error('Error fetching perro:', error);
         setError('Error al cargar los datos del perro');
       } finally {
         setLoading(false);
@@ -217,7 +216,6 @@ function PaginaAdopcion() {
       // Mostrar modal de éxito
       setShowSuccessModal(true);
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
       setError(`Ocurrió un error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
@@ -266,7 +264,7 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
         
         <form onSubmit={handleSubmit} className="formulario-adopcion">
           <div className="form-group">
-            <label htmlFor="nombre">Nombre Completo *</label>
+            <label htmlFor="nombre">Nombre Completo <span className="required">*</span></label>
             <input
               type="text"
               id="nombre"
@@ -274,7 +272,6 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
               value={formData.NombreSolicitanteAdopcion}
               onChange={handleChange}
               className={fieldErrors.NombreSolicitanteAdopcion ? 'input-error' : ''}
-              placeholder="Ej: Juan Carlos Pérez"
             />
             {fieldErrors.NombreSolicitanteAdopcion && (
               <div className="field-error">{fieldErrors.NombreSolicitanteAdopcion}</div>
@@ -282,7 +279,7 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
           </div>
 
           <div className="form-group">
-            <label htmlFor="telefono1">Teléfono 1 *</label>
+            <label htmlFor="telefono1">Teléfono 1 <span className="required">*</span></label>
             <input
               type="tel"
               id="telefono1"
@@ -322,7 +319,7 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
           </div>
 
           <div className="form-group">
-            <label htmlFor="descripcion">Descripción *</label>
+            <label htmlFor="descripcion">Descripción <span className="required">*</span></label>
             <textarea
               id="descripcion"
               name="DescripcionSolicitanteAdopcion"
@@ -349,6 +346,10 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
             </button>
           </div>
         </form>
+        
+        <div className="data-protection-notice">
+          <p>Sus datos personales serán protegidos de acuerdo con la Ley N° 29733 - Ley de Protección de Datos Personales.</p>
+        </div>
       </div>
 
       <div className="perro-info-container">
@@ -366,12 +367,8 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
               alt={perro.NombrePerro}
               className="perro-photo"
               onError={(e) => {
-                console.log('Error loading image:', e.target.src);
                 // Imagen SVG base64 como fallback
                 e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlZWVlIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjMDAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVycm9yIGFsIGNhcmdhciBpbWFnZW48L3RleHQ+Cjwvc3ZnPg==";
-              }}
-              onLoad={() => {
-                console.log('Image loaded successfully');
               }}
             />
           </div>

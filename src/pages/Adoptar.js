@@ -14,12 +14,9 @@ function Adoptar() {
   useEffect(() => {
     const cargarPerros = async () => {
       try {
-        console.log('Iniciando carga de perros...');
         const data = await obtenerPerros();
-        console.log('Perros obtenidos:', data);
         setPerros(data);
       } catch (err) {
-        console.error('Error en componente:', err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -42,7 +39,6 @@ function Adoptar() {
   if (loading) return (
     <div className="adoptar-container">
       <h1>Adopciones</h1>
-      <h1></h1>
       <div className="perros-grid">
         <div className="loading-message">
           <p>Cargando perros...</p>
@@ -77,7 +73,7 @@ function Adoptar() {
       <div className="perros-grid">
         {perros.map((perro) => (
           <PerroCard 
-            key={perro.idperro} 
+            key={perro.IdPerro} 
             perro={perro} 
             onCardClick={handleCardClick}
           />

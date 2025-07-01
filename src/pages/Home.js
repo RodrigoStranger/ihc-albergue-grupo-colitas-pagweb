@@ -278,7 +278,6 @@ function Home() {
           show={showModal} 
           onClose={() => setShowModal(false)}
           onSubmit={(formData) => {
-            console.log('Datos del formulario:', formData);
             // Aquí puedes agregar la lógica para enviar los datos
             setShowModal(false);
           }}
