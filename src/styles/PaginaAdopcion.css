@@ -11,7 +11,7 @@
 .formulario-container {
   flex: 1;
   background: white;
-  padding: 2rem;
+  padding: 1rem 0.5rem; /* Reducido para dar más espacio al formulario */
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -176,6 +176,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  max-width: 800px; /* Ancho máximo del formulario aumentado visiblemente */
+  margin: 0 auto;
 }
 
 .form-group {
@@ -217,23 +219,27 @@
 
 .form-group input,
 .form-group textarea {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  border-color: #4fc3f7;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px
 }
 
 /* Botones de acción */
@@ -333,20 +339,20 @@
 
 /* Estilos para errores de validación de campo */
 .field-error {
-  color: #dc3545;
+  color: #e74c3c;
   font-size: 0.875rem;
   margin-top: 0.25rem;
-  display: block;
+  font-weight: 500;
 }
 
 .input-error {
-  border-color: #dc3545 !important;
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
+  border-color: #e74c3c !important;
+  background-color: #fdf2f2 !important;
 }
 
 .input-error:focus {
-  border-color: #dc3545 !important;
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
 }
 
 /* Responsive */

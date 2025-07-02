@@ -5,6 +5,7 @@ import supabase from "../supabase/client"
 import "../styles/Voluntariado.css"
 import "../styles/Modal.css"
 import Modal from "../components/Modal"
+import VoluntariadoConfirmationModal from "../components/VoluntariadoConfirmationModal"
 
 function Voluntariado() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ function Voluntariado() {
   const [error, setError] = useState("")
   const [showErrorModal, setShowErrorModal] = useState(false)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Estados para errores específicos de cada campo
@@ -116,20 +118,21 @@ function Voluntariado() {
 
       // Insertar registro en la base de datos
       const { error: insertError } = await supabase.from("SolicitudesVoluntariado").insert({
-        NombreVoluntario: formData.NombreVoluntario,
-        Numero1Voluntario: formData.Numero1Voluntario,
-        Numero2Voluntario: formData.Numero2Voluntario || null,
-        DescripcionVoluntario: formData.DescripcionVoluntario,
-        EstadoVoluntario: formData.EstadoVoluntario,
+        NombreSolicitanteVoluntariado: formData.NombreVoluntario,
+        Numero1SolicitanteVoluntariado: formData.Numero1Voluntario,
+        Numero2SolicitanteVoluntariado: formData.Numero2Voluntario || null,
+        DescripcionSolicitanteVoluntariado: formData.DescripcionVoluntario,
+        EstadoSolicitanteVoluntariado: formData.EstadoVoluntario,
       })
 
       if (insertError) {
         throw insertError
       }
 
-      // Mostrar modal de éxito
-      setShowSuccessModal(true)
+      // Mostrar modal de confirmación personalizado
+      setShowConfirmationModal(true)
     } catch (error) {
+      console.error("Error al enviar formulario:", error);
       setError(`Ocurrió un error: ${error.message}`)
       setShowErrorModal(true)
     } finally {
@@ -157,6 +160,11 @@ function Voluntariado() {
     setShowSuccessModal(false)
     resetForm()
   }
+  
+  const handleConfirmationClose = () => {
+    setShowConfirmationModal(false)
+    resetForm()
+  }
 
   return (
     <div className="voluntariado-container">
@@ -172,13 +180,21 @@ function Voluntariado() {
         type="error"
       />
 
-      {/* Modal de Éxito */}
+      {/* Modal de Éxito (legacy) */}
       <Modal
         isOpen={showSuccessModal}
         onClose={handleSuccessClose}
         title="¡Solicitud Enviada con Éxito!"
         message={`¡Gracias ${formData.NombreVoluntario}! Tu solicitud de voluntariado ha sido recibida correctamente. Nos pondremos en contacto contigo al ${formData.Numero1Voluntario} para coordinar los próximos pasos. ¡Juntos haremos la diferencia en la vida de nuestros perritos! 🐕❤️`}
         type="success"
+      />
+      
+      {/* Modal de Confirmación Personalizado */}
+      <VoluntariadoConfirmationModal
+        isOpen={showConfirmationModal}
+        onClose={handleConfirmationClose}
+        volunteerName={formData.NombreVoluntario}
+        phoneNumber={formData.Numero1Voluntario}
       />
 
       {/* Sección Hero */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/ConfirmationModal.css';
 
-const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
+const VoluntariadoConfirmationModal = ({ isOpen, onClose, volunteerName, phoneNumber }) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (e) => {
@@ -25,13 +25,13 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
                 </div>
               </div>
             </div>
-            <h2 className="confirmation-title">¡Solicitud Enviada Exitosamente!</h2>
+            <h2 className="confirmation-title">¡Solicitud de Voluntariado Enviada!</h2>
           </div>
 
           <div className="confirmation-modal-body">
             <div className="confirmation-message">
               <p className="main-message">
-                <strong>Gracias {donorName}</strong> por tu generoso corazón y tu interés en ayudar a nuestros perritos rescatados.
+                <strong>¡Gracias {volunteerName}</strong> por tu interés en ser parte de nuestro equipo de voluntarios!
               </p>
               
               <div className="confirmation-details">
@@ -39,7 +39,7 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
                   <span className="detail-icon">📋</span>
                   <div className="detail-content">
                     <h4>Tu solicitud ha sido recibida</h4>
-                    <p>Hemos registrado tu solicitud de donación y está siendo procesada por nuestro equipo.</p>
+                    <p>Hemos registrado tu solicitud de voluntariado y está siendo revisada por nuestro equipo.</p>
                   </div>
                 </div>
 
@@ -47,15 +47,15 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
                   <span className="detail-icon">📱</span>
                   <div className="detail-content">
                     <h4>Te contactaremos pronto</h4>
-                    <p>Un administrador del albergue se pondrá en contacto contigo a través de WhatsApp al número <strong>{phoneNumber}</strong> para coordinar los siguientes pasos.</p>
+                    <p>Un administrador del albergue se pondrá en contacto contigo a través de WhatsApp al número <strong>{phoneNumber}</strong> para coordinar una entrevista y los siguientes pasos.</p>
                   </div>
                 </div>
 
                 <div className="detail-item">
                   <span className="detail-icon">🐕</span>
                   <div className="detail-content">
-                    <h4>Haciendo la diferencia</h4>
-                    <p>Tu donación será fundamental para continuar rescatando, rehabilitando y encontrando hogares para más perritos en necesidad.</p>
+                    <h4>Impacto en vidas</h4>
+                    <p>Tu tiempo y dedicación serán fundamentales para mejorar la vida de nuestros perritos rescatados mientras encuentran un hogar permanente.</p>
                   </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
               <div className="gratitude-section">
                 <div className="heart-animation">❤️</div>
                 <p className="gratitude-text">
-                  <strong>¡Tu generosidad hace la diferencia en la vida de nuestros perritos!</strong>
+                  <strong>¡Tu compromiso hace una gran diferencia en la vida de nuestros perritos!</strong>
                 </p>
                 <p className="signature">
                   Con amor y gratitud,<br />
@@ -89,4 +89,4 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
   );
 };
 
-export default ConfirmationModal;
+export default VoluntariadoConfirmationModal;
