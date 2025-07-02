@@ -1,0 +1,562 @@
+/* Overlay del modal */
+.confirmation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Contenedor principal del modal */
+  .confirmation-modal-container {
+    background: white;
+    border-radius: 25px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Header del modal */
+  .confirmation-modal-header {
+    text-align: center;
+    padding: 3rem 2rem 1rem 2rem;
+    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+    border-radius: 25px 25px 0 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .confirmation-modal-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pawprints" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23pawprints)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .confirmation-icon {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Animación del checkmark */
+  .success-checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #4fc3f7;
+    stroke-miterlimit: 10;
+    margin: 0 auto;
+    box-shadow: inset 0px 0px 0px #4fc3f7;
+    animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+    position: relative;
+  }
+  
+  .success-checkmark .check-icon {
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 1;
+    transform: scale(0);
+    animation: scale 0.3s ease-in-out 0.9s both;
+  }
+  
+  .check-icon .icon-line {
+    height: 3px;
+    background-color: #4fc3f7;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .check-icon .icon-line.line-tip {
+    top: 46%;
+    left: 14px;
+    width: 25px;
+    transform: rotate(45deg);
+    animation: icon-line-tip 0.75s;
+  }
+  
+  .check-icon .icon-line.line-long {
+    top: 38%;
+    right: 8px;
+    width: 47px;
+    transform: rotate(-45deg);
+    animation: icon-line-long 0.75s;
+  }
+  
+  .check-icon .icon-circle {
+    top: -4px;
+    left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    box-sizing: content-box;
+    border: 4px solid rgba(79, 195, 247, 0.5);
+  }
+  
+  .check-icon .icon-fix {
+    top: 8px;
+    width: 5px;
+    left: 26px;
+    z-index: 1;
+    height: 85px;
+    position: absolute;
+    transform: rotate(-45deg);
+    background-color: white;
+  }
+  
+  @keyframes scale {
+    0%, 20% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fill {
+    100% {
+      box-shadow: inset 0px 0px 0px 60px #4fc3f7;
+    }
+  }
+  
+  @keyframes icon-line-tip {
+    0% {
+      width: 0;
+      left: 1px;
+      top: 19px;
+    }
+    54% {
+      width: 0;
+      left: 1px;
+      top: 19px;
+    }
+    70% {
+      width: 50px;
+      left: -8px;
+      top: 37px;
+    }
+    84% {
+      width: 17px;
+      left: 21px;
+      top: 48px;
+    }
+    100% {
+      width: 25px;
+      left: 14px;
+      top: 45px;
+    }
+  }
+  
+  @keyframes icon-line-long {
+    0% {
+      width: 0;
+      right: 46px;
+      top: 54px;
+    }
+    65% {
+      width: 0;
+      right: 46px;
+      top: 54px;
+    }
+    84% {
+      width: 55px;
+      right: 0px;
+      top: 35px;
+    }
+    100% {
+      width: 47px;
+      right: 8px;
+      top: 38px;
+    }
+  }
+  
+  .confirmation-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Body del modal */
+  .confirmation-modal-body {
+    padding: 2rem;
+  }
+  
+  .confirmation-message {
+    text-align: center;
+  }
+  
+  .main-message {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .confirmation-details {
+    text-align: left;
+    margin: 2rem 0;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .detail-item:hover {
+    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+    color: white;
+    transform: translateX(5px);
+  }
+  
+  .detail-icon {
+    font-size: 2rem;
+    min-width: 2.5rem;
+    text-align: center;
+  }
+  
+  .detail-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    transition: color 0.3s ease;
+  }
+  
+  .detail-item:hover .detail-content h4 {
+    color: white;
+  }
+  
+  .detail-content p {
+    margin: 0;
+    line-height: 1.5;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  .detail-item:hover .detail-content p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Sección de gratitud */
+  .gratitude-section {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-top: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gratitude-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="18" text-anchor="middle" font-size="12" fill="rgba(255,193,7,0.1)">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .heart-animation {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: heartbeat 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+  
+  @keyframes heartbeat {
+    0%, 50%, 100% {
+      transform: scale(1);
+    }
+    25%, 75% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .gratitude-text {
+    font-size: 1.2rem;
+    color: #e65100;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .signature {
+    font-size: 1rem;
+    color: #bf360c;
+    margin: 0;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Footer del modal */
+  .confirmation-modal-footer {
+    padding: 1.5rem 2rem 2rem 2rem;
+    text-align: center;
+  }
+  
+  .confirmation-close-btn {
+    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+  }
+  
+  .confirmation-close-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(135, 206, 235, 0.6);
+  }
+  
+  .btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .confirmation-close-btn:hover .btn-shine {
+    left: 100%;
+  }
+  
+  /* Botón X para cerrar */
+  .confirmation-modal-close-x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+  
+  .confirmation-modal-close-x:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .confirmation-modal-container {
+      margin: 1rem;
+      max-width: calc(100vw - 2rem);
+    }
+  
+    .confirmation-modal-header {
+      padding: 2rem 1.5rem 1rem 1.5rem;
+    }
+  
+    .confirmation-title {
+      font-size: 1.5rem;
+    }
+  
+    .success-checkmark {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .success-checkmark .check-icon {
+      width: 40px;
+      height: 40px;
+      left: 10px;
+      top: 10px;
+    }
+  
+    .confirmation-modal-body {
+      padding: 1.5rem;
+    }
+  
+    .main-message {
+      font-size: 1.1rem;
+    }
+  
+    .detail-item {
+      padding: 1rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  
+    .detail-icon {
+      font-size: 1.5rem;
+    }
+  
+    .gratitude-section {
+      padding: 1.5rem;
+    }
+  
+    .heart-animation {
+      font-size: 2.5rem;
+    }
+  
+    .gratitude-text {
+      font-size: 1.1rem;
+    }
+  
+    .confirmation-modal-footer {
+      padding: 1rem 1.5rem 1.5rem 1.5rem;
+    }
+  
+    .confirmation-close-btn {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      min-width: 150px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .confirmation-modal-overlay {
+      padding: 0.5rem;
+    }
+  
+    .confirmation-modal-container {
+      border-radius: 20px;
+    }
+  
+    .confirmation-modal-header {
+      border-radius: 20px 20px 0 0;
+      padding: 1.5rem 1rem 1rem 1rem;
+    }
+  
+    .confirmation-title {
+      font-size: 1.3rem;
+    }
+  
+    .success-checkmark {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .success-checkmark .check-icon {
+      width: 35px;
+      height: 35px;
+      left: 7.5px;
+      top: 7.5px;
+    }
+  
+    .confirmation-modal-body {
+      padding: 1rem;
+    }
+  
+    .main-message {
+      font-size: 1rem;
+    }
+  
+    .detail-item {
+      padding: 0.8rem;
+    }
+  
+    .detail-content h4 {
+      font-size: 1rem;
+    }
+  
+    .detail-content p {
+      font-size: 0.9rem;
+    }
+  
+    .gratitude-section {
+      padding: 1rem;
+    }
+  
+    .heart-animation {
+      font-size: 2rem;
+    }
+  
+    .gratitude-text {
+      font-size: 1rem;
+    }
+  
+    .signature {
+      font-size: 0.9rem;
+    }
+  
+    .confirmation-close-btn {
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+      min-width: 120px;
+    }
+  
+    .confirmation-modal-close-x {
+      width: 35px;
+      height: 35px;
+      font-size: 1.3rem;
+    }
+  }
+  

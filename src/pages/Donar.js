@@ -5,6 +5,7 @@ import supabase from "../supabase/client"
 import "../styles/Donar.css"
 import "../styles/Modal.css"
 import Modal from "../components/Modal"
+import ConfirmationModal from "../components/ConfirmationModal"
 
 function Donar() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ function Donar() {
   const [error, setError] = useState("")
   const [showErrorModal, setShowErrorModal] = useState(false)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Estados para errores específicos de cada campo
@@ -127,8 +129,8 @@ function Donar() {
         throw insertError
       }
 
-      // Mostrar modal de éxito
-      setShowSuccessModal(true)
+      // Mostrar modal de confirmación personalizado
+      setShowConfirmationModal(true)
     } catch (error) {
       setError(`Ocurrió un error: ${error.message}`)
       setShowErrorModal(true)
@@ -153,9 +155,14 @@ function Donar() {
     })
   }
 
+  const handleConfirmationClose = () => {
+    setShowConfirmationModal(false)
+    resetForm()
+  }
+
   return (
     <div className="donar-container">
-      {/* Modales */}
+      {/* Modal de Error */}
       <Modal
         isOpen={showErrorModal}
         onClose={() => {
@@ -167,19 +174,12 @@ function Donar() {
         type="error"
       />
 
-      <Modal
-        isOpen={showSuccessModal}
-        onClose={() => {
-          setShowSuccessModal(false)
-          resetForm()
-        }}
-        title="¡Solicitud enviada exitosamente!"
-        message={`Gracias ${formData.NombreSolicitanteDonacion} por tu interés en donar al albergue. 
-
-Tu solicitud ha sido recibida y está siendo procesada. Un administrador del albergue se pondrá en contacto contigo muy pronto a través de WhatsApp al número ${formData.Numero1SolicitanteDonacion} para coordinar los siguientes pasos.
-
-¡Tu generosidad hace la diferencia en la vida de nuestros perritos! 🐕❤️`}
-        type="success"
+      {/* Modal de Confirmación Personalizado */}
+      <ConfirmationModal
+        isOpen={showConfirmationModal}
+        onClose={handleConfirmationClose}
+        donorName={formData.NombreSolicitanteDonacion}
+        phoneNumber={formData.Numero1SolicitanteDonacion}
       />
 
       {/* Sección Hero Simplificada */}
@@ -246,7 +246,7 @@ Tu solicitud ha sido recibida y está siendo procesada. Un administrador del alb
               <iframe
                 src="https://www.tiktok.com/embed/7503604561358195974"
                 width="100%"
-                height="400"
+                height="600"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
