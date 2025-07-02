@@ -10,23 +10,162 @@
 .hero-section {
   text-align: center;
   margin-bottom: 3rem;
-  padding: 2rem 0;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paw" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23paw)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-badge span {
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .hero-section h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #ffffff, #f0f8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  color: #6c757d;
-  max-width: 600px;
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.7;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* NUEVA SECCIÓN HERO SIMPLIFICADA - SIN CIFRAS */
+.hero-section-simple {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 30px 30px;
+}
+
+.hero-section-simple::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pawprint" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23pawprint)"/></svg>');
+  opacity: 0.4;
+}
+
+.hero-content-simple {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
   margin: 0 auto;
-  line-height: 1.6;
+}
+
+.hero-badge-simple {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.hero-title-simple {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: none;
+  line-height: 1.2;
+}
+
+.hero-description-simple {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+.hero-cta-simple {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2rem;
+}
+
+.hero-message-simple {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 500;
+  color: white;
 }
 
 /* Contenido principal */
@@ -65,8 +204,184 @@
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
   font-weight: 600;
-  border-left: 4px solid #87CEEB;
+  border-left: 4px solid #87ceeb;
   padding-left: 1rem;
+}
+
+/* NUEVA SECCIÓN DE DONACIONES NECESARIAS - REDISEÑADA */
+.donaciones-necesarias-nueva {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.donaciones-necesarias-nueva::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+}
+
+.donaciones-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.donaciones-header h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.donaciones-intro {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.donaciones-tabs {
+  display: grid;
+  gap: 2rem;
+}
+
+.categoria-donacion-nueva {
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border-left: 6px solid transparent;
+}
+
+.categoria-donacion-nueva.monetaria {
+  border-left-color: #28a745;
+}
+
+.categoria-donacion-nueva.alimentos {
+  border-left-color: #fd7e14;
+}
+
+.categoria-donacion-nueva.medicinas {
+  border-left-color: #dc3545;
+}
+
+.categoria-donacion-nueva.materiales {
+  border-left-color: #6f42c1;
+}
+
+.categoria-donacion-nueva:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.categoria-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.categoria-icon {
+  font-size: 3rem;
+  min-width: 4rem;
+  text-align: center;
+  background: white;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.categoria-info h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.categoria-info p {
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.categoria-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.donacion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.donacion-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+  color: white;
+}
+
+.item-icon {
+  font-size: 1.8rem;
+  min-width: 2.5rem;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.donacion-item:hover .item-icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.item-content h4 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.donacion-item:hover .item-content h4 {
+  color: white;
+}
+
+.item-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.donacion-item:hover .item-content p {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Formulario de donación */
@@ -169,7 +484,7 @@
   margin-top: 1.5rem;
   padding: 1rem;
   background-color: #f8f9fa;
-  border-left: 4px solid #87CEEB;
+  border-left: 4px solid #87ceeb;
   border-radius: 4px;
   text-align: center;
 }
@@ -181,57 +496,9 @@
   line-height: 1.4;
 }
 
-/* Lista de necesidades */
-.lista-necesidades {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.lista-necesidades h3 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-}
-
-.necesidades-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-.necesidad-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.necesidad-item:hover {
-  background: #e9ecef;
-  transform: translateX(5px);
-}
-
-.necesidad-item .icon {
-  font-size: 1.5rem;
-  min-width: 2rem;
-  text-align: center;
-}
-
-.necesidad-item span:last-child {
-  font-weight: 500;
-  color: #495057;
-}
-
 /* Botón de acción */
 .btn-donar {
-  background: linear-gradient(135deg, #87CEEB 0%, #4FC3F7 100%);
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
   color: white;
   border: none;
   padding: 1.2rem 3rem;
@@ -254,140 +521,20 @@
   transform: none;
 }
 
-/* Información de contacto */
-.contacto-info {
-  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-  padding: 2.5rem;
-  border-radius: 20px;
-  border-left: 5px solid #28a745;
-  margin-bottom: 2rem;
-  animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.contacto-info h3 {
-  color: #155724;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-}
-
-.pago-info p {
-  text-align: center;
-  color: #155724;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.metodos-pago {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.metodo {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.metodo h4 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.metodo p {
-  margin: 0.5rem 0;
-  color: #495057;
-}
-
-.confirmacion {
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.confirmacion p {
-  color: #856404;
-  margin: 0;
-  font-weight: 500;
-}
-
-/* Información de entrega */
-.entrega-info {
-  text-align: center;
-}
-
-.entrega-info p {
-  color: #155724;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.contacto-metodos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.contacto-metodo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.contacto-metodo .icon {
-  font-size: 2rem;
-  min-width: 2.5rem;
-}
-
-.contacto-metodo div strong {
-  display: block;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-}
-
-.contacto-metodo div p {
-  margin: 0;
-  color: #495057;
-}
-
-.nota {
-  background: #fff3cd;
-  border-radius: 10px;
-  padding: 1rem;
-  color: #856404;
-  font-style: italic;
-  margin: 0;
-}
-
 /* Sección de impacto */
 .impacto-section {
   background: white;
-  padding: 2.5rem;
+  padding: 4rem 2.5rem;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.impacto-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  font-style: italic;
 }
 
 .impacto-section h2 {
@@ -413,7 +560,7 @@
 .impacto-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #87CEEB 0%, #4FC3F7 100%);
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
   color: white;
 }
 
@@ -426,7 +573,7 @@
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  color: #87CEEB;
+  color: #87ceeb;
 }
 
 .impacto-item:hover h4 {
@@ -440,58 +587,398 @@
   line-height: 1.4;
 }
 
+/* Sección Conoce Nuestro Trabajo */
+.conoce-trabajo-section {
+  background: white;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.trabajo-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.trabajo-text h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.trabajo-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.trabajo-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+  color: white;
+  transform: translateX(10px);
+}
+
+.highlight-icon {
+  font-size: 2rem;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.highlight-item h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.highlight-item p {
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Video Container TikTok - Forma de Celular */
+.video-container-tiktok {
+  position: relative;
+  max-width: 350px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 25px;
+  padding: 20px 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 8px solid #2c3e50;
+}
+
+.video-container-tiktok::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: #666;
+  border-radius: 3px;
+}
+
+.video-container-tiktok::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border-radius: 50%;
+  border: 2px solid #666;
+}
+
+.tiktok-embed {
+  border-radius: 15px;
+  width: 100%;
+  height: 600px;
+  background: #000;
+  border: none;
+}
+
+.video-fallback {
+  display: none;
+}
+
+.video-placeholder-tiktok {
+  background: linear-gradient(135deg, #ff0050 0%, #00f2ea 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.video-icon-tiktok {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.video-placeholder-tiktok h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.video-placeholder-tiktok p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.video-link-tiktok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
+}
+
+.video-link-tiktok:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección Cómo Ayuda */
+.como-ayuda-section {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+}
+
+.como-ayuda-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.como-ayuda-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.ayuda-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.ayuda-item {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ayuda-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+}
+
+.ayuda-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.ayuda-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.ayuda-item h3 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.ayuda-item p {
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .donar-container {
     padding: 1rem 0.5rem;
   }
-  
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
   .hero-section h1 {
     font-size: 2.5rem;
   }
-  
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   .hero-subtitle {
     font-size: 1rem;
     padding: 0 1rem;
   }
-  
-  .donacion-tipos,
-  .donacion-monetaria,
-  .lista-necesidades,
-  .contacto-info,
-  .impacto-section {
-    padding: 1.5rem;
+
+  .hero-section-simple {
+    padding: 3rem 1rem;
+  }
+
+  .hero-title-simple {
+    font-size: 2.5rem;
+  }
+
+  .hero-description-simple {
+    font-size: 1.1rem;
+  }
+
+  .hero-message-simple {
+    font-size: 1rem;
+  }
+
+  .donaciones-necesarias-nueva {
+    padding: 2rem 1rem;
     margin: 0 1rem 2rem 1rem;
   }
-  
-  .tipos-grid {
+
+  .donaciones-header h2 {
+    font-size: 2rem;
+  }
+
+  .donaciones-intro {
+    font-size: 1rem;
+  }
+
+  .categoria-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .categoria-items {
     grid-template-columns: 1fr;
   }
-  
-  .montos-grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .formulario-donacion {
+    margin: 0 1rem 2rem 1rem;
+    padding: 2rem 1rem;
   }
-  
-  .necesidades-grid {
-    grid-template-columns: 1fr;
+
+  .impacto-section {
+    padding: 3rem 1.5rem;
+    margin: 0 1rem 2rem 1rem;
   }
-  
-  .metodos-pago,
-  .contacto-metodos {
-    grid-template-columns: 1fr;
-  }
-  
+
   .impacto-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  .donaciones-necesarias,
-  .formulario-donacion {
-    margin: 0 1rem 2rem 1rem;
+
+  .trabajo-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  
-  .categoria-donacion h3 {
-    font-size: 1.1rem;
+
+  .trabajo-text h2 {
+    font-size: 2rem;
+  }
+
+  .como-ayuda-section {
+    padding: 3rem 1rem;
+  }
+
+  .como-ayuda-section h2 {
+    font-size: 2rem;
+  }
+
+  .ayuda-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ayuda-item {
+    padding: 2rem;
+  }
+
+  .conoce-trabajo-section {
+    padding: 3rem 1rem;
+  }
+
+  .video-container-tiktok {
+    max-width: 280px;
+    padding: 15px 10px;
+    border-width: 6px;
+  }
+
+  .video-container-tiktok::before {
+    width: 50px;
+    height: 5px;
+    top: 6px;
+  }
+
+  .video-container-tiktok::after {
+    width: 35px;
+    height: 35px;
+    bottom: 6px;
+  }
+
+  .tiktok-embed {
+    height: 500px;
+  }
+
+  .video-placeholder-tiktok {
+    height: 500px;
+    padding: 2rem 1rem;
+  }
+
+  .video-fallback {
+    display: block;
+  }
+
+  .tiktok-embed {
+    display: none;
   }
 }
 
@@ -499,21 +986,84 @@
   .hero-section h1 {
     font-size: 2rem;
   }
-  
-  .montos-grid {
-    grid-template-columns: 1fr;
+
+  .hero-subtitle {
+    font-size: 1rem;
   }
-  
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
   .impacto-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .formulario-donacion-form {
     gap: 1rem;
   }
-  
+
   .btn-donar {
     padding: 1rem 2rem;
     font-size: 1rem;
+  }
+
+  .trabajo-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .como-ayuda-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .donaciones-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .categoria-icon {
+    font-size: 2.5rem;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+  }
+
+  .video-container-tiktok {
+    max-width: 250px;
+    padding: 12px 8px;
+    border-width: 5px;
+  }
+
+  .video-container-tiktok::before {
+    width: 40px;
+    height: 4px;
+    top: 5px;
+  }
+
+  .video-container-tiktok::after {
+    width: 30px;
+    height: 30px;
+    bottom: 5px;
+  }
+
+  .tiktok-embed {
+    height: 450px;
+  }
+
+  .video-placeholder-tiktok {
+    height: 450px;
+    padding: 1.5rem 0.8rem;
+  }
+
+  .video-placeholder-tiktok h3 {
+    font-size: 1.1rem;
+  }
+
+  .video-placeholder-tiktok p {
+    font-size: 0.8rem;
+  }
+
+  .video-link-tiktok {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
   }
 }
