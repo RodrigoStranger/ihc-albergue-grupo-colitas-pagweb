@@ -1,99 +1,519 @@
+/* Contenedor principal */
 .donar-container {
   min-height: calc(100vh - 280px);
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  margin-top: 30px; /* Espacio adicional debajo del Navbar */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem 1rem;
+  margin-top: 30px;
 }
 
-.donar-content {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+/* Sección hero */
+.hero-section {
   text-align: center;
-  max-width: 800px;
-  width: 100%;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
 }
 
-.donar-content h1 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-}
-
-.coming-soon {
-  padding: 2rem;
-  background-color: #f0f8ff;
-  border-radius: 8px;
-  border-left: 5px solid #4a90e2;
-}
-
-.coming-soon h2 {
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
   color: #2c3e50;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.coming-soon p {
-  color: #555;
-  font-size: 1.1rem;
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Estilos responsivos para móviles */
+/* Contenido principal */
+.donacion-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Donaciones necesarias */
+.donaciones-necesarias {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.donaciones-necesarias h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.categoria-donacion {
+  margin-bottom: 2.5rem;
+}
+
+.categoria-donacion:last-child {
+  margin-bottom: 0;
+}
+
+.categoria-donacion h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-left: 4px solid #87CEEB;
+  padding-left: 1rem;
+}
+
+/* Formulario de donación */
+.formulario-donacion {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.formulario-donacion h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.formulario-subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.formulario-donacion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Asteriscos rojos para campos obligatorios */
+.required {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Estilos para errores de validación de campo */
+.field-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.input-error {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
+}
+
+.input-error:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Aviso de protección de datos */
+.data-protection-notice {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid #87CEEB;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.data-protection-notice p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+/* Lista de necesidades */
+.lista-necesidades {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.lista-necesidades h3 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.necesidades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.necesidad-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.necesidad-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.necesidad-item .icon {
+  font-size: 1.5rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.necesidad-item span:last-child {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Botón de acción */
+.btn-donar {
+  background: linear-gradient(135deg, #87CEEB 0%, #4FC3F7 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
+}
+
+.btn-donar:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(135, 206, 235, 0.6);
+}
+
+.btn-donar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Información de contacto */
+.contacto-info {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border-left: 5px solid #28a745;
+  margin-bottom: 2rem;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contacto-info h3 {
+  color: #155724;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.pago-info p {
+  text-align: center;
+  color: #155724;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.metodos-pago {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.metodo {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metodo h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.metodo p {
+  margin: 0.5rem 0;
+  color: #495057;
+}
+
+.confirmacion {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.confirmacion p {
+  color: #856404;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Información de entrega */
+.entrega-info {
+  text-align: center;
+}
+
+.entrega-info p {
+  color: #155724;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.contacto-metodos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contacto-metodo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-metodo .icon {
+  font-size: 2rem;
+  min-width: 2.5rem;
+}
+
+.contacto-metodo div strong {
+  display: block;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.contacto-metodo div p {
+  margin: 0;
+  color: #495057;
+}
+
+.nota {
+  background: #fff3cd;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #856404;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Sección de impacto */
+.impacto-section {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.impacto-section h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.impacto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.impacto-item {
+  padding: 2rem 1rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.impacto-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #87CEEB 0%, #4FC3F7 100%);
+  color: white;
+}
+
+.impacto-numero {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.impacto-item h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #87CEEB;
+}
+
+.impacto-item:hover h4 {
+  color: white;
+}
+
+.impacto-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .donar-container {
-    padding: 1.5rem;
-    min-height: calc(100vh - 100px);
-    margin-top: 1.5rem;
+    padding: 1rem 0.5rem;
   }
   
-  .donar-content {
-    padding: 1.5rem;
+  .hero-section h1 {
+    font-size: 2.5rem;
   }
   
-  .donar-content h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .coming-soon {
-    padding: 1.5rem;
-  }
-  
-  .coming-soon h2 {
-    font-size: 1.5rem;
-  }
-  
-  .coming-soon p {
+  .hero-subtitle {
     font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .donacion-tipos,
+  .donacion-monetaria,
+  .lista-necesidades,
+  .contacto-info,
+  .impacto-section {
+    padding: 1.5rem;
+    margin: 0 1rem 2rem 1rem;
+  }
+  
+  .tipos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .montos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .necesidades-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metodos-pago,
+  .contacto-metodos {
+    grid-template-columns: 1fr;
+  }
+  
+  .impacto-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .donaciones-necesarias,
+  .formulario-donacion {
+    margin: 0 1rem 2rem 1rem;
+  }
+  
+  .categoria-donacion h3 {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .donar-container {
-    padding: 0.75rem;
+  .hero-section h1 {
+    font-size: 2rem;
   }
   
-  .donar-content {
-    padding: 1.25rem;
+  .montos-grid {
+    grid-template-columns: 1fr;
   }
   
-  .donar-content h1 {
-    font-size: 1.75rem;
+  .impacto-grid {
+    grid-template-columns: 1fr;
   }
   
-  .coming-soon {
-    padding: 1.25rem;
+  .formulario-donacion-form {
+    gap: 1rem;
   }
   
-  .coming-soon h2 {
-    font-size: 1.35rem;
-  }
-  
-  .coming-soon p {
-    font-size: 0.95rem;
+  .btn-donar {
+    padding: 1rem 2rem;
+    font-size: 1rem;
   }
 }
