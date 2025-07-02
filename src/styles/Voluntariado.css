@@ -1,99 +1,429 @@
 .voluntariado-container {
   min-height: calc(100vh - 280px);
   background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 1.5rem 2rem;
   margin-top: 30px; /* Espacio adicional debajo del Navbar */
 }
 
-.voluntariado-content {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+/* Sección Hero */
+.hero-section {
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+  padding: 4rem 2rem;
   text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+  border-radius: 15px;
+  box-shadow: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+.hero-content {
   max-width: 800px;
-  width: 100%;
+  margin: 0 auto;
 }
 
-.voluntariado-content h1 {
-  color: #333;
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: white !important;
+  text-shadow: none !important;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
   margin-bottom: 2rem;
+  opacity: 0.95;
+  color: white !important;
+  text-shadow: none !important;
+}
+
+.hero-cta {
+  margin-top: 2rem;
+}
+
+.hero-message {
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+}
+
+/* Sección Cómo Ayudar */
+.como-ayudar-section {
+  background-color: white;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.como-ayudar-section h2 {
   font-size: 2.5rem;
-}
-
-.coming-soon {
-  padding: 2rem;
-  background-color: #f0f8ff;
-  border-radius: 8px;
-  border-left: 5px solid #4a90e2;
-}
-
-.coming-soon h2 {
   color: #2c3e50;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
-.coming-soon p {
-  color: #555;
+.como-ayudar-subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ayuda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ayuda-item {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.ayuda-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ayuda-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ayuda-item h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.ayuda-item p {
+  color: #5a6c7d;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Contenido principal */
+.voluntariado-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Formulario de Voluntariado */
+.formulario-voluntariado {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.formulario-voluntariado h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.formulario-subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 2.5rem;
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+.formulario-voluntariado-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4fc3f7;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.input-error {
+  border-color: #e74c3c !important;
+  background-color: #fdf2f2 !important;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.btn-voluntariado {
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 280px;
+}
+
+.btn-voluntariado:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 195, 247, 0.3);
+}
+
+.btn-voluntariado:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.data-protection-notice {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #4fc3f7;
+}
+
+.data-protection-notice p {
+  color: #5a6c7d;
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Sección de Compromiso */
+.compromiso-section {
+  background-color: white;
+  padding: 4rem 3rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.compromiso-section h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.compromiso-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.compromiso-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.compromiso-item {
+  background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 50%, #29b6f6 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.compromiso-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(79, 195, 247, 0.3);
+}
+
+.compromiso-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.compromiso-item h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.compromiso-item p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.95;
 }
 
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
   .voluntariado-container {
     padding: 1.5rem;
-    min-height: calc(100vh - 100px);
     margin-top: 1.5rem;
   }
   
-  .voluntariado-content {
-    padding: 1.5rem;
+  .hero-section {
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
   }
   
-  .voluntariado-content h1 {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+  }
+  
+  .como-ayudar-section {
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .como-ayudar-section h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
   }
   
-  .coming-soon {
-    padding: 1.5rem;
+  .ayuda-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
-  .coming-soon h2 {
-    font-size: 1.5rem;
+  .formulario-voluntariado {
+    padding: 2rem;
+    margin-bottom: 2rem;
   }
   
-  .coming-soon p {
-    font-size: 1rem;
+  .formulario-voluntariado h2 {
+    font-size: 1.8rem;
+  }
+  
+  .compromiso-section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .compromiso-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .compromiso-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .voluntariado-container {
-    padding: 0.75rem;
+    padding: 1rem;
   }
   
-  .voluntariado-content {
-    padding: 1.25rem;
+  .hero-section {
+    padding: 2rem 1rem;
   }
   
-  .voluntariado-content h1 {
-    font-size: 1.75rem;
+  .hero-title {
+    font-size: 1.8rem;
   }
   
-  .coming-soon {
-    padding: 1.25rem;
+  .hero-badge span {
+    font-size: 0.9rem;
   }
   
-  .coming-soon h2 {
-    font-size: 1.35rem;
+  .como-ayudar-section {
+    padding: 2rem 1rem;
   }
   
-  .coming-soon p {
-    font-size: 0.95rem;
+  .ayuda-item {
+    padding: 1.5rem;
+  }
+  
+  .formulario-voluntariado {
+    padding: 1.5rem;
+  }
+  
+  .btn-voluntariado {
+    min-width: 250px;
+    padding: 0.875rem 2rem;
+  }
+  
+  .compromiso-section {
+    padding: 2rem 1rem;
+  }
+  
+  .compromiso-item {
+    padding: 1.5rem;
   }
 }
