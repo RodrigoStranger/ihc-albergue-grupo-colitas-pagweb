@@ -8,6 +8,7 @@ import "../styles/PaginaAdopcion.css"
 import "../styles/Modal.css"
 import Modal from "./Modal"
 import ConfirmationModalAdopcion from "./ConfirmationModalAdopcion"
+import DuplicateRequestModal from "./DuplicateRequestModal"
 
 function PaginaAdopcion() {
   const { id } = useParams()
@@ -25,6 +26,7 @@ function PaginaAdopcion() {
   const [showSuccessModal, setShowSuccessModal] = useState(false)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false)
 
   // Estados para errores específicos de cada campo
   const [fieldErrors, setFieldErrors] = useState({
@@ -186,9 +188,7 @@ function PaginaAdopcion() {
         (s) => s.IdPerro === Number.parseInt(id) && s.EstadoSolicitanteAdopcion === "Pendiente",
       )
       if (solicitudMismoPerroEnProceso) {
-        setError(
-          "Ya tienes una solicitud pendiente para este perro. Debes esperar a que sea procesada (Aprobada o Rechazada) antes de enviar otra solicitud.",
-        )
+        setShowDuplicateModal(true)
         setIsSubmitting(false)
         return
       }
@@ -278,6 +278,14 @@ function PaginaAdopcion() {
         onClose={handleConfirmationClose}
         adoptanteName={formData.NombreSolicitanteAdopcion}
         phoneNumber={formData.Numero1SolicitanteAdopcion}
+        dogName={perro?.NombrePerro}
+        dogPhoto={perro?.FotoPerro}
+      />
+
+      {/* Modal de Solicitud Duplicada */}
+      <DuplicateRequestModal
+        isOpen={showDuplicateModal}
+        onClose={() => setShowDuplicateModal(false)}
         dogName={perro?.NombrePerro}
         dogPhoto={perro?.FotoPerro}
       />
@@ -393,7 +401,8 @@ function PaginaAdopcion() {
             <img
               src={
                 perro.FotoPerro ||
-                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkZvdG8gbm8gZGlzcG9uaWJsZTwvdGV4dD4KICA8L3N2Zz4="
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkZvdG8gbm8gZGlzcG9uaWJsZTwvdGV4dD4KICA8L3N2Zz4=" ||
+                "/placeholder.svg"
               }
               alt={perro.NombrePerro}
               className="perro-photo"
