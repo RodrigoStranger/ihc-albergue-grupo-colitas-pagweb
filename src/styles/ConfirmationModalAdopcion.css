@@ -1,5 +1,5 @@
 /* Overlay del modal */
-.confirmation-modal-overlay {
+.confirmation-modal-adopcion-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,10 +12,10 @@
     align-items: center;
     z-index: 10000;
     padding: 1rem;
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeInAdopcion 0.3s ease-out;
   }
   
-  @keyframes fadeIn {
+  @keyframes fadeInAdopcion {
     from {
       opacity: 0;
     }
@@ -25,42 +25,42 @@
   }
   
   /* Contenedor principal del modal */
-  .confirmation-modal-container {
+  .confirmation-modal-adopcion-container {
     background: white;
     border-radius: 25px;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
     max-height: 90vh;
     overflow: hidden;
     position: relative;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.4s ease-out;
+    animation: slideUpAdopcion 0.4s ease-out;
   }
   
   /* Contenedor con scroll personalizado */
-  .confirmation-modal-scroll {
+  .confirmation-modal-adopcion-scroll {
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    
+  
     /* Ocultar scrollbar predeterminado */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
   
   /* Ocultar scrollbar en WebKit browsers (Chrome, Safari, Edge) */
-  .confirmation-modal-scroll::-webkit-scrollbar {
+  .confirmation-modal-adopcion-scroll::-webkit-scrollbar {
     display: none;
   }
   
   /* Contenedor interno para el scroll personalizado */
-  .confirmation-modal-inner {
+  .confirmation-modal-adopcion-inner {
     position: relative;
     padding-right: 15px; /* Espacio para el scrollbar personalizado */
   }
   
   /* Scrollbar personalizado */
-  .custom-scrollbar {
+  .custom-scrollbar-adopcion {
     position: absolute;
     top: 0;
     right: 5px;
@@ -73,33 +73,33 @@
     z-index: 1000;
   }
   
-  .confirmation-modal-container:hover .custom-scrollbar {
+  .confirmation-modal-adopcion-container:hover .custom-scrollbar-adopcion {
     opacity: 1;
   }
   
-  .custom-scrollbar-thumb {
+  .custom-scrollbar-thumb-adopcion {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     min-height: 30px;
   }
   
-  .custom-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+  .custom-scrollbar-thumb-adopcion:hover {
+    background: linear-gradient(135deg, #ee5a24 0%, #d63031 100%);
     width: 12px;
     left: -2px;
   }
   
-  .custom-scrollbar-thumb:active {
-    background: linear-gradient(135deg, #29b6f6 0%, #1976d2 100%);
+  .custom-scrollbar-thumb-adopcion:active {
+    background: linear-gradient(135deg, #d63031 0%, #a4161a 100%);
   }
   
-  @keyframes slideUp {
+  @keyframes slideUpAdopcion {
     from {
       opacity: 0;
       transform: translateY(50px) scale(0.9);
@@ -111,49 +111,49 @@
   }
   
   /* Header del modal */
-  .confirmation-modal-header {
+  .confirmation-modal-adopcion-header {
     text-align: center;
     padding: 3rem 2rem 1rem 2rem;
-    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     border-radius: 25px 25px 0 0;
     color: white;
     position: relative;
     overflow: hidden;
   }
   
-  .confirmation-modal-header::before {
+  .confirmation-modal-adopcion-header::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pawprints" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23pawprints)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dogprints" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.1)">🐕</text></pattern></defs><rect width="100" height="100" fill="url(%23dogprints)"/></svg>');
     opacity: 0.3;
   }
   
-  .confirmation-icon {
+  .confirmation-adopcion-icon {
     position: relative;
     z-index: 1;
     margin-bottom: 1.5rem;
   }
   
   /* Animación del checkmark */
-  .success-checkmark {
+  .success-checkmark-adopcion {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     display: block;
     stroke-width: 3;
-    stroke: #4fc3f7;
+    stroke: #ee5a24;
     stroke-miterlimit: 10;
     margin: 0 auto;
-    box-shadow: inset 0px 0px 0px #4fc3f7;
-    animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+    box-shadow: inset 0px 0px 0px #ee5a24;
+    animation: fillAdopcion 0.4s ease-in-out 0.4s forwards, scaleAdopcion 0.3s ease-in-out 0.9s both;
     position: relative;
   }
   
-  .success-checkmark .check-icon {
+  .success-checkmark-adopcion .check-icon-adopcion {
     width: 56px;
     height: 56px;
     position: absolute;
@@ -161,35 +161,35 @@
     top: 12px;
     z-index: 1;
     transform: scale(0);
-    animation: scale 0.3s ease-in-out 0.9s both;
+    animation: scaleAdopcion 0.3s ease-in-out 0.9s both;
   }
   
-  .check-icon .icon-line {
+  .check-icon-adopcion .icon-line-adopcion {
     height: 3px;
-    background-color: #4fc3f7;
+    background-color: #ee5a24;
     display: block;
     border-radius: 2px;
     position: absolute;
     z-index: 1;
   }
   
-  .check-icon .icon-line.line-tip {
+  .check-icon-adopcion .icon-line-adopcion.line-tip-adopcion {
     top: 46%;
     left: 14px;
     width: 25px;
     transform: rotate(45deg);
-    animation: icon-line-tip 0.75s;
+    animation: icon-line-tip-adopcion 0.75s;
   }
   
-  .check-icon .icon-line.line-long {
+  .check-icon-adopcion .icon-line-adopcion.line-long-adopcion {
     top: 38%;
     right: 8px;
     width: 47px;
     transform: rotate(-45deg);
-    animation: icon-line-long 0.75s;
+    animation: icon-line-long-adopcion 0.75s;
   }
   
-  .check-icon .icon-circle {
+  .check-icon-adopcion .icon-circle-adopcion {
     top: -4px;
     left: -4px;
     z-index: 10;
@@ -198,10 +198,10 @@
     border-radius: 50%;
     position: absolute;
     box-sizing: content-box;
-    border: 4px solid rgba(79, 195, 247, 0.5);
+    border: 4px solid rgba(238, 90, 36, 0.5);
   }
   
-  .check-icon .icon-fix {
+  .check-icon-adopcion .icon-fix-adopcion {
     top: 8px;
     width: 5px;
     left: 26px;
@@ -212,7 +212,7 @@
     background-color: white;
   }
   
-  @keyframes scale {
+  @keyframes scaleAdopcion {
     0%,
     20% {
       transform: scale(0);
@@ -222,13 +222,13 @@
     }
   }
   
-  @keyframes fill {
+  @keyframes fillAdopcion {
     100% {
-      box-shadow: inset 0px 0px 0px 60px #4fc3f7;
+      box-shadow: inset 0px 0px 0px 60px #ee5a24;
     }
   }
   
-  @keyframes icon-line-tip {
+  @keyframes icon-line-tip-adopcion {
     0% {
       width: 0;
       left: 1px;
@@ -256,7 +256,7 @@
     }
   }
   
-  @keyframes icon-line-long {
+  @keyframes icon-line-long-adopcion {
     0% {
       width: 0;
       right: 46px;
@@ -279,7 +279,7 @@
     }
   }
   
-  .confirmation-title {
+  .confirmation-adopcion-title {
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
@@ -289,27 +289,60 @@
   }
   
   /* Body del modal */
-  .confirmation-modal-body {
+  .confirmation-modal-adopcion-body {
     padding: 2rem;
   }
   
-  .confirmation-message {
+  .confirmation-adopcion-message {
     text-align: center;
   }
   
-  .main-message {
+  .main-message-adopcion {
     font-size: 1.2rem;
     color: #2c3e50;
     margin-bottom: 2rem;
     line-height: 1.6;
   }
   
-  .confirmation-details {
+  /* Foto del perrito adoptado */
+  .adopted-dog-photo {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 1.5rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ff6b6b;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  }
+  
+  .adopted-dog-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .dog-name-overlay {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  }
+  
+  .confirmation-adopcion-details {
     text-align: left;
     margin: 2rem 0;
   }
   
-  .detail-item {
+  .detail-item-adopcion {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
@@ -320,19 +353,19 @@
     transition: all 0.3s ease;
   }
   
-  .detail-item:hover {
-    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+  .detail-item-adopcion:hover {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     color: white;
     transform: translateX(5px);
   }
   
-  .detail-icon {
+  .detail-icon-adopcion {
     font-size: 2rem;
     min-width: 2.5rem;
     text-align: center;
   }
   
-  .detail-content h4 {
+  .detail-content-adopcion h4 {
     margin: 0 0 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 600;
@@ -340,23 +373,90 @@
     transition: color 0.3s ease;
   }
   
-  .detail-item:hover .detail-content h4 {
+  .detail-item-adopcion:hover .detail-content-adopcion h4 {
     color: white;
   }
   
-  .detail-content p {
+  .detail-content-adopcion p {
     margin: 0;
     line-height: 1.5;
     color: #666;
     transition: color 0.3s ease;
   }
   
-  .detail-item:hover .detail-content p {
+  .detail-item-adopcion:hover .detail-content-adopcion p {
     color: rgba(255, 255, 255, 0.9);
   }
   
+  /* Sección del proceso de adopción */
+  .adoption-process-section {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem 0;
+    text-align: left;
+  }
+  
+  .adoption-process-section h3 {
+    text-align: center;
+    color: #d63031;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .process-steps {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .process-step:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+  }
+  
+  .step-number {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    min-width: 2.5rem;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  }
+  
+  .step-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .step-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
   /* Sección de gratitud */
-  .gratitude-section {
+  .gratitude-adopcion-section {
     background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
     padding: 2rem;
     border-radius: 20px;
@@ -366,26 +466,26 @@
     overflow: hidden;
   }
   
-  .gratitude-section::before {
+  .gratitude-adopcion-section::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="18" text-anchor="middle" font-size="12" fill="rgba(255,193,7,0.1)">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts-adopcion" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="18" text-anchor="middle" font-size="12" fill="rgba(255,193,7,0.1)">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts-adopcion)"/></svg>');
     opacity: 0.3;
   }
   
-  .heart-animation {
+  .heart-animation-adopcion {
     font-size: 3rem;
     margin-bottom: 1rem;
-    animation: heartbeat 2s ease-in-out infinite;
+    animation: heartbeatAdopcion 2s ease-in-out infinite;
     position: relative;
     z-index: 1;
   }
   
-  @keyframes heartbeat {
+  @keyframes heartbeatAdopcion {
     0%,
     50%,
     100% {
@@ -397,7 +497,7 @@
     }
   }
   
-  .gratitude-text {
+  .gratitude-adopcion-text {
     font-size: 1.2rem;
     color: #e65100;
     margin-bottom: 1rem;
@@ -405,7 +505,7 @@
     z-index: 1;
   }
   
-  .signature {
+  .signature-adopcion {
     font-size: 1rem;
     color: #bf360c;
     margin: 0;
@@ -415,13 +515,13 @@
   }
   
   /* Footer del modal */
-  .confirmation-modal-footer {
+  .confirmation-modal-adopcion-footer {
     padding: 1.5rem 2rem 2rem 2rem;
     text-align: center;
   }
   
-  .confirmation-close-btn {
-    background: linear-gradient(135deg, #87ceeb 0%, #4fc3f7 100%);
+  .confirmation-adopcion-close-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     color: white;
     border: none;
     padding: 1rem 3rem;
@@ -430,18 +530,18 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
     position: relative;
     overflow: hidden;
     min-width: 200px;
   }
   
-  .confirmation-close-btn:hover {
+  .confirmation-adopcion-close-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(135, 206, 235, 0.6);
+    box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
   }
   
-  .btn-shine {
+  .btn-shine-adopcion {
     position: absolute;
     top: 0;
     left: -100%;
@@ -451,12 +551,12 @@
     transition: left 0.5s;
   }
   
-  .confirmation-close-btn:hover .btn-shine {
+  .confirmation-adopcion-close-btn:hover .btn-shine-adopcion {
     left: 100%;
   }
   
   /* Botón X para cerrar */
-  .confirmation-modal-close-x {
+  .confirmation-modal-adopcion-close-x {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -473,88 +573,107 @@
     z-index: 10;
   }
   
-  .confirmation-modal-close-x:hover {
+  .confirmation-modal-adopcion-close-x:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: rotate(90deg);
   }
   
   /* Responsive */
   @media (max-width: 768px) {
-    .confirmation-modal-container {
+    .confirmation-modal-adopcion-container {
       margin: 1rem;
       max-width: calc(100vw - 2rem);
     }
   
-    .confirmation-modal-header {
+    .confirmation-modal-adopcion-header {
       padding: 2rem 1.5rem 1rem 1.5rem;
     }
   
-    .confirmation-title {
+    .confirmation-adopcion-title {
       font-size: 1.5rem;
     }
   
-    .success-checkmark {
+    .success-checkmark-adopcion {
       width: 60px;
       height: 60px;
     }
   
-    .success-checkmark .check-icon {
+    .success-checkmark-adopcion .check-icon-adopcion {
       width: 40px;
       height: 40px;
       left: 10px;
       top: 10px;
     }
   
-    .confirmation-modal-body {
+    .confirmation-modal-adopcion-body {
       padding: 1.5rem;
     }
   
-    .confirmation-modal-inner {
+    .confirmation-modal-adopcion-inner {
       padding-right: 10px;
     }
   
-    .custom-scrollbar {
+    .custom-scrollbar-adopcion {
       width: 6px;
       right: 2px;
     }
   
-    .custom-scrollbar-thumb:hover {
+    .custom-scrollbar-thumb-adopcion:hover {
       width: 8px;
       left: -1px;
     }
   
-    .main-message {
+    .main-message-adopcion {
       font-size: 1.1rem;
     }
   
-    .detail-item {
+    .detail-item-adopcion {
       padding: 1rem;
       flex-direction: column;
       text-align: center;
       gap: 0.5rem;
     }
   
-    .detail-icon {
+    .detail-icon-adopcion {
       font-size: 1.5rem;
     }
   
-    .gratitude-section {
+    .adopted-dog-photo {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .adoption-process-section {
       padding: 1.5rem;
     }
   
-    .heart-animation {
+    .process-step {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.8rem;
+    }
+  
+    .step-number {
+      align-self: center;
+    }
+  
+    .gratitude-adopcion-section {
+      padding: 1.5rem;
+    }
+  
+    .heart-animation-adopcion {
       font-size: 2.5rem;
     }
   
-    .gratitude-text {
+    .gratitude-adopcion-text {
       font-size: 1.1rem;
     }
   
-    .confirmation-modal-footer {
+    .confirmation-modal-adopcion-footer {
       padding: 1rem 1.5rem 1.5rem 1.5rem;
     }
   
-    .confirmation-close-btn {
+    .confirmation-adopcion-close-btn {
       padding: 0.8rem 2rem;
       font-size: 1rem;
       min-width: 150px;
@@ -562,92 +681,121 @@
   }
   
   @media (max-width: 480px) {
-    .confirmation-modal-overlay {
+    .confirmation-modal-adopcion-overlay {
       padding: 0.5rem;
     }
   
-    .confirmation-modal-container {
+    .confirmation-modal-adopcion-container {
       border-radius: 20px;
     }
   
-    .confirmation-modal-header {
+    .confirmation-modal-adopcion-header {
       border-radius: 20px 20px 0 0;
       padding: 1.5rem 1rem 1rem 1rem;
     }
   
-    .confirmation-title {
+    .confirmation-adopcion-title {
       font-size: 1.3rem;
     }
   
-    .success-checkmark {
+    .success-checkmark-adopcion {
       width: 50px;
       height: 50px;
     }
   
-    .success-checkmark .check-icon {
+    .success-checkmark-adopcion .check-icon-adopcion {
       width: 35px;
       height: 35px;
       left: 7.5px;
       top: 7.5px;
     }
   
-    .confirmation-modal-body {
+    .confirmation-modal-adopcion-body {
       padding: 1rem;
     }
   
-    .confirmation-modal-inner {
+    .confirmation-modal-adopcion-inner {
       padding-right: 8px;
     }
   
-    .custom-scrollbar {
+    .custom-scrollbar-adopcion {
       width: 4px;
       right: 1px;
     }
   
-    .custom-scrollbar-thumb:hover {
+    .custom-scrollbar-thumb-adopcion:hover {
       width: 6px;
       left: -1px;
     }
   
-    .main-message {
+    .main-message-adopcion {
       font-size: 1rem;
     }
   
-    .detail-item {
+    .detail-item-adopcion {
       padding: 0.8rem;
     }
   
-    .detail-content h4 {
+    .detail-content-adopcion h4 {
       font-size: 1rem;
     }
   
-    .detail-content p {
+    .detail-content-adopcion p {
       font-size: 0.9rem;
     }
   
-    .gratitude-section {
+    .adopted-dog-photo {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .dog-name-overlay {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+    }
+  
+    .adoption-process-section {
       padding: 1rem;
     }
   
-    .heart-animation {
-      font-size: 2rem;
-    }
-  
-    .gratitude-text {
+    .step-number {
+      width: 2rem;
+      height: 2rem;
       font-size: 1rem;
+      min-width: 2rem;
     }
   
-    .signature {
+    .step-content h4 {
       font-size: 0.9rem;
     }
   
-    .confirmation-close-btn {
+    .step-content p {
+      font-size: 0.8rem;
+    }
+  
+    .gratitude-adopcion-section {
+      padding: 1rem;
+    }
+  
+    .heart-animation-adopcion {
+      font-size: 2rem;
+    }
+  
+    .gratitude-adopcion-text {
+      font-size: 1rem;
+    }
+  
+    .signature-adopcion {
+      font-size: 0.9rem;
+    }
+  
+    .confirmation-adopcion-close-btn {
       padding: 0.7rem 1.5rem;
       font-size: 0.9rem;
       min-width: 120px;
     }
   
-    .confirmation-modal-close-x {
+    .confirmation-modal-adopcion-close-x {
       width: 35px;
       height: 35px;
       font-size: 1.3rem;
