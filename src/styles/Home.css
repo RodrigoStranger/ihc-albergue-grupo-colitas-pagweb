@@ -145,6 +145,15 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 4rem;
+  }
+  .hero p {
+    font-size: 1.3rem;
+  }
+}
+
 .about-section {
   padding: 4rem 2rem 0rem;
   background-color: #f8f9fa;
