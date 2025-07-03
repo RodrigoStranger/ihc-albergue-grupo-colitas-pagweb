@@ -131,6 +131,20 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0.8rem;
+  }
+  .hero h1 {
+    font-size: 2.1rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
 .about-section {
   padding: 4rem 2rem 0rem;
   background-color: #f8f9fa;
@@ -1035,4 +1049,4 @@
   .feature-card {
     padding: 1.5rem;
   }
-} 
+}
