@@ -13,7 +13,6 @@ const PerroModal = ({ perro, onClose }) => {
     ActividadPerro,
     DescripcionPerro,
     FotoPerro,
-    IngresoPerro,
     RazaPerro
   } = perro;
 
@@ -21,15 +20,6 @@ const PerroModal = ({ perro, onClose }) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
-
-  const formatearFecha = (fecha) => {
-    const date = new Date(fecha);
-    return date.toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
   };
 
   return (
@@ -94,8 +84,14 @@ const PerroModal = ({ perro, onClose }) => {
               <button 
                 className="btn-adoptar"
                 onClick={() => {
-                  navigate(`/adoptar/${perro.IdPerro}`);
-                  onClose();
+                  // Detectar si es móvil
+                  if (window.innerWidth <= 700) {
+                    navigate(`/adoptar/${perro.IdPerro}`);
+                    onClose();
+                  } else {
+                    // Mantener el modal en escritorio
+                    // Aquí podrías abrir el formulario dentro del modal si lo deseas
+                  }
                 }}
               >
                 ¡Quiero adoptarlo!

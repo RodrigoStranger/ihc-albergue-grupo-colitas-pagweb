@@ -27,8 +27,13 @@ function Adoptar() {
   }, []);
 
   const handleCardClick = (perro) => {
-    setSelectedPerro(perro);
-    setIsModalOpen(true);
+    // Si es móvil, navegar directo a la página de adopción
+    if (window.innerWidth <= 700) {
+      window.location.href = `/adoptar/${perro.IdPerro}`;
+    } else {
+      setSelectedPerro(perro);
+      setIsModalOpen(true);
+    }
   };
 
   const handleCloseModal = () => {

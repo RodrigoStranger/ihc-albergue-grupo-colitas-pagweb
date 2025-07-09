@@ -23,7 +23,6 @@ function PaginaAdopcion() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
   const [showErrorModal, setShowErrorModal] = useState(false)
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showDuplicateModal, setShowDuplicateModal] = useState(false)
@@ -290,6 +289,68 @@ function PaginaAdopcion() {
         dogPhoto={perro?.FotoPerro}
       />
 
+      {/* PRIMERO INFO DEL PERRO */}
+      <div className="perro-info-container">
+        <div className="perro-info-header">
+          <h2>{perro.NombrePerro}</h2>
+          <span className={`sexo-badge ${perro.SexoPerro === "Hembra" ? "hembra" : "macho"}`}>{perro.SexoPerro}</span>
+        </div>
+
+        <div className="perro-info-grid">
+          <div className="perro-image">
+            <img
+              src={
+                perro.FotoPerro ||
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkZvdG8gbm8gZGlzcG9uaWJsZTwvdGV4dD4KICA8L3N2Zz4=" ||
+                "/placeholder.svg"
+              }
+              alt={perro.NombrePerro}
+              className="perro-photo"
+              onError={(e) => {
+                // Imagen SVG base64 como fallback
+                e.target.src =
+                  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlZWVlIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjMDAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVycm9yIGFsIGNhcmdhciBpbWFnZW48L3RleHQ+Cjwvc3ZnPg=="
+              }}
+            />
+          </div>
+
+          <div className="perro-details">
+            <div className="info-item">
+              <span className="info-label">Edad</span>
+              <span className="info-value">{perro.EdadPerro} años</span>
+            </div>
+
+            <div className="info-item">
+              <span className="info-label">Tamaño</span>
+              <span className="info-value">{perro.EstaturaPerro}</span>
+            </div>
+
+            <div className="info-item">
+              <span className="info-label">Pelaje</span>
+              <span className="info-value">{perro.PelajePerro}</span>
+            </div>
+
+            <div className="info-item">
+              <span className="info-label">Actividad</span>
+              <span className="info-value">{perro.ActividadPerro}</span>
+            </div>
+
+            {perro.RazaPerro && (
+              <div className="info-item">
+                <span className="info-label">Raza</span>
+                <span className="info-value">{perro.RazaPerro}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="perro-description">
+          <h3>Descripción</h3>
+          <p>{perro.DescripcionPerro}</p>
+        </div>
+      </div>
+
+      {/* LUEGO EL FORMULARIO */}
       <div className="formulario-container">
         <h2>Formulario de Adopción</h2>
 
@@ -387,66 +448,6 @@ function PaginaAdopcion() {
             Sus datos personales serán protegidos de acuerdo con la Ley N° 29733 - Ley de Protección de Datos
             Personales.
           </p>
-        </div>
-      </div>
-
-      <div className="perro-info-container">
-        <div className="perro-info-header">
-          <h2>{perro.NombrePerro}</h2>
-          <span className={`sexo-badge ${perro.SexoPerro === "Hembra" ? "hembra" : "macho"}`}>{perro.SexoPerro}</span>
-        </div>
-
-        <div className="perro-info-grid">
-          <div className="perro-image">
-            <img
-              src={
-                perro.FotoPerro ||
-                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkZvdG8gbm8gZGlzcG9uaWJsZTwvdGV4dD4KICA8L3N2Zz4=" ||
-                "/placeholder.svg"
-              }
-              alt={perro.NombrePerro}
-              className="perro-photo"
-              onError={(e) => {
-                // Imagen SVG base64 como fallback
-                e.target.src =
-                  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlZWVlIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjMDAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkVycm9yIGFsIGNhcmdhciBpbWFnZW48L3RleHQ+Cjwvc3ZnPg=="
-              }}
-            />
-          </div>
-
-          <div className="perro-details">
-            <div className="info-item">
-              <span className="info-label">Edad</span>
-              <span className="info-value">{perro.EdadPerro} años</span>
-            </div>
-
-            <div className="info-item">
-              <span className="info-label">Tamaño</span>
-              <span className="info-value">{perro.EstaturaPerro}</span>
-            </div>
-
-            <div className="info-item">
-              <span className="info-label">Pelaje</span>
-              <span className="info-value">{perro.PelajePerro}</span>
-            </div>
-
-            <div className="info-item">
-              <span className="info-label">Actividad</span>
-              <span className="info-value">{perro.ActividadPerro}</span>
-            </div>
-
-            {perro.RazaPerro && (
-              <div className="info-item">
-                <span className="info-label">Raza</span>
-                <span className="info-value">{perro.RazaPerro}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="perro-description">
-          <h3>Descripción</h3>
-          <p>{perro.DescripcionPerro}</p>
         </div>
       </div>
     </div>
