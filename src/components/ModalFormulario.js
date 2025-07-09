@@ -354,7 +354,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           <button 
             type="submit" 
             className="submit-button"
-            disabled={isSubmitting}
+            disabled={isSubmitting || showDniExistsModal}
           >
             {isSubmitting ? 'Enviando Petición...' : 'Enviar Petición'}
           </button>
