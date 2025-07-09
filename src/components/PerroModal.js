@@ -84,14 +84,8 @@ const PerroModal = ({ perro, onClose }) => {
               <button 
                 className="btn-adoptar"
                 onClick={() => {
-                  // Detectar si es móvil
-                  if (window.innerWidth <= 700) {
-                    navigate(`/adoptar/${perro.IdPerro}`);
-                    onClose();
-                  } else {
-                    // Mantener el modal en escritorio
-                    // Aquí podrías abrir el formulario dentro del modal si lo deseas
-                  }
+                  navigate(`/adoptar/${perro.IdPerro}`);
+                  onClose();
                 }}
               >
                 ¡Quiero adoptarlo!
