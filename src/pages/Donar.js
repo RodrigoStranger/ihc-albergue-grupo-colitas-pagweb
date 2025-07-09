@@ -17,7 +17,6 @@ function Donar() {
   })
   const [error, setError] = useState("")
   const [showErrorModal, setShowErrorModal] = useState(false)
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -162,6 +161,26 @@ function Donar() {
 
   return (
     <div className="donar-container">
+      {/* Botón flotante fijo en la esquina inferior derecha */}
+      <button
+        className="btn-donar floating-action-btn"
+        style={{position: 'fixed', bottom: 32, right: 32, zIndex: 1000, borderRadius: '50px', padding: '16px 32px', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'}}
+        type="button"
+        onClick={() => {
+          const section = document.querySelector('.formulario-donacion h2');
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            const offset = 100; // 3cm+ para dejar más espacio arriba
+            window.scrollTo({
+              top: window.scrollY + rect.top - offset,
+              behavior: 'smooth'
+            });
+          }
+        }}
+      >
+        Apoyar
+      </button>
+
       {/* Modal de Error */}
       <Modal
         isOpen={showErrorModal}

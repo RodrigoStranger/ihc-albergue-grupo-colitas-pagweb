@@ -474,7 +474,7 @@
 }
 
 .input-error:focus {
-  border-color: #e74c3c !important; /* Corregido: color válido */
+  border-color: #e74c3c !important; /* Corregido: era #e74c3f7 (incorrecto) */
   box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.3) !important;
 }
 
@@ -856,6 +856,47 @@
   line-height: 1.6;
   color: #666;
   margin: 0;
+}
+
+/* Botón Flotante 'Apoyar' */
+.floating-action-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  border-radius: 50px;
+  padding: 16px 32px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating-action-btn:hover, .floating-action-btn:focus {
+  background: linear-gradient(90deg, #ffb74d 0%, #ff7043 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .floating-action-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 40px;
+    width: auto;
+    min-width: unset;
+    max-width: none;
+    white-space: nowrap;
+  }
 }
 
 /* Responsive */

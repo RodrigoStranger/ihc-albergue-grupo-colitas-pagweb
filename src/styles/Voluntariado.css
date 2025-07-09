@@ -340,6 +340,47 @@
   opacity: 0.95;
 }
 
+/* Botón Flotante 'Unirme' */
+.floating-action-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  border-radius: 50px;
+  padding: 16px 32px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating-action-btn:hover, .floating-action-btn:focus {
+  background: linear-gradient(90deg, #ffb74d 0%, #ff7043 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .floating-action-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 40px;
+    width: auto;
+    min-width: unset;
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
   .voluntariado-container {
@@ -437,8 +478,8 @@
   }
   
   .btn-voluntariado {
-    min-width: 250px;
-    padding: 0.875rem 2rem;
+    min-width: unset !important;
+    padding: 0.75rem 1.5rem !important;
   }
   
   .compromiso-section {

@@ -168,6 +168,26 @@ function Voluntariado() {
 
   return (
     <div className="voluntariado-container">
+      {/* Botón flotante para ir al formulario */}
+      <button
+        className="btn-voluntariado floating-action-btn"
+        style={{position: 'fixed', bottom: 32, right: 32, zIndex: 1000, borderRadius: '50px', padding: '16px 32px', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'}}
+        onClick={() => {
+          const form = document.querySelector('.formulario-voluntariado h2');
+          if (form) {
+            const rect = form.getBoundingClientRect();
+            const offset = 120; // 2cm más arriba (antes 80, ahora 120)
+            window.scrollTo({
+              top: window.scrollY + rect.top - offset,
+              behavior: 'smooth'
+            });
+          }
+        }}
+        type="button"
+      >
+        Unirme
+      </button>
+
       {/* Modal de Error */}
       <Modal
         isOpen={showErrorModal}
