@@ -86,6 +86,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formDataToSend, setFormDataToSend] = useState(null);
+  const [showDniExistsModal, setShowDniExistsModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,11 +140,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
         if (e.status !== 406) throw e;
       }
       if (existingDni) {
-        setError('Ya existe una firma con este DNI');
-        const titleElement = document.querySelector('#modal-formulario-top h2');
-        if (titleElement) {
-          titleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        setShowDniExistsModal(true);
         setIsSubmitting(false);
         return;
       }
@@ -206,6 +203,53 @@ function ModalFormulario({ show, onClose, onSubmit }) {
         onClose={handleSuccessClose}
         nombre={formData.NombreFirma}
       />
+      {/* Modal para DNI ya existente */}
+      {showDniExistsModal && (
+        <div className="confirmation-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowDniExistsModal(false); }}>
+          <div className="confirmation-modal-container">
+            <div className="confirmation-modal-scroll">
+              <div className="confirmation-modal-inner">
+                <div className="confirmation-modal-header">
+                  <div className="confirmation-icon">
+                    <div className="success-checkmark">
+                      <div className="check-icon">
+                        <span className="icon-line line-tip"></span>
+                        <span className="icon-line line-long"></span>
+                        <div className="icon-circle"></div>
+                        <div className="icon-fix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 className="confirmation-title">Ya enviaste una solicitud</h2>
+                </div>
+                <div className="confirmation-modal-body">
+                  <div className="confirmation-message">
+                    <p className="main-message">
+                      Ya existe una firma registrada con este DNI.<br />
+                      Si necesitas actualizar tu petición, por favor contáctanos.
+                    </p>
+                    <div className="gratitude-section">
+                      <div className="heart-animation">❤️</div>
+                      <p className="gratitude-text">
+                        ¡Gracias por tu interés en apoyar la campaña!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="confirmation-modal-footer">
+                  <button className="confirmation-close-btn" onClick={() => setShowDniExistsModal(false)}>
+                    <span>Entendido</span>
+                    <div className="btn-shine"></div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button className="confirmation-modal-close-x" onClick={() => setShowDniExistsModal(false)} aria-label="Cerrar modal">
+              ×
+            </button>
+          </div>
+        </div>
+      )}
       <div className="modal-formulario">
         <div className="modal-content" ref={modalRef}>
           <div className="modal-header" id="modal-formulario-top">
@@ -240,9 +284,6 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                 maxLength={8}
                 pattern="[0-9]{8}"
               />
-              {error === 'Ya existe una firma con este DNI' && (
-                <div className="field-error-message">{error}</div>
-              )}
             </div>
             <div className="form-group">
               <label htmlFor="nombre" required>Nombres Completos</label>
