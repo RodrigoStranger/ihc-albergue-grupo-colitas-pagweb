@@ -365,3 +365,17 @@
   border-color: #4a90e2;
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.15);
 }
+
+/* Estilo para mensajes de error específicos (como el de la firma) */
+.field-error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}

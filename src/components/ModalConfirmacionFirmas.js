@@ -191,4 +191,60 @@ const ConfirmationModal = ({ isOpen, onClose, donorName, phoneNumber }) => {
   )
 }
 
-export default ConfirmationModal
+const ModalConfirmacionFirmas = ({ isOpen, onClose, nombre }) => {
+  if (!isOpen) return null
+
+  return (
+    <div className="confirmation-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="confirmation-modal-container">
+        <div className="confirmation-modal-scroll">
+          <div className="confirmation-modal-inner">
+            <div className="confirmation-modal-header">
+              <div className="confirmation-icon">
+                <div className="success-checkmark">
+                  <div className="check-icon">
+                    <span className="icon-line line-tip"></span>
+                    <span className="icon-line line-long"></span>
+                    <div className="icon-circle"></div>
+                    <div className="icon-fix"></div>
+                  </div>
+                </div>
+              </div>
+              <h2 className="confirmation-title">¡Petición enviada exitosamente!</h2>
+            </div>
+            <div className="confirmation-modal-body">
+              <div className="confirmation-message">
+                <p className="main-message">
+                  <strong>¡Gracias {nombre}!</strong> Hemos recibido tu petición de firma.<br />
+                  Cuando lleguemos a una cantidad significativa de firmas, solicitaremos a las autoridades que permitan campañas de esterilización y otras acciones en favor de los animales.
+                </p>
+                <div className="gratitude-section">
+                  <div className="heart-animation">❤️</div>
+                  <p className="gratitude-text">
+                    <strong>¡Juntos sumamos más voces por los animales!</strong>
+                  </p>
+                  <p className="signature">
+                    Con gratitud,
+                    <br />
+                    <strong>Equipo Grupo Colitas Arequipa</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="confirmation-modal-footer">
+              <button className="confirmation-close-btn" onClick={onClose}>
+                <span>Continuar</span>
+                <div className="btn-shine"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button className="confirmation-modal-close-x" onClick={onClose} aria-label="Cerrar modal">
+          ×
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default ModalConfirmacionFirmas

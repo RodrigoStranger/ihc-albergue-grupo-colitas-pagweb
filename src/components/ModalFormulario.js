@@ -124,48 +124,47 @@ function ModalFormulario({ show, onClose, onSubmit }) {
     try {
       setIsSubmitting(true);
       setError('');
-      
-      // Consultar si el DNI existe
-      const { data: existingDni, error: checkError } = await supabase
-        .from('CampañaFirmas')
-        .select('DniFirma')
-        .eq('DniFirma', formData.DniFirma)
-        .single();
-      
-      // Si el DNI ya existe, no hacer nada
+      let existingDni = null;
+      let checkError = null;
+      try {
+        const result = await supabase
+          .from('CampanaFirmas')
+          .select('DniFirma')
+          .eq('DniFirma', formData.DniFirma)
+          .single();
+        existingDni = result.data;
+        checkError = result.error;
+      } catch (e) {
+        // Si hay error 406, lo ignoramos y asumimos que el DNI no existe
+        if (e.status !== 406) throw e;
+      }
       if (existingDni) {
         setError('Ya existe una firma con este DNI');
-        // Desplazar al título del encabezado
         const titleElement = document.querySelector('#modal-formulario-top h2');
         if (titleElement) {
           titleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+        setIsSubmitting(false);
         return;
       }
-      
-      // Manejar cualquier otro error de consulta
-      if (checkError && checkError.code !== 'PGRST116') {
+      if (checkError && checkError.code !== 'PGRST116' && checkError.status !== 406) {
         throw checkError;
       }
-      
-      // Subir imagen al storage
+      // Subir imagen al storage SOLO si el DNI no existe
       const fileName = `firma_${formData.DniFirma}.png`;
       const { error: uploadError } = await supabase.storage
         .from('firmas')
         .upload(fileName, formData.ImagenFirma);
-      
       if (uploadError) {
         throw uploadError;
       }
-      
       // Obtener URL pública de la imagen
       const { data: { publicUrl } } = supabase.storage
         .from('firmas')
         .getPublicUrl(fileName);
-      
       // Insertar registro en la base de datos
       const { error: insertError } = await supabase
-        .from('CampañaFirmas')
+        .from('CampanaFirmas')
         .insert({
           DniFirma: formData.DniFirma,
           NombreFirma: formData.NombreFirma,
@@ -173,11 +172,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
           ImagenFirma: publicUrl,
           FechaRegistro: new Date(new Date().getTime() - (5 * 60 * 60 * 1000)).toISOString()
         });
-      
       if (insertError) {
         throw insertError;
       }
-      
       // Mostrar modal de éxito
       setFormDataToSend(formDataToSend);
       setShowSuccessModal(true);
@@ -205,8 +202,9 @@ function ModalFormulario({ show, onClose, onSubmit }) {
   return (
     <>
       <ModalConfirmacionFirmas 
-        show={showSuccessModal}
+        isOpen={showSuccessModal}
         onClose={handleSuccessClose}
+        nombre={formData.NombreFirma}
       />
       <div className="modal-formulario">
         <div className="modal-content" ref={modalRef}>
@@ -222,8 +220,8 @@ function ModalFormulario({ show, onClose, onSubmit }) {
             </button>
           </div>
           <form onSubmit={handleSubmit} className="formulario-form" id="formulario-form">
-            {error && <div className="error-message">{error}</div>}
-            
+            {/* Mensaje de error general solo sobre el campo correspondiente */}
+            {/* Error de DNI */}
             <div className="form-group">
               <label htmlFor="dni" required>DNI</label>
               <input 
@@ -242,8 +240,10 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                 maxLength={8}
                 pattern="[0-9]{8}"
               />
+              {error === 'Ya existe una firma con este DNI' && (
+                <div className="field-error-message">{error}</div>
+              )}
             </div>
-            
             <div className="form-group">
               <label htmlFor="nombre" required>Nombres Completos</label>
             <input 
@@ -304,7 +304,7 @@ function ModalFormulario({ show, onClose, onSubmit }) {
                   )}
                 </div>
                 {showImageError && !formData.ImagenFirma && (
-                  <p className="error-message" style={{color: '#ef4444', margin: '8px 0 0 0', textAlign: 'center'}}>Cargue su firma para continuar</p>
+                  <p className="field-error-message">Cargue su firma para continuar</p>
                 )}
               </div>
             </div>
