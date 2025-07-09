@@ -1,6 +1,23 @@
 import { client } from './client';
 
+const CACHE_KEY = 'perros_adopcion_cache_v1';
+const CACHE_TIME_MS = 20 * 60 * 1000; // 20 minutos
+
 export const obtenerPerros = async () => {
+  // 1. Intentar leer del caché
+  try {
+    const cacheRaw = localStorage.getItem(CACHE_KEY);
+    if (cacheRaw) {
+      const { data, timestamp } = JSON.parse(cacheRaw);
+      if (data && timestamp && Date.now() - timestamp < CACHE_TIME_MS) {
+        return data;
+      }
+    }
+  } catch (e) {
+    // Si hay error de parseo, ignorar y continuar
+  }
+
+  // 2. Si no hay caché válido, consultar a Supabase
   try {
     const { data, error } = await client
       .from('Perros')
@@ -41,6 +58,16 @@ export const obtenerPerros = async () => {
         FotoPerro: null
       };
     });
+
+    // 3. Guardar en caché
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        data: perrosConImagen,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Si falla el caché, no afecta la carga
+    }
 
     return perrosConImagen;
   } catch (error) {
