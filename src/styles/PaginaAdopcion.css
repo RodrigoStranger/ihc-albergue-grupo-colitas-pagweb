@@ -314,11 +314,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: rgba(255,255,255,0.98); /* Fondo blanco semitransparente para tapar el footer y evitar choque visual */
   color: #64748b;
   font-size: 1.2rem;
   font-weight: 500;
-  z-index: 1000;
+  z-index: 2000; /* Más alto para asegurar que tape el footer */
 }
 
 .loading::before {
