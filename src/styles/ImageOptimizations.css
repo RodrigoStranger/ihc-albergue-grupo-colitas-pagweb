@@ -79,5 +79,5 @@
   overflow: hidden;
   z-index: -1;
   /* Precargar imagen en background invisible */
-  background-image: url('../images/Grupo_colitas.png');
+  background-image: url('../images/Grupo_colitas.webp');
 }

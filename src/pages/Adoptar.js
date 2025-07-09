@@ -11,7 +11,13 @@ function Adoptar() {
   const [selectedPerro, setSelectedPerro] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Precargar imagen y perros al mismo tiempo al iniciar
   useEffect(() => {
+    // Precarga de imagen
+    const img = new window.Image();
+    img.src = require('../images/Grupo_colitas.webp');
+
+    // Precarga de perros
     const cargarPerros = async () => {
       try {
         const data = await obtenerPerros();
@@ -22,7 +28,6 @@ function Adoptar() {
         setLoading(false);
       }
     };
-
     cargarPerros();
   }, []);
 

@@ -196,7 +196,7 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url('../images/Grupo_colitas.png');
+              url('../images/Grupo_colitas.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -515,4 +515,4 @@
   .footer-bottom p {
     font-size: 0.7rem;
   }
-} 
+}
